@@ -1,3 +1,8 @@
+/*
+* 文件名：Coroutine.cs
+* 命名空间：Utils.Coroutine
+* 作者：WaterCylinder
+*/
 using Godot;
 using System;
 using System.Collections;
