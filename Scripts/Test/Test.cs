@@ -11,7 +11,8 @@ public partial class Test : Node
 
 	public void _Init()
     {
-        CoroutineManager.Instance.StartCoroutine(Callable.From(()=>{GD.Print("测试协程");}));
+        CardData card = AssetManager.Instance.GetData("Cards.card_test") as CardData;
+        GD.Print(card.type);
     }
 
 	public override void _Process(double delta)

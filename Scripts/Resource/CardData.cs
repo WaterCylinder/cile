@@ -30,9 +30,9 @@ public enum CardType
 public partial class CardData : Resource
 {	
 	[ExportCategory("卡牌属性")]
-	[Export]public CardType Type{get;set;}
-	[Export]public Callable OnUse{get;set;}
-	[Export]public Texture2D sprite{get;set;}
+	[Export]public CardType type;
+	[Export]public Callable onUse;
+	[Export]public Texture2D sprite;
 
 	[Signal]
 	public delegate void CardUseEventHandler(CardData card);

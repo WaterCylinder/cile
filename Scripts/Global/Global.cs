@@ -6,5 +6,10 @@ public static class Global
 {
 	public static string welcome = "HelloWorld";
 	public static GameGlobalState gameState = GameGlobalState.InMainMenu;
+
+
+	public static string AssetPath = "res://";
+	public static string ResourcePath = "res://Resources";
+	public static string UserPath = "usr://";
 	
 }

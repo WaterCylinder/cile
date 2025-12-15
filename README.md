@@ -8,7 +8,9 @@
 
 ### 当前进度
 1. 搭建基类框架
+* AssetManager资源加载
 2. 临时素材
+* 下班再做
 
 ### 项目文档
 [Project.md](Project.md)
