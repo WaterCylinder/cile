@@ -29,13 +29,11 @@ public enum CardType
 [GlobalClass]
 public partial class CardData : Resource
 {	
-	[ExportCategory("卡牌类型")]
+	[ExportCategory("卡牌属性")]
 	[Export]public CardType Type{get;set;}
-	[ExportCategory("卡牌事件")]
 	[Export]public Callable OnUse{get;set;}
-	[ExportCategory("卡面精灵")]
 	[Export]public Texture2D sprite{get;set;}
 
 	[Signal]
-	public delegate void CardEventHandler(CardData card);
+	public delegate void CardUseEventHandler(CardData card);
 }
