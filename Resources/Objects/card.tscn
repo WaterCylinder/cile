@@ -1,3 +1,12 @@
-[gd_scene format=3 uid="uid://3aps1cjors3m"]
+[gd_scene load_steps=4 format=3 uid="uid://3aps1cjors3m"]
+
+[ext_resource type="Script" uid="uid://co5xhaikq0qyn" path="res://Scripts/Object/Card.cs" id="1_rr1n7"]
+[ext_resource type="Script" uid="uid://bucly4m40nnvi" path="res://Scripts/Resource/CardData.cs" id="2_igfx4"]
+
+[sub_resource type="Resource" id="Resource_f65i6"]
+script = ExtResource("2_igfx4")
+metadata/_custom_type_script = "uid://bucly4m40nnvi"
 
 [node name="Card" type="Node2D"]
+script = ExtResource("1_rr1n7")
+data = SubResource("Resource_f65i6")
