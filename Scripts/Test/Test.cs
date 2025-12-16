@@ -12,7 +12,10 @@ public partial class Test : Node
 	public void _Init()
     {
         CardData card = AssetManager.Instance.GetData("Cards.card_test") as CardData;
-        GD.Print(card.type);
+        GD.Print(card.ResourceName);
+        card.onUse.Run();
+        PackedScene packedScene = AssetManager.Instance.GetObject("card");
+        EntityManager.Instance.CreateEntity(packedScene, this);
     }
 
 	public override void _Process(double delta)

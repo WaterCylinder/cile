@@ -23,15 +23,15 @@ public partial class AssetManager : Node
 				}
 				catch(Exception e)
 				{
-					GD.PrintErr($"初始化z资源管理器失败！{e}");
+					GD.PrintErr($"初始化资源管理器失败！{e}");
 				}
             }
 			return instance;
         }
     }
-	public static string objectResourcePath = Global.ResourcePath.PathJoin("Objects");
-	public static string spriteResourcePath = Global.ResourcePath.PathJoin("Sprites");
-	public static string dataResourcePath = Global.ResourcePath.PathJoin("Datas");
+	public string objectResourcePath = Global.ResourcePath.PathJoin("Objects");
+	public string spriteResourcePath = Global.ResourcePath.PathJoin("Sprites");
+	public string dataResourcePath = Global.ResourcePath.PathJoin("Datas");
 	
 	[Export] private Dictionary<string, PackedScene> _objectDict = new();
 	[Export] public Dictionary<string, Texture2D> _spriteDict = new();

@@ -31,7 +31,7 @@ public partial class CardData : Resource
 {	
 	[ExportCategory("卡牌属性")]
 	[Export]public CardType type;
-	[Export]public Callable onUse;
+	[Export]public Effect onUse;
 	[Export]public Texture2D sprite;
 
 	[Signal]
