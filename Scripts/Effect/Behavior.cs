@@ -9,6 +9,11 @@ public partial class Behavior : Resource
     public static System.Collections.Generic.Dictionary<string, MethodInfo> MethodList = new();
     [Export]public string behaviorName = "";
     [Export]public Dictionary<string, Variant> args = new();
+    /// <summary>
+    /// 执行行为逻辑
+    /// </summary>
+    /// <typeparam name="T">返回值类型</typeparam>
+    /// <returns></returns>
     public virtual T Run<T>()
     {   
         MethodInfo method;
@@ -19,6 +24,7 @@ public partial class Behavior : Resource
         else
         {
             method = GetType().GetMethod(behaviorName);
+            MethodList.Add(behaviorName, method);
         }
         if (method != null)
         {
@@ -36,6 +42,9 @@ public partial class Behavior : Resource
         GD.PrintErr($"{this.GetType().Name} 未找到行为方法：" + behaviorName);
         return default;
     }
+    /// <summary>
+    /// 执行行为逻辑
+    /// </summary>
     public void Run()
     {
         Run<object>();

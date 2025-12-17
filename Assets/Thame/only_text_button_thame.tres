@@ -1,0 +1,24 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://2iwgf3r0jy52"]
+
+[ext_resource type="FontFile" uid="uid://cgokx2yjk7oug" path="res://Assets/Fonts/SmileySans-Oblique.ttf" id="1_eucqw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tt5f1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8saeu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tt5f1"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_853f1"]
+
+[resource]
+default_font = ExtResource("1_eucqw")
+default_font_size = 32
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(0.5449743, 0.54497427, 0.54497427, 1)
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_eucqw")
+Button/styles/focus = SubResource("StyleBoxEmpty_tt5f1")
+Button/styles/hover = SubResource("StyleBoxEmpty_8saeu")
+Button/styles/normal = SubResource("StyleBoxFlat_tt5f1")
+Button/styles/pressed = SubResource("StyleBoxEmpty_853f1")

@@ -1,0 +1,91 @@
+[gd_scene load_steps=5 format=3 uid="uid://bk0l3scyfmc4m"]
+
+[ext_resource type="FontFile" uid="uid://cgokx2yjk7oug" path="res://Assets/Fonts/SmileySans-Oblique.ttf" id="1_tt5f1"]
+[ext_resource type="Theme" uid="uid://2iwgf3r0jy52" path="res://Assets/Thame/only_text_button_thame.tres" id="2_853f1"]
+[ext_resource type="Script" uid="uid://dv2l7glnpxkh4" path="res://Scripts/UI/MainMenu.cs" id="3_8saeu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_853f1"]
+font = ExtResource("1_tt5f1")
+font_size = 128
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -576.0
+offset_right = 576.0
+offset_bottom = 320.0
+grow_horizontal = 2
+text = "羲乐的DEMO"
+label_settings = SubResource("LabelSettings_853f1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="Control" parent="." node_paths=PackedStringArray("StartGameButton", "SettingButton", "ExitButton")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = 60.0
+offset_right = 192.0
+offset_bottom = 316.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_853f1")
+script = ExtResource("3_8saeu")
+StartGameButton = NodePath("StartGame")
+SettingButton = NodePath("Setting")
+ExitButton = NodePath("Exit")
+
+[node name="StartGame" type="Button" parent="Buttons"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+button_mask = 7
+keep_pressed_outside = true
+text = "开始游戏"
+
+[node name="Setting" type="Button" parent="Buttons"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.0
+offset_top = 64.0
+offset_right = 64.0
+offset_bottom = 128.0
+grow_horizontal = 2
+button_mask = 7
+keep_pressed_outside = true
+text = "设置"
+
+[node name="Exit" type="Button" parent="Buttons"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.0
+offset_top = 128.0
+offset_right = 64.0
+offset_bottom = 192.0
+grow_horizontal = 2
+button_mask = 7
+keep_pressed_outside = true
+text = "退出"
