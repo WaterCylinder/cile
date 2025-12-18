@@ -17,14 +17,17 @@ public partial class MainMenu : Control
 	public void OnStartGameButtonPressed()
     {
 		GD.Print("开始游戏");
+		GameManager.SM.CheckForward("GameMenu");
 	}
 
 	public void OnSettingButtonPressed()
     {
 		GD.Print("进入设置");
+		GameManager.SM.CheckForward("Setting");
 	}
 	public void OnExitButtonPressed()
     {
 		GD.Print("退出游戏");
+		GameManager.Instance.QuitGame();
 	}
 }

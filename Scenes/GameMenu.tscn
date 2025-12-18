@@ -1,9 +1,47 @@
-[gd_scene format=3 uid="uid://cvcj0ugfj6k4k"]
+[gd_scene load_steps=4 format=3 uid="uid://cvcj0ugfj6k4k"]
 
-[node name="GameMenu" type="Control"]
+[ext_resource type="PackedScene" uid="uid://dxoy57bpc8jvj" path="res://Assets/Object/back_button.tscn" id="1_4f8b7"]
+[ext_resource type="Script" uid="uid://4aghxrml77gy" path="res://Scripts/UI/GameMenu.cs" id="1_wd3g4"]
+[ext_resource type="Theme" uid="uid://2iwgf3r0jy52" path="res://Assets/Thame/only_text_button_thame.tres" id="3_d6vgs"]
+
+[node name="GameMenu" type="Control" node_paths=PackedStringArray("StartTestGame")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_wd3g4")
+StartTestGame = NodePath("Buttons/Button")
+
+[node name="Back" parent="." instance=ExtResource("1_4f8b7")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -80.0
+offset_bottom = 0.0
+grow_vertical = 0
+
+[node name="Buttons" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -196.0
+offset_right = 320.0
+offset_bottom = 188.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 118.0
+offset_bottom = 56.0
+theme = ExtResource("3_d6vgs")
+text = "测试模式"

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvoaelc1tggl2"]
+
+[ext_resource type="Theme" uid="uid://2iwgf3r0jy52" path="res://Assets/Thame/only_text_button_thame.tres" id="1_rb2hw"]
+[ext_resource type="Script" uid="uid://sqmmto8a6qvl" path="res://Scripts/UI/Button/BackMainMenuButton.cs" id="2_ty4nh"]
+
+[node name="BackToMainMenu" type="Button" node_paths=PackedStringArray("button")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -128.0
+offset_right = 192.0
+grow_vertical = 0
+theme = ExtResource("1_rb2hw")
+text = "返回到主菜单"
+script = ExtResource("2_ty4nh")
+button = NodePath(".")

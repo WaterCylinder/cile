@@ -64,6 +64,7 @@ public partial class EntityManager : Node
             {
                 EntityPool.Remove(eid);
             }
+            entity.QueueFree();
         }
 		catch(Exception e)
         {

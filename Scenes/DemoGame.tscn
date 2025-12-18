@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://cui3m2nppv73h"]
+
+[ext_resource type="Script" uid="uid://cqucg6w7eyn4b" path="res://Scripts/Core/Game.cs" id="1_dkiyr"]
+[ext_resource type="Theme" uid="uid://cvddfmai7mse5" path="res://Assets/Thame/inner_ui_thame.tres" id="1_pqcu6"]
+[ext_resource type="PackedScene" uid="uid://d2bla3dfrrpai" path="res://Assets/UI/inner_menu.tscn" id="2_ed3lb"]
+
+[node name="DemoGame" type="Node" node_paths=PackedStringArray("UI", "scene")]
+script = ExtResource("1_dkiyr")
+UI = NodePath("UI")
+scene = NodePath("Scene")
+innerMenuPackedScene = ExtResource("2_ed3lb")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_pqcu6")
+
+[node name="PUI" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Scene" type="Node2D" parent="."]

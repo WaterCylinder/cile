@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cvddfmai7mse5"]
+
+[ext_resource type="FontFile" uid="uid://cgokx2yjk7oug" path="res://Assets/Fonts/SmileySans-Oblique.ttf" id="1_82uqy"]
+
+[resource]
+default_font = ExtResource("1_82uqy")

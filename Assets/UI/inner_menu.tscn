@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2bla3dfrrpai"]
+
+[ext_resource type="Theme" uid="uid://cvddfmai7mse5" path="res://Assets/Thame/inner_ui_thame.tres" id="1_gxk7t"]
+[ext_resource type="PackedScene" uid="uid://bvoaelc1tggl2" path="res://Assets/Object/back_to_main_menu.tscn" id="2_gxk7t"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_gxk7t")
+
+[node name="BackToMainMenu" parent="." instance=ExtResource("2_gxk7t")]
+layout_mode = 1
+offset_right = 230.0

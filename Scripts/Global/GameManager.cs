@@ -16,11 +16,34 @@ public partial class GameManager : Node
         }
     }
 
+    public static CardManager CM => CardManager.Instance;
+    public static SceneManager SM => SceneManager.Instance;
+    public static InputManager IM => InputManager.Instance;
+
+    public Game game;
+
 	public override void _Ready()
     {	
 		GD.Print("初始化GameManager");
         ProcessMode = ProcessModeEnum.Always;
 		GameManager.instance = this;
+
+        InitCoreManager();
+    }
+
+    private void InitCoreManager() //初始化核心管理器
+    {
+        CardManager.Instance.Init();
+        SceneManager.Instance.Init();
+        InputManager.Instance.Init();
+    }
+
+    /// <summary>
+    /// 退出游戏
+    /// </summary>
+    public void QuitGame()
+    {
+        GetTree().Quit();
     }
 
 }

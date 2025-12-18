@@ -1,6 +1,9 @@
 using Godot;
 using System;
 
+/*
+ * 卡牌管理器
+*/
 public partial class CardManager : Node
 {
 	private static CardManager instance;
