@@ -14,6 +14,10 @@
 3. 地形
 	* 属性
 		- 地形类型 TerrainType
+		- 资源等级 SourceLevel
+		- 地形类型 TerrainType
+		- 特殊地形 Special
+		- 地形资源量 SourceLimit
 
 4. 角色（待定）
 	* 角色属性 properties

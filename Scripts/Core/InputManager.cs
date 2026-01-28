@@ -29,6 +29,7 @@ public partial class InputManager : Node
     }
 
 	[Export] public Dictionary<string, bool> inputKeyDict = new();
+    [Export] public Dictionary<string, bool> inputKeyDownDict = new();
 
 	[Signal] public delegate void KeyDownEventHandler(string Keycode);
 	[Signal] public delegate void KeyUpEventHandler(string Keycode);

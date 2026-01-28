@@ -1,14 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://cui3m2nppv73h"]
+[gd_scene load_steps=5 format=3 uid="uid://cui3m2nppv73h"]
 
 [ext_resource type="Script" uid="uid://cqucg6w7eyn4b" path="res://Scripts/Core/Game.cs" id="1_dkiyr"]
 [ext_resource type="Theme" uid="uid://cvddfmai7mse5" path="res://Assets/Thame/inner_ui_thame.tres" id="1_pqcu6"]
 [ext_resource type="PackedScene" uid="uid://d2bla3dfrrpai" path="res://Assets/UI/inner_menu.tscn" id="2_ed3lb"]
+[ext_resource type="PackedScene" uid="uid://b7klfx5hegpul" path="res://Assets/Map/demo_map.tscn" id="3_eafrm"]
 
-[node name="DemoGame" type="Node" node_paths=PackedStringArray("UI", "scene")]
+[node name="DemoGame" type="Node" node_paths=PackedStringArray("UI", "scene", "PUI")]
 script = ExtResource("1_dkiyr")
 UI = NodePath("UI")
 scene = NodePath("Scene")
+PUI = NodePath("UI/PUI")
 innerMenuPackedScene = ExtResource("2_ed3lb")
+defaultMapPackedScene = ExtResource("3_eafrm")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -30,3 +33,5 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Scene" type="Node2D" parent="."]
+
+[node name="MainCamera" type="Camera2D" parent="."]
