@@ -45,10 +45,18 @@ public partial class Terrain : Node2D
 		if(data == null)
         {
             GD.Print("地形数据为空");
-			return;
+			data = AssetManager.GetDefaultData("terrain") as TerrainData;
         }
+		//设置贴图
 		if(data.texture != null)
         	sprite.Texture = data.texture;
+		else
+		{
+			sprite.Texture = AssetManager.GetDefaultSprite("terrain");
+		}
+		Vector2 textureSize = sprite.Texture.GetSize();
+		sprite.Scale = new Vector2(width / textureSize.X, height / textureSize.Y);
+		GD.Print($"{X}-{Y}贴图缩放:{sprite.Scale}");
     }
 
 }

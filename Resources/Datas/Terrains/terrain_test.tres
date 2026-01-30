@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="TerrainData" load_steps=2 format=3 uid="uid://bubci6xvrw1bb"]
-
-[ext_resource type="Script" uid="uid://b4wdgjosrgm34" path="res://Scripts/Resource/TerrainData.cs" id="1_glwh2"]
-
-[resource]
-script = ExtResource("1_glwh2")
-metadata/_custom_type_script = "uid://b4wdgjosrgm34"

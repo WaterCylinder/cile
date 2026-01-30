@@ -2,8 +2,8 @@
 
 ### 依赖
 ```
-    Godot Engine V4.5.1.stable mode offical
-    dotnet 9.0.101
+	Godot Engine V4.5.1.stable mode offical
+	dotnet 9.0.101
 ```
 
 ### 当前进度

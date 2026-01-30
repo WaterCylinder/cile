@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://crq1vkuivnxfk"]
 
 [ext_resource type="Script" uid="uid://dbtnsqhh1hrc0" path="res://Scripts/Object/Terrain.cs" id="1_2umeb"]
-[ext_resource type="Texture2D" uid="uid://cei3ucsa1665f" path="res://Assets/Image/Temp/block_temp.png" id="2_bmrao"]
+[ext_resource type="Texture2D" uid="uid://cei3ucsa1665f" path="res://Resources/Sprites/Default/block_default.png" id="2_bmrao"]
 
 [node name="Terrain" type="Node2D" node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_2umeb")
@@ -9,5 +9,5 @@ sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(3.8146973e-06, -3.8146973e-06)
-scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_bmrao")
+region_rect = Rect2(0, 0, 40, 40)

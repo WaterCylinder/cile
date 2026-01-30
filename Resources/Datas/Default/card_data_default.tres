@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="CardData" load_steps=10 format=3 uid="uid://cxgoqv74ugeio"]
 
-[ext_resource type="Script" uid="uid://bucly4m40nnvi" path="res://Scripts/Resource/CardData.cs" id="1_4nqtg"]
-[ext_resource type="Script" uid="uid://b84i0tjh1tt4x" path="res://Scripts/Effect/Behaviors/ConditionBehavior.cs" id="1_fjgnb"]
-[ext_resource type="Script" uid="uid://6fakur5k5pu8" path="res://Scripts/Effect/Behavior.cs" id="1_ykgga"]
-[ext_resource type="Script" uid="uid://dap5hs4p56xf3" path="res://Scripts/Effect/Conditions/SingalCondition.cs" id="4_03nfa"]
-[ext_resource type="Script" uid="uid://dui0qei00bamx" path="res://Scripts/Effect/Effect.cs" id="6_c81eh"]
+[ext_resource type="Script" uid="uid://6fakur5k5pu8" path="res://Scripts/Effect/Behavior.cs" id="1_yppbu"]
+[ext_resource type="Script" uid="uid://b84i0tjh1tt4x" path="res://Scripts/Effect/Behaviors/ConditionBehavior.cs" id="2_jnlfh"]
+[ext_resource type="Script" uid="uid://dap5hs4p56xf3" path="res://Scripts/Effect/Conditions/SingalCondition.cs" id="3_bdh4n"]
+[ext_resource type="Script" uid="uid://dui0qei00bamx" path="res://Scripts/Effect/Effect.cs" id="4_t5vex"]
+[ext_resource type="Script" uid="uid://bucly4m40nnvi" path="res://Scripts/Resource/CardData.cs" id="5_o5yf2"]
 
 [sub_resource type="Resource" id="Resource_ja7hn"]
-script = ExtResource("1_ykgga")
+script = ExtResource("1_yppbu")
 behaviorName = "DebugLog"
 args = Dictionary[String, Variant]({
 "info": "测试数据"
@@ -15,21 +15,21 @@ args = Dictionary[String, Variant]({
 metadata/_custom_type_script = "uid://6fakur5k5pu8"
 
 [sub_resource type="Resource" id="Resource_ykgga"]
-script = ExtResource("1_fjgnb")
+script = ExtResource("2_jnlfh")
 behaviorName = "True"
 metadata/_custom_type_script = "uid://b84i0tjh1tt4x"
 
 [sub_resource type="Resource" id="Resource_n8a4q"]
-script = ExtResource("4_03nfa")
+script = ExtResource("3_bdh4n")
 behavior = SubResource("Resource_ykgga")
 metadata/_custom_type_script = "uid://dap5hs4p56xf3"
 
 [sub_resource type="Resource" id="Resource_qpgh6"]
-script = ExtResource("6_c81eh")
+script = ExtResource("4_t5vex")
 condition = SubResource("Resource_n8a4q")
 behavior = SubResource("Resource_ja7hn")
 metadata/_custom_type_script = "uid://dui0qei00bamx"
 
 [resource]
-script = ExtResource("1_4nqtg")
+script = ExtResource("5_o5yf2")
 onUse = SubResource("Resource_qpgh6")

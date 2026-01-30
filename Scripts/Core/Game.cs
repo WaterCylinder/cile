@@ -124,6 +124,7 @@ public partial class Game : Node
                 break;
             case 100: //地图生成
                 //初始化地图
+                Map.Generate();
                 Map.Init();
                 Next();
                 break;
