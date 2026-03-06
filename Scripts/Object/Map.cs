@@ -45,13 +45,40 @@ public partial class Map : Node2D
             }
         }
         GD.Print("重置地图位置");
-        Position = new Vector2(mapWidth * -0.5f * map[0,0].width, mapHeight * 0.5f * map[0,0].height);
+        Position = new Vector2((mapWidth - 1) * -0.5f * map[0,0].width, (mapHeight - 1) * 0.5f * map[0,0].height);
     }
 
-    // 初始化地图区块
+    /// <summary>
+    /// 设置特殊地形，比如准备区域等
+    /// </summary>
+    public void SpecialTerrainSet()
+    {   
+        GD.Print("特殊地图区块设置");
+        // 设置屏蔽区域(四个角)
+        TerrainData terrain_data_blocked = AssetManager.Instance.GetData("Terrains.terrain_data_blocked") as TerrainData;
+        map[0,0].ChangeData(terrain_data_blocked);
+        map[0,mapWidth-1].ChangeData(terrain_data_blocked);
+        map[mapHeight-1,0].ChangeData(terrain_data_blocked);
+        map[mapHeight-1,mapWidth-1].ChangeData(terrain_data_blocked);
+        // 设置准备区域(四个边)
+        TerrainData terrain_data_ready = AssetManager.Instance.GetData("Terrains.terrain_data_ready") as TerrainData;
+        for (int i = 1; i< mapHeight-1; i++)
+        {
+            map[i, 0].ChangeData(terrain_data_ready);
+            map[i, mapWidth-1].ChangeData(terrain_data_ready);
+        }
+        for (int j = 1; j< mapWidth-1; j++)
+        {
+            map[0, j].ChangeData(terrain_data_ready);
+            map[mapHeight-1, j].ChangeData(terrain_data_ready);
+        }
+    }
+
+    /// <summary>
+    /// 初始化所有区域的地形
+    /// </summary>
     public void Init()
     {
-        
         GD.Print("地图区块初始化");
         for(int i = 0; i < mapHeight; i++)
         {

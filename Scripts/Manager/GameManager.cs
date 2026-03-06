@@ -10,7 +10,7 @@ public partial class GameManager : Node
         {
             if (instance == null)
             {
-                GD.PrintErr("GlobalManager 尚未初始化！请确保在项目设置中启用了AutoLoad");
+                GD.PrintErr("GameManager 尚未初始化！请确保在项目设置中启用了AutoLoad");
             }
             return instance;
         }

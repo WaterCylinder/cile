@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bosy6bgdlx534"]
 
-[ext_resource type="PackedScene" uid="uid://dxoy57bpc8jvj" path="res://Assets/Object/back_button.tscn" id="1_clo8n"]
+[ext_resource type="PackedScene" uid="uid://dxoy57bpc8jvj" path="res://Assets/UI/back_button.tscn" id="1_clo8n"]
 
 [node name="Setting" type="Control"]
 layout_mode = 3

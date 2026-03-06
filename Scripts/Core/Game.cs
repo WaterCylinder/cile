@@ -93,6 +93,17 @@ public partial class Game : Node
         scene.AddChild(mapNode);
     }
     
+    //加载玩家信息
+    public void LoadPlayer()
+    {
+        
+    }
+
+    //加载卡牌数据
+    public void LoadCardData()
+    {
+        
+    }
 	public override void _Input(InputEvent @event)
     {
 		if(@event is InputEventKey inputEventKey)
@@ -129,11 +140,19 @@ public partial class Game : Node
             case 100: //地图生成
                 //初始化地图
                 Map.Generate();
+                Map.SpecialTerrainSet();
                 Map.Init();
                 Next();
                 break;
             case 200: //等待
+                //加载玩家
+                LoadPlayer();
+                LoadCardData();
+                Next();
                 break;
+            case 300:
+                break;
+
             default:
                 break;
         }

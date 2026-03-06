@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="TerrainData" load_steps=2 format=3 uid="uid://cgvyln8u4stt5"]
+[gd_resource type="Resource" script_class="TerrainData" load_steps=3 format=3 uid="uid://cgvyln8u4stt5"]
 
 [ext_resource type="Script" uid="uid://b4wdgjosrgm34" path="res://Scripts/Resource/TerrainData.cs" id="1_c3d6u"]
+[ext_resource type="Texture2D" uid="uid://c1v0v47n2xsxt" path="res://Resources/Sprites/Default/block2_default.png" id="2_q14jc"]
 
 [resource]
 script = ExtResource("1_c3d6u")
+texture = ExtResource("2_q14jc")
 metadata/_custom_type_script = "uid://b4wdgjosrgm34"

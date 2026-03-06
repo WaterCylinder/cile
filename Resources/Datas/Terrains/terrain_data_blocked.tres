@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="TerrainData" load_steps=3 format=3 uid="uid://dth2smydmo6rg"]
+
+[ext_resource type="Script" uid="uid://b4wdgjosrgm34" path="res://Scripts/Resource/TerrainData.cs" id="1_qrr7l"]
+[ext_resource type="Texture2D" uid="uid://xty2r7tynuxr" path="res://Resources/Sprites/TerrainMark/border_block_0.png" id="2_id3qk"]
+
+[resource]
+script = ExtResource("1_qrr7l")
+texture = ExtResource("2_id3qk")
+metadata/_custom_type_script = "uid://b4wdgjosrgm34"

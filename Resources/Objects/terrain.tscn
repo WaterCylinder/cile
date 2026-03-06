@@ -5,8 +5,8 @@
 
 [node name="Terrain" type="Node2D" node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_2umeb")
-height = 40.0
-width = 40.0
+height = 64.0
+width = 64.0
 sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

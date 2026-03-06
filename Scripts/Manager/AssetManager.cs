@@ -133,6 +133,7 @@ public partial class AssetManager : Node
     /// </summary>
     /// <param name="path">资源地址，使用Folder1.Folder2.resname的格式</param>
     /// <returns></returns>
+    /// 使用样例：AssetManager.Instance.GetData("Terrains.terrain_blocked") as TerrainData
 	public Resource GetData(string path)
     {	
 		path = Tools.Path(path,dataResourcePath);
@@ -164,6 +165,8 @@ public partial class AssetManager : Node
         {
             case "terrain":
                 return Instance.GetData("Default.terrain_data_default");
+            case "card":
+                return Instance.GetData("Default.card_data_default");
             default:
                 return null;
         }

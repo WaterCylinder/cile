@@ -51,12 +51,18 @@ public partial class InputManager : Node
         }
     }
 
+    /// <summary>
+    /// 判断当前有按键按下时返回true
+    /// </summary>
+    /// <param name="key"></param>
+    /// <returns></returns>
 	public bool KeyPressed(Key key)
     {
 		string keyCode = OS.GetKeycodeString(key);
         return KeyPressed(keyCode);
     }
 
+    
 	public override void _Input(InputEvent @event)
     {
         if(@event is InputEventKey inputEventKey)

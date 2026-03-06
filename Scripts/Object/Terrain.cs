@@ -59,4 +59,18 @@ public partial class Terrain : Node2D
 		// GD.Print($"{X}-{Y}贴图缩放:{sprite.Scale}");
     }
 
+	/// <summary>
+    /// 更改地形的数据，如果需要则重新初始化
+    /// </summary>
+    /// <param name="newData"></param>
+    /// <param name="isReload"></param>
+	public void ChangeData(TerrainData newData, bool isReload = false)
+    {
+        data = newData;
+		if (isReload)
+        {
+			Init();
+        }
+    }
+
 }
