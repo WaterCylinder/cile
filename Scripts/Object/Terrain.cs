@@ -4,8 +4,8 @@ using Godot.Collections;
 public partial class Terrain : Node2D
 {
 	[ExportCategory("地块属性")]
-	[Export]public float height = 20;
-	[Export]public float width = 20; 
+	[Export]public float height = 32;
+	[Export]public float width = 32; 
 	[Export]public Map map;
 	[Export]public int mapPosH;
 	[Export]public int mapPosW;
@@ -41,10 +41,10 @@ public partial class Terrain : Node2D
 	// 根据地块数据初始化地块信息
 	public void Init()
     {	
-		GD.Print($"{X}-{Y}地形初始化");
+		// GD.Print($"{X}-{Y}地形初始化");
 		if(data == null)
         {
-            GD.Print("地形数据为空");
+            GD.Print($"{mapPosH}行 - {mapPosW}列 地形数据为空");
 			data = AssetManager.GetDefaultData("terrain") as TerrainData;
         }
 		//设置贴图
@@ -56,7 +56,7 @@ public partial class Terrain : Node2D
 		}
 		Vector2 textureSize = sprite.Texture.GetSize();
 		sprite.Scale = new Vector2(width / textureSize.X, height / textureSize.Y);
-		GD.Print($"{X}-{Y}贴图缩放:{sprite.Scale}");
+		// GD.Print($"{X}-{Y}贴图缩放:{sprite.Scale}");
     }
 
 }

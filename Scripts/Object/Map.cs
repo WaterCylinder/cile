@@ -35,7 +35,7 @@ public partial class Map : Node2D
         for(int i = 0; i < mapHeight; i++)
         {
             for(int j = 0; j < mapWidth; j++)
-            {
+            {   
                 Terrain t = packedScene.Instantiate<Terrain>();
                 t.mapPosH = i;
                 t.mapPosW = j;
@@ -44,6 +44,8 @@ public partial class Map : Node2D
                 AddChild(t);
             }
         }
+        GD.Print("重置地图位置");
+        Position = new Vector2(mapWidth * -0.5f * map[0,0].width, mapHeight * 0.5f * map[0,0].height);
     }
 
     // 初始化地图区块
@@ -56,11 +58,12 @@ public partial class Map : Node2D
             for(int j = 0; j < mapWidth; j++)
             {
                 Terrain t = map[i,j];
-                GD.Print($"初始化地图区块: {t}");
+                // GD.Print($"初始化地图区块: {t}");
                 t.Init();
                 map[i,j] = t;
             }
         }
+        GD.Print($"初始化了{mapHeight * mapWidth}个区块");
     }
 
 }

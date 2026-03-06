@@ -122,7 +122,7 @@ public partial class AssetManager : Node
         switch (name)
         {
             case "terrain":
-                return Instance.GetSprite("Default.block_default");
+                return Instance.GetSprite("Default.block2_default");
             default:
                 return null;
         }

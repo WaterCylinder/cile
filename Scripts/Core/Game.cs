@@ -71,6 +71,10 @@ public partial class Game : Node
         PUI.Visible = visable;
     }
 
+    /// <summary>
+    /// 更换地图（更换地图对象，需要执行地图对象的加载方法来生成地图）
+    /// </summary>
+    /// <param name="packedScene">地图对象</param>
     public void ChangeMap(PackedScene packedScene = null)
     {
         if(packedScene == null)

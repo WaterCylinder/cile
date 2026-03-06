@@ -1,10 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://crq1vkuivnxfk"]
 
 [ext_resource type="Script" uid="uid://dbtnsqhh1hrc0" path="res://Scripts/Object/Terrain.cs" id="1_2umeb"]
-[ext_resource type="Texture2D" uid="uid://cei3ucsa1665f" path="res://Resources/Sprites/Default/block_default.png" id="2_bmrao"]
+[ext_resource type="Texture2D" uid="uid://c1v0v47n2xsxt" path="res://Resources/Sprites/Default/block2_default.png" id="2_bmrao"]
 
 [node name="Terrain" type="Node2D" node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_2umeb")
+height = 40.0
+width = 40.0
 sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

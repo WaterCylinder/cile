@@ -4,5 +4,5 @@
 
 [node name="DemoMap" type="Node2D"]
 script = ExtResource("1_7elqx")
-mapWidth = 10
-mapHeight = 10
+mapWidth = 12
+mapHeight = 12
