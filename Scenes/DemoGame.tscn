@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cui3m2nppv73h"]
+[gd_scene load_steps=6 format=3 uid="uid://cui3m2nppv73h"]
 
 [ext_resource type="Script" uid="uid://cqucg6w7eyn4b" path="res://Scripts/Core/Game.cs" id="1_dkiyr"]
 [ext_resource type="Theme" uid="uid://cvddfmai7mse5" path="res://Assets/Thames/inner_ui_thame.tres" id="1_pqcu6"]
 [ext_resource type="PackedScene" uid="uid://d2bla3dfrrpai" path="res://Assets/UI/inner_menu.tscn" id="2_ed3lb"]
 [ext_resource type="PackedScene" uid="uid://b7klfx5hegpul" path="res://Assets/Map/demo_map.tscn" id="3_eafrm"]
+[ext_resource type="Script" uid="uid://c5cxvarb8jma1" path="res://Scripts/UI/DebugUI.cs" id="5_unw7f"]
 
 [node name="DemoGame" type="Node" node_paths=PackedStringArray("UI", "scene", "PUI", "playerNode")]
 script = ExtResource("1_dkiyr")
@@ -33,6 +34,28 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="Debug" type="Control" parent="CanvasLayer/UI" node_paths=PackedStringArray("nextRoundButton")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_pqcu6")
+script = ExtResource("5_unw7f")
+nextRoundButton = NodePath("NextRoundButton")
+
+[node name="NextRoundButton" type="Button" parent="CanvasLayer/UI/Debug"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1024.0
+offset_top = 576.0
+offset_bottom = -80.0
+button_mask = 7
+text = "下一回合"
 
 [node name="Player" type="Node" parent="."]
 

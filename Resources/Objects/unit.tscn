@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://b76a4g2satqbg"]
+
+[ext_resource type="Script" uid="uid://deupks6flgo3b" path="res://Scripts/Object/Unit.cs" id="1_eqyla"]
+[ext_resource type="Script" uid="uid://dvp2ka0733fjo" path="res://Scripts/Component/SpriteSheetAnimation.cs" id="2_eqyla"]
+[ext_resource type="Texture2D" uid="uid://bhb6q1whkad2i" path="res://Resources/Sprites/Unit/unit_demo_sprite_sheet.png" id="3_nj1w0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nj1w0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nj1w0"]
+
+[node name="Unit" type="Node2D"]
+script = ExtResource("1_eqyla")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nj1w0")
+script = ExtResource("2_eqyla")
+spriteSheet = ExtResource("3_nj1w0")
+frameHight = 64
+frameWidth = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nj1w0")

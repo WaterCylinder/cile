@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bk0l3scyfmc4m"]
 
 [ext_resource type="FontFile" uid="uid://cgokx2yjk7oug" path="res://Assets/Fonts/SmileySans-Oblique.ttf" id="1_tt5f1"]
-[ext_resource type="Theme" uid="uid://2iwgf3r0jy52" path="res://Assets/Thame/only_text_button_thame.tres" id="2_853f1"]
+[ext_resource type="Theme" uid="uid://2iwgf3r0jy52" path="res://Assets/Thames/only_text_button_thame.tres" id="2_853f1"]
 [ext_resource type="Script" uid="uid://dv2l7glnpxkh4" path="res://Scripts/UI/MainMenu.cs" id="3_8saeu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_853f1"]

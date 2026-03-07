@@ -1,26 +1,57 @@
 using Godot;
 using System;
+using Godot.Collections;
 using Utils.Coroutine;
 
 public class RoundCricle
 {
 	public Coroutine coroutine = null;
-	public Game game;
 
 	/// <summary>
-    /// 当前回合数
+    /// 当前轮
     /// </summary>
 	public int round;
+
+    /// <summary>
+    /// 当前回合数
+    /// </summary>
+    public int turn;
 
 	/// <summary>
     /// 是否正在运行回合循环
     /// </summary>
 	public bool isRunning;
 
-	/// <summary>
-    /// 是否等待中
+    /// <summary>
+    /// 当前轮玩家
     /// </summary>
-	public bool waiting;
+    public Player turnPlayer;
+
+    /// <summary>
+    /// 你能操作吗？（当前客户端是否为当前轮玩家）
+    /// </summary>
+    public bool isYouCanOpera;
+
+    [Export] private Game game;
+    private Array<Player> players;
+
+    /// <summary>
+    /// 切换玩家
+    /// </summary>
+    /// <param name="index"></param>
+    public void ChangePlayer(int index)
+    {
+        turnPlayer = players[index];
+        GD.Print($"切换当前玩家为{turnPlayer.user.name} {turnPlayer.user.id}");
+    }
+
+    /// <summary>
+    /// 切换到下一个玩家
+    /// </summary>
+    public void NextPlayer()
+    {
+        ChangePlayer((turn - 1) % players.Count);
+    }
 
 	/// <summary>
     /// 开始回合循环
@@ -31,10 +62,40 @@ public class RoundCricle
 		GD.Print($"开始回合循环，当前A值{game.A}");
         coroutine = CoroutineManager.Instance.StartCoroutine(Callable.From(Process), 0.5);
 		round = 0;
+        turn = 0;
 		isRunning = true;
-		waiting = true;
+
+        players = game.players;
+
+        NextTurn();
     }
 
+    /// <summary>
+    /// 下一回合
+    /// </summary>
+    public void NextTurn()
+    {   
+        turn += 1;
+        if(turn % players.Count == 1)
+        {
+            NextRound();
+        }
+        GD.Print($"开始第{turn}回合");
+        NextPlayer();
+    }
+
+    /// <summary>
+    /// 下一轮
+    /// </summary>
+    public void NextRound()
+    {
+        round += 1;
+        GD.Print($"开始第{round}轮");
+    }
+
+    /// <summary>
+    /// 结束回合循环
+    /// </summary>
 	public void End()
     {
 		game = GameManager.Instance.game;
@@ -48,16 +109,7 @@ public class RoundCricle
     // 回合循环方法
 	private void Process()
     {
-		if (round == 1) //第一回合
-        {
-			
-        }
-        if (!waiting)
-        {
-            round += 1;
-            GD.Print($"开始第{round}回合");
-			waiting = true;
-        }
+		
     }
 
 

@@ -82,6 +82,10 @@ public partial class AssetManager : Node
         {
             case "terrain":
                 return Instance.GetObject("terrain");
+            case "card":
+                return Instance.GetObject("card");
+            case "unit":
+                return Instance.GetObject("unit");
             default:
                 return null;
         }

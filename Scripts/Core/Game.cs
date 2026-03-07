@@ -1,6 +1,6 @@
 using Godot;
+using Godot.Collections;
 using System;
-using System.Collections.Generic;
 
 public partial class Game : Node
 {
@@ -19,13 +19,13 @@ public partial class Game : Node
     [ExportCategory("可变节点{运行时加载}")]
     [Export] public Control innerMenu;
     [Export] public Node2D mapNode;
+    public Array<Player> players = new Array<Player>();
     public GameInfo gameInfo = null;
-    public List<Player> players = new List<Player>();
     
     public Map Map => mapNode as Map;
 
     // 回合循环实例
-    public RoundCricle roundCricle;
+    public RoundCricle roundCricle = new RoundCricle();
 
     public override void _Ready()
     {
@@ -126,6 +126,7 @@ public partial class Game : Node
             player.Init();
             player.Name = user.name + user.id;
             playerNode.AddChild(player);
+            players.Add(player);
         }
     }
 
@@ -169,9 +170,6 @@ public partial class Game : Node
         switch (A)
         {
             case 0: //A状态机初始化
-                //初始化回合循环系统
-                roundCricle = new RoundCricle();
-                roundCricle.Start();
                 //加载地图
                 ChangeMap();
                 Next();

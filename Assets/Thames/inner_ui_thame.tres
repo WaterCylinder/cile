@@ -4,3 +4,4 @@
 
 [resource]
 default_font = ExtResource("1_82uqy")
+Button/font_sizes/font_size = 32

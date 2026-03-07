@@ -11,8 +11,7 @@ public partial class Test : Node
 
 	public void _Init()
     {
-        TerrainData tdata = AssetManager.Instance.GetData("Terrains.terrain_blocked") as TerrainData;
-        GD.Print(tdata.texture);
+        
     }
 
 	public override void _Process(double delta)
