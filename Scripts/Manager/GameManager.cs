@@ -22,11 +22,21 @@ public partial class GameManager : Node
 
     public Game game;
 
+    public GameInfo gameInfoDefault;
+
+    public User user;
+
 	public override void _Ready()
     {	
 		GD.Print("初始化GameManager");
         ProcessMode = ProcessModeEnum.Always;
 		GameManager.instance = this;
+
+        gameInfoDefault = new GameInfo();
+        //读取本地用户（先用生成的用户）
+        user = new User("默认用户", "1111");
+        //添加本地用户
+        gameInfoDefault.users.Add(user);
 
         InitCoreManager();
     }

@@ -3,6 +3,10 @@ using Godot.Collections;
 using System;
 using System.Collections.Generic;
 
+/*
+玩家实体类，意思是游戏内的玩家数据，游戏外的玩家数据使用User类
+*/
+
 public enum PlayerState
 {
     None,
@@ -27,13 +31,11 @@ public partial class Player : Node
     /// 手卡
     /// </summary>
 	[Export]public Array<CardData> HandCards{get;set;}
-	public override void _Ready()
+
+	public User user;
+
+	public void Init()
     {
         
     }
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
 }
