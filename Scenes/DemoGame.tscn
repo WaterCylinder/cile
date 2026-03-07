@@ -1,16 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://cui3m2nppv73h"]
+[gd_scene load_steps=8 format=3 uid="uid://cui3m2nppv73h"]
 
 [ext_resource type="Script" uid="uid://cqucg6w7eyn4b" path="res://Scripts/Core/Game.cs" id="1_dkiyr"]
 [ext_resource type="Theme" uid="uid://cvddfmai7mse5" path="res://Assets/Thames/inner_ui_thame.tres" id="1_pqcu6"]
 [ext_resource type="PackedScene" uid="uid://d2bla3dfrrpai" path="res://Assets/UI/inner_menu.tscn" id="2_ed3lb"]
 [ext_resource type="PackedScene" uid="uid://b7klfx5hegpul" path="res://Assets/Map/demo_map.tscn" id="3_eafrm"]
 [ext_resource type="Script" uid="uid://c5cxvarb8jma1" path="res://Scripts/UI/DebugUI.cs" id="5_unw7f"]
+[ext_resource type="Script" uid="uid://sl4vm85tc6no" path="res://Scripts/UI/ActiveUI/TurnPanel.cs" id="6_pfs8u"]
 
-[node name="DemoGame" type="Node" node_paths=PackedStringArray("UI", "scene", "PUI", "playerNode")]
+[sub_resource type="LabelSettings" id="LabelSettings_pfs8u"]
+font_size = 32
+
+[node name="DemoGame" type="Node" node_paths=PackedStringArray("UI", "scene", "PUI", "ActiveUI", "playerNode")]
 script = ExtResource("1_dkiyr")
 UI = NodePath("CanvasLayer/UI")
 scene = NodePath("Scene")
 PUI = NodePath("CanvasLayer/UI/PUI")
+ActiveUI = NodePath("CanvasLayer/UI/ActiveUI")
 playerNode = NodePath("Player")
 innerMenuPackedScene = ExtResource("2_ed3lb")
 defaultMapPackedScene = ExtResource("3_eafrm")
@@ -56,6 +61,48 @@ offset_top = 576.0
 offset_bottom = -80.0
 button_mask = 7
 text = "下一回合"
+
+[node name="ActiveUI" type="Control" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+
+[node name="TurnPanel" type="Panel" parent="CanvasLayer/UI/ActiveUI" node_paths=PackedStringArray("label")]
+self_modulate = Color(1, 1, 1, 0.1882353)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -320.0
+offset_top = -64.0
+offset_right = 320.0
+offset_bottom = -3.0517578e-05
+grow_horizontal = 2
+pivot_offset = Vector2(320, 64)
+script = ExtResource("6_pfs8u")
+label = NodePath("Label")
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/ActiveUI/TurnPanel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.00003
+offset_top = -16.0
+offset_right = 199.99933
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(200, 16)
+text = "第 X 回合"
+label_settings = SubResource("LabelSettings_pfs8u")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Player" type="Node" parent="."]
 

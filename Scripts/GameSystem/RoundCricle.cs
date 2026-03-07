@@ -22,18 +22,10 @@ public class RoundCricle
     /// </summary>
 	public bool isRunning;
 
-    /// <summary>
-    /// 当前轮玩家
-    /// </summary>
-    public Player turnPlayer;
-
-    /// <summary>
-    /// 你能操作吗？（当前客户端是否为当前轮玩家）
-    /// </summary>
-    public bool isYouCanOpera;
-
     [Export] private Game game;
     private Array<Player> players;
+
+    private Turn turnLogic = new Turn();
 
     /// <summary>
     /// 切换玩家
@@ -41,8 +33,8 @@ public class RoundCricle
     /// <param name="index"></param>
     public void ChangePlayer(int index)
     {
-        turnPlayer = players[index];
-        GD.Print($"切换当前玩家为{turnPlayer.user.name} {turnPlayer.user.id}");
+        turnLogic.turnPlayer = players[index];
+        GD.Print($"切换当前玩家为{turnLogic.turnPlayer.user.name} {turnLogic.turnPlayer.user.id}");
     }
 
     /// <summary>
@@ -58,6 +50,7 @@ public class RoundCricle
     /// </summary>
 	public void Start()
     {	
+        
 		game = GameManager.Instance.game;
 		GD.Print($"开始回合循环，当前A值{game.A}");
         coroutine = CoroutineManager.Instance.StartCoroutine(Callable.From(Process), 0.5);
@@ -66,6 +59,8 @@ public class RoundCricle
 		isRunning = true;
 
         players = game.players;
+
+        turnLogic.roundCricle = this;
 
         NextTurn();
     }
@@ -81,6 +76,7 @@ public class RoundCricle
             NextRound();
         }
         GD.Print($"开始第{turn}回合");
+        turnLogic.EnterTurn();
         NextPlayer();
     }
 

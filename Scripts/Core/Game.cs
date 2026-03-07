@@ -8,6 +8,7 @@ public partial class Game : Node
     [Export] public Node2D scene;
     [ExportCategory("固定节点")]
     [Export] public Control PUI;
+    [Export] public Control ActiveUI;
     [Export] public Node playerNode;
     [ExportCategory("A状态机")]
     [Export] public int A;
