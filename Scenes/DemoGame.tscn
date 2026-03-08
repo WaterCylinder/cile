@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cui3m2nppv73h"]
+[gd_scene load_steps=9 format=3 uid="uid://cui3m2nppv73h"]
 
 [ext_resource type="Script" uid="uid://cqucg6w7eyn4b" path="res://Scripts/Core/Game.cs" id="1_dkiyr"]
 [ext_resource type="Theme" uid="uid://cvddfmai7mse5" path="res://Assets/Thames/inner_ui_theme.tres" id="1_pqcu6"]
@@ -6,11 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://b7klfx5hegpul" path="res://Assets/Map/demo_map.tscn" id="3_eafrm"]
 [ext_resource type="Script" uid="uid://c5cxvarb8jma1" path="res://Scripts/UI/DebugUI.cs" id="5_unw7f"]
 [ext_resource type="Script" uid="uid://sl4vm85tc6no" path="res://Scripts/UI/ActiveUI/TurnPanel.cs" id="6_pfs8u"]
+[ext_resource type="Script" uid="uid://bka50x8hk57og" path="res://Scripts/Component/CameraController.cs" id="7_tepq2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_pfs8u"]
 font_size = 32
 
-[node name="DemoGame" type="Node" node_paths=PackedStringArray("UI", "scene", "PUI", "ActiveUI", "playerNode")]
+[node name="DemoGame" type="Node" node_paths=PackedStringArray("UI", "scene", "PUI", "ActiveUI", "playerNode", "mainCamera")]
 script = ExtResource("1_dkiyr")
 UI = NodePath("CanvasLayer/UI")
 scene = NodePath("Scene")
@@ -19,6 +20,7 @@ ActiveUI = NodePath("CanvasLayer/UI/ActiveUI")
 playerNode = NodePath("Player")
 innerMenuPackedScene = ExtResource("2_ed3lb")
 defaultMapPackedScene = ExtResource("3_eafrm")
+mainCamera = NodePath("MainCamera")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -125,3 +127,4 @@ vertical_alignment = 1
 [node name="Scene" type="Node2D" parent="."]
 
 [node name="MainCamera" type="Camera2D" parent="."]
+script = ExtResource("7_tepq2")

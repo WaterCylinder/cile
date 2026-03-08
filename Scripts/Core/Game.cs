@@ -17,6 +17,8 @@ public partial class Game : Node
     [ExportCategory("实例")]
     [Export] public PackedScene innerMenuPackedScene;
     [Export] public PackedScene defaultMapPackedScene;
+    [ExportCategory("场景实体")]
+    [Export] public CameraController mainCamera;
     [ExportCategory("可变节点{运行时加载}")]
     [Export] public Control innerMenu;
     [Export] public Node2D mapNode;
