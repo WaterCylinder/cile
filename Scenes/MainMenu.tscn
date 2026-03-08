@@ -1,92 +1,224 @@
-[gd_scene load_steps=5 format=3 uid="uid://bk0l3scyfmc4m"]
+[gd_scene load_steps=17 format=3 uid="uid://bk0l3scyfmc4m"]
 
+[ext_resource type="Texture2D" uid="uid://0wdxlltbyl37" path="res://Assets/Images/UI/LOGO带背景.png" id="1_ghw46"]
 [ext_resource type="FontFile" uid="uid://cgokx2yjk7oug" path="res://Assets/Fonts/SmileySans-Oblique.ttf" id="1_tt5f1"]
-[ext_resource type="Theme" uid="uid://2iwgf3r0jy52" path="res://Assets/Thames/only_text_button_thame.tres" id="2_853f1"]
+[ext_resource type="Texture2D" uid="uid://cy0kr6ndr2whh" path="res://Assets/Images/UI/主菜单标题mask.png" id="2_7467j"]
+[ext_resource type="Texture2D" uid="uid://c0e2kdatmarlp" path="res://Assets/Images/UI/主菜单标题框.png" id="2_df05h"]
 [ext_resource type="Script" uid="uid://dv2l7glnpxkh4" path="res://Scripts/UI/MainMenu.cs" id="3_8saeu"]
+[ext_resource type="Texture2D" uid="uid://uq66labp3ao" path="res://Assets/Images/UI/主菜单按钮背景.png" id="3_8um5k"]
+[ext_resource type="Texture2D" uid="uid://s7c4kvnd8oa4" path="res://Assets/Images/UI/主菜单开始游戏按钮.png" id="4_koqhg"]
+[ext_resource type="Texture2D" uid="uid://c15rf2env1x3x" path="res://Assets/Images/UI/主菜单技能按钮.png" id="4_xim88"]
+[ext_resource type="Texture2D" uid="uid://c67akr57e0n6t" path="res://Assets/Images/UI/主菜单设置按钮.png" id="5_cmrfp"]
+[ext_resource type="Script" uid="uid://c4ukgj0cy5hxn" path="res://Scripts/UI/Button/TextureButtonColorChangeByState.cs" id="6_8e205"]
+[ext_resource type="Theme" uid="uid://dlpl0wp4l5rsr" path="res://Assets/Thames/main_menu_text_theme.tres" id="6_if7li"]
+[ext_resource type="Texture2D" uid="uid://b560h2qua5q6l" path="res://Assets/Images/UI/主菜单图鉴按钮.png" id="6_loo7a"]
+[ext_resource type="Texture2D" uid="uid://dku48fyticl70" path="res://Assets/Images/UI/主菜单角色按钮.png" id="7_if7li"]
+[ext_resource type="Texture2D" uid="uid://m8bkk5yn67mr" path="res://Assets/Images/熄了头像.jpg" id="10_fh7cp"]
+[ext_resource type="Texture2D" uid="uid://bvonf7ulvt66g" path="res://Assets/Images/UI/主菜单角色按钮边框.png" id="10_rrcx7"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_853f1"]
+[sub_resource type="LabelSettings" id="LabelSettings_fh7cp"]
 font = ExtResource("1_tt5f1")
-font_size = 128
+font_size = 100
+font_color = Color(0.23137255, 0.23529412, 0.1764706, 1)
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("StartGameButton", "SettingButton", "ExitButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("3_8saeu")
+StartGameButton = NodePath("Buttons/Buttons/StartGame")
+SettingButton = NodePath("Buttons/Buttons/Setting")
+ExitButton = NodePath("Buttons/Buttons/Handbook")
 
-[node name="Label" type="Label" parent="."]
+[node name="Title" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -448.0
-offset_right = 448.0
-offset_bottom = 320.0
-grow_horizontal = 2
-text = "羲乐的DEMO"
-label_settings = SubResource("LabelSettings_853f1")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Buttons" type="Control" parent="." node_paths=PackedStringArray("StartGameButton", "SettingButton", "ExitButton")]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -192.0
-offset_top = 24.0
-offset_right = 192.0
-offset_bottom = 276.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -448.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("2_853f1")
-script = ExtResource("3_8saeu")
-StartGameButton = NodePath("StartGame")
-SettingButton = NodePath("Setting")
-ExitButton = NodePath("Exit")
 
-[node name="StartGame" type="Button" parent="Buttons"]
+[node name="IllusMask" type="TextureRect" parent="Title"]
+clip_children = 1
+layout_mode = 0
+offset_left = 104.0
+offset_top = 64.0
+offset_right = 820.0
+offset_bottom = 644.0
+texture = ExtResource("2_7467j")
+expand_mode = 1
+
+[node name="Illus" type="TextureRect" parent="Title/IllusMask"]
+layout_mode = 0
+offset_right = 716.0
+offset_bottom = 592.0
+texture = ExtResource("10_fh7cp")
+expand_mode = 1
+
+[node name="LOGO" type="TextureRect" parent="Title"]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 88.0
+offset_right = 1254.9
+offset_bottom = 568.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ghw46")
+expand_mode = 2
+
+[node name="Border" type="TextureRect" parent="Title"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 64.0
+offset_right = 1535.0
+offset_bottom = 1250.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_df05h")
+
+[node name="Buttons" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -128.0
-offset_top = -4.0
-offset_right = 128.0
-offset_bottom = 60.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 832.0
 grow_horizontal = 2
-button_mask = 7
-keep_pressed_outside = true
+grow_vertical = 2
+
+[node name="BG" type="TextureRect" parent="Buttons"]
+layout_mode = 0
+offset_left = -160.0
+offset_top = 64.0
+offset_right = 861.0
+offset_bottom = 1248.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_8um5k")
+
+[node name="Buttons" type="Control" parent="Buttons"]
+anchors_preset = 0
+offset_left = -160.0
+offset_top = 64.0
+offset_right = 352.0
+offset_bottom = 657.0
+
+[node name="StartGame" type="TextureButton" parent="Buttons/Buttons"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 407.0
+offset_right = 975.0
+offset_bottom = 752.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("4_koqhg")
+script = ExtResource("6_8e205")
+
+[node name="Label" type="Label" parent="Buttons/Buttons/StartGame"]
+layout_mode = 0
+offset_left = 604.0
+offset_top = 196.0
+offset_right = 932.0
+offset_bottom = 316.0
+theme = ExtResource("6_if7li")
 text = "开始游戏"
 
-[node name="Setting" type="Button" parent="Buttons"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -128.0
-offset_top = 60.0
-offset_right = 128.0
-offset_bottom = 124.0
-grow_horizontal = 2
-button_mask = 7
-keep_pressed_outside = true
+[node name="Setting" type="TextureButton" parent="Buttons/Buttons"]
+layout_mode = 0
+offset_left = 381.0
+offset_top = 297.0
+offset_right = 616.0
+offset_bottom = 491.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("5_cmrfp")
+script = ExtResource("6_8e205")
+
+[node name="Label" type="Label" parent="Buttons/Buttons/Setting"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 44.0
+offset_right = 194.0
+offset_bottom = 164.0
+theme = ExtResource("6_if7li")
 text = "设置"
 
-[node name="Exit" type="Button" parent="Buttons"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -128.0
-offset_top = 124.0
-offset_right = 128.0
-offset_bottom = 188.0
-grow_horizontal = 2
-button_mask = 7
-keep_pressed_outside = true
-text = "退出"
+[node name="Handbook" type="TextureButton" parent="Buttons/Buttons"]
+layout_mode = 0
+offset_left = 71.0
+offset_top = 297.0
+offset_right = 651.0
+offset_bottom = 490.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("6_loo7a")
+script = ExtResource("6_8e205")
+
+[node name="Label" type="Label" parent="Buttons/Buttons/Handbook"]
+layout_mode = 0
+offset_left = 380.0
+offset_top = 44.0
+offset_right = 540.0
+offset_bottom = 164.0
+theme = ExtResource("6_if7li")
+text = "图鉴"
+
+[node name="Character" type="TextureButton" parent="Buttons/Buttons" node_paths=PackedStringArray("modulate")]
+modulate = Object(TextureRect,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":2,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"clip_contents":false,"custom_minimum_size":Vector2(0, 0),"layout_direction":0,"layout_mode":0,"anchors_preset":0,"anchor_left":0.0,"anchor_top":0.0,"anchor_right":0.0,"anchor_bottom":0.0,"offset_left":0.0,"offset_top":0.0,"offset_right":362.0,"offset_bottom":542.0,"grow_horizontal":1,"grow_vertical":1,"rotation":0.0,"scale":Vector2(1, 1),"pivot_offset":Vector2(0, 0),"size_flags_horizontal":1,"size_flags_vertical":1,"size_flags_stretch_ratio":1.0,"localize_numeral_system":true,"tooltip_text":"","tooltip_auto_translate_mode":0,"focus_neighbor_left":NodePath(""),"focus_neighbor_top":NodePath(""),"focus_neighbor_right":NodePath(""),"focus_neighbor_bottom":NodePath(""),"focus_next":NodePath(""),"focus_previous":NodePath(""),"focus_mode":0,"focus_behavior_recursive":0,"mouse_filter":1,"mouse_behavior_recursive":0,"mouse_force_pass_scroll_events":true,"mouse_default_cursor_shape":0,"shortcut_context":null,"accessibility_name":"","accessibility_description":"","accessibility_live":0,"accessibility_controls_nodes":Array[NodePath]([]),"accessibility_described_by_nodes":Array[NodePath]([]),"accessibility_labeled_by_nodes":Array[NodePath]([]),"accessibility_flow_to_nodes":Array[NodePath]([]),"theme":null,"theme_type_variation":&"","texture":ExtResource("10_rrcx7"),"expand_mode":0,"stretch_mode":0,"flip_h":false,"flip_v":false,"script":null)
+
+layout_mode = 0
+offset_left = 320.0
+offset_top = 16.0
+offset_right = 679.0
+offset_bottom = 552.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("7_if7li")
+script = ExtResource("6_8e205")
+modulate = NodePath("Border")
+
+[node name="IllusMask" type="ColorRect" parent="Buttons/Buttons/Character"]
+clip_children = 1
+layout_mode = 0
+offset_top = 10.0
+offset_right = 348.0
+offset_bottom = 536.0
+
+[node name="Illus" type="TextureRect" parent="Buttons/Buttons/Character/IllusMask"]
+layout_mode = 0
+offset_top = 6.0
+offset_right = 348.0
+offset_bottom = 542.0
+texture = ExtResource("10_fh7cp")
+expand_mode = 1
+
+[node name="Border" type="TextureRect" parent="Buttons/Buttons/Character"]
+layout_mode = 0
+offset_right = 362.0
+offset_bottom = 542.0
+texture = ExtResource("10_rrcx7")
+
+[node name="Label" type="Label" parent="Buttons/Buttons/Character"]
+layout_mode = 0
+offset_left = 188.0
+offset_top = 398.0
+offset_right = 348.0
+offset_bottom = 518.0
+theme = ExtResource("6_if7li")
+text = "角色"
+label_settings = SubResource("LabelSettings_fh7cp")
+
+[node name="Skill" type="TextureButton" parent="Buttons/Buttons"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 16.0
+offset_right = 496.0
+offset_bottom = 552.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("4_xim88")
+script = ExtResource("6_8e205")
+
+[node name="Label" type="Label" parent="Buttons/Buttons/Skill"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 378.0
+offset_right = 360.0
+offset_bottom = 498.0
+theme = ExtResource("6_if7li")
+text = "技能"

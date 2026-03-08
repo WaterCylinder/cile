@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://d2bla3dfrrpai"]
 
-[ext_resource type="Theme" uid="uid://cvddfmai7mse5" path="res://Assets/Thames/inner_ui_thame.tres" id="1_gxk7t"]
+[ext_resource type="Theme" uid="uid://cvddfmai7mse5" path="res://Assets/Thames/inner_ui_theme.tres" id="1_gxk7t"]
 [ext_resource type="PackedScene" uid="uid://bvoaelc1tggl2" path="res://Assets/UI/back_to_main_menu.tscn" id="2_gxk7t"]
 
 [node name="Menu" type="Control"]

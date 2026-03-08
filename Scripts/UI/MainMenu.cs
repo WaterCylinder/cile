@@ -4,9 +4,9 @@ using System.Diagnostics;
 
 public partial class MainMenu : Control
 {
-	[Export]public Button StartGameButton;
-	[Export]public Button SettingButton;
-	[Export]public Button ExitButton;
+	[Export]public TextureButton StartGameButton;
+	[Export]public TextureButton SettingButton;
+	[Export]public TextureButton ExitButton;
 
 	public override void _Ready()
 	{

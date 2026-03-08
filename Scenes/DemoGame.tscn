@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cui3m2nppv73h"]
 
 [ext_resource type="Script" uid="uid://cqucg6w7eyn4b" path="res://Scripts/Core/Game.cs" id="1_dkiyr"]
-[ext_resource type="Theme" uid="uid://cvddfmai7mse5" path="res://Assets/Thames/inner_ui_thame.tres" id="1_pqcu6"]
+[ext_resource type="Theme" uid="uid://cvddfmai7mse5" path="res://Assets/Thames/inner_ui_theme.tres" id="1_pqcu6"]
 [ext_resource type="PackedScene" uid="uid://d2bla3dfrrpai" path="res://Assets/UI/inner_menu.tscn" id="2_ed3lb"]
 [ext_resource type="PackedScene" uid="uid://b7klfx5hegpul" path="res://Assets/Map/demo_map.tscn" id="3_eafrm"]
 [ext_resource type="Script" uid="uid://c5cxvarb8jma1" path="res://Scripts/UI/DebugUI.cs" id="5_unw7f"]
