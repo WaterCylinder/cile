@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://pqg1yiifp5uy"]
+
+[ext_resource type="Script" uid="uid://dgajc15ek3boc" path="res://Scripts/Resource/CharacterData.cs" id="1_d0gdv"]
+
+[resource]
+script = ExtResource("1_d0gdv")
+tags = Array[int]([])
+activatePoint = 5

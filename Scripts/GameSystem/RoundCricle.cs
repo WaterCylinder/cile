@@ -23,9 +23,9 @@ public class RoundCricle
 	public bool isRunning;
 
     [Export] private Game game;
-    private Array<Player> players;
+    public Array<Player> players;
 
-    private Turn turnLogic = new Turn();
+    public Turn turnLogic = new Turn();
 
     /// <summary>
     /// 切换玩家

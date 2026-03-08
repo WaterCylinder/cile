@@ -28,6 +28,23 @@ public partial class Game : Node
     // 回合循环实例
     public RoundCricle roundCricle = new RoundCricle();
 
+    // 是否可操作
+    public bool CanOpera
+    {
+        get
+        {
+            try
+            {
+                return roundCricle.turnLogic.canOpera && roundCricle.turnLogic.isYouCanOpera;
+            }
+            catch(Exception e)
+            {
+                GD.Print(e.Message);
+                return false;
+            }
+        }
+    }
+
     public override void _Ready()
     {
         GameManager.Instance.game = this;   

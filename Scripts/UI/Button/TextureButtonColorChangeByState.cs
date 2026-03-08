@@ -42,17 +42,17 @@ public partial class TextureButtonColorChangeByState : TextureButton
         {
             modulate = this;
         }
-		this.MouseEntered += () =>
+		MouseEntered += () =>
 		{
 			color = enterColor;
 			modulate.SelfModulate = color;
 		};
-		this.MouseExited += () =>
+		MouseExited += () =>
 		{
 			color = normalColor;
 			modulate.SelfModulate = color;
 		};
-		this.Pressed += () =>
+		Pressed += () =>
 		{
 			color = pressedColor;
 			modulate.SelfModulate = color;

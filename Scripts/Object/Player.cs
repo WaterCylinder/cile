@@ -13,29 +13,45 @@ public enum PlayerState
 }
 public partial class Player : Node
 {	
-	[Export]public string Id{get;set;}
-	[Export]public PlayerState State{get;set;}
+	[Export]public string id;
+	/// <summary>
+    /// 角色数据
+    /// </summary>
+	[Export]public CharacterData characterData;
+	/// <summary>
+    /// 行动点数
+    /// </summary>
+	[Export]public int activatePoint;
+	/// <summary>
+    /// 玩家状态
+    /// </summary>
+	[Export]public PlayerState state;
 	/// <summary>
     /// 资源点
     /// </summary>
-	[Export]public int ResourcesPoint{get;set;}
+	[Export]public int resourcesPoint;
 	/// <summary>
     /// 生命值
     /// </summary>
-	[Export]public int HealthPoint{get;set;}
+	[Export]public int healthPoint;
 	/// <summary>
     /// 死亡次数
     /// </summary>
-	[Export]public int Death{get;set;}
+	[Export]public int death;
 	/// <summary>
     /// 手卡
     /// </summary>
-	[Export]public Array<CardData> HandCards{get;set;}
+	[Export]public Array<CardData> handCards;
 
 	public User user;
 
 	public void Init()
-    {
-        
+    {	
+		//从角色数据里获取初始行动点数等数据
+		if (characterData == null)
+        {
+            characterData = AssetManager.GetDefaultData("character") as CharacterData;
+        }
+		activatePoint = characterData.activatePoint;
     }
 }

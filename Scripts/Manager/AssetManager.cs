@@ -171,6 +171,10 @@ public partial class AssetManager : Node
                 return Instance.GetData("Default.terrain_data_default");
             case "card":
                 return Instance.GetData("Default.card_data_default");
+            case "unit":
+                return Instance.GetData("Default.unit_data_default");
+            case "character":
+                return Instance.GetData("Default.character_data_default");
             default:
                 return null;
         }

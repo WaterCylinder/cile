@@ -39,6 +39,17 @@ public partial class Turn
         turnPanel = GameManager.Instance.game.ActiveUI.GetNode<TurnPanel>("TurnPanel");
         turnPanel.SetTurnCount(turn);
         turnPanel.PlayAnimation();
+
+        //这里判断当前轮玩家是否为客户端用户（暂时不实现）
+        //TODO
+
+        isYouCanOpera = true;
+
+        //这里可能有动画之类的
+        //TODO
+
+        canOpera = true;
+
     }
 
 }
