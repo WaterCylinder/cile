@@ -4,7 +4,7 @@ using System;
 public partial class CameraController : Camera2D
 {
 	[Export]public Vector2 targetPos = Vector2.Zero;
-	[Export]public float moveSpeed = 8;
+	[Export]public float moveSpeed = 15;
 	[Export]public Vector2 posLimitX = new Vector2(-300, 300);
 	[Export]public Vector2 posLimitY = new Vector2(-300, 300);
 	[Export]public float targetZoom = 1;
@@ -13,6 +13,7 @@ public partial class CameraController : Camera2D
 
 	public Vector2 mousePos;
 	public bool isMousePressed = false;
+    public bool isDrug = false;
 	public Vector2 mousePressedPos;
 
     public override void _Process(double delta)
@@ -29,7 +30,11 @@ public partial class CameraController : Camera2D
 		Move();
     }
 
-	private void SetTargetPosition(Vector2 pos)
+	/// <summary>
+    /// 设置相机目标位置
+    /// </summary>
+    /// <param name="pos"></param>
+	public void SetTargetPosition(Vector2 pos)
     {
         targetPos = pos;
 		targetPos = new Vector2(
@@ -38,12 +43,21 @@ public partial class CameraController : Camera2D
 		);
     }
 
+    /// <summary>
+    /// 设置相机目标缩放
+    /// </summary>
+    /// <param name="zoom"></param>
+    public void SetTargetZoom(float zoom)
+    {
+        targetZoom = zoom;
+		targetZoom = Mathf.Clamp(targetZoom, zoomLimit.X, zoomLimit.Y);
+    }
+
     public override void _Input(InputEvent @event)
     {
         base._Input(@event);
 		if(@event is InputEventMouseButton mouseEvent)
         {
-			mousePos = GetGlobalMousePosition();
             if(mouseEvent.ButtonIndex == MouseButton.WheelUp)
             {	
 				if(targetZoom < zoomLimit.Y)
@@ -60,6 +74,7 @@ public partial class CameraController : Camera2D
             }
 			if (mouseEvent.Pressed)
 			{
+                mousePos = GetGlobalMousePosition();
 				if(mouseEvent.ButtonIndex == MouseButton.Left)
                 {
 					mousePressedPos = mousePos;
@@ -76,14 +91,30 @@ public partial class CameraController : Camera2D
         }
     }
 
-	public void Move()
+    //相机移动方法
+	private void Move()
     {
         if(isMousePressed)
+        {   
+            mousePos = GetGlobalMousePosition();
+            if (!isDrug)
+            {
+                Vector2 toward = mousePos - mousePressedPos;
+                if (toward.Length() > 5)
+                {
+                    isDrug = true;
+                }
+            }
+            else
+            {
+                Vector2 toward = mousePos - mousePressedPos;
+                SetTargetPosition(targetPos - toward * 4);
+                mousePressedPos = mousePos;
+            }
+        }
+        else
         {
-			mousePos = GetGlobalMousePosition();
-            Vector2 toward = mousePressedPos - mousePos;
-            SetTargetPosition(targetPos + toward);
-            mousePressedPos = mousePos;
+            isDrug = false;
         }
     }
 

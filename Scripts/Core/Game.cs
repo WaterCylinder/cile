@@ -19,6 +19,7 @@ public partial class Game : Node
     [Export] public PackedScene defaultMapPackedScene;
     [ExportCategory("场景实体")]
     [Export] public CameraController mainCamera;
+    [Export] public Array<Terrain> selectedTerrains = new Array<Terrain>();
     [ExportCategory("可变节点{运行时加载}")]
     [Export] public Control innerMenu;
     [Export] public Node2D mapNode;

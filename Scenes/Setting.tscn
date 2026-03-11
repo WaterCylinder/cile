@@ -1,8 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://bosy6bgdlx534"]
+[gd_scene format=3 uid="uid://bosy6bgdlx534"]
 
-[ext_resource type="PackedScene" uid="uid://dxoy57bpc8jvj" path="res://Assets/UI/back_button.tscn" id="1_clo8n"]
+[ext_resource type="Texture2D" uid="uid://dfefywu0ucirs" path="res://Assets/Images/UI/SettingMenu/二级按钮底色等.png" id="1_efio3"]
+[ext_resource type="Texture2D" uid="uid://w1drphklgdli" path="res://Assets/Images/UI/SettingMenu/设置界面参考图.png" id="2_2q4pn"]
+[ext_resource type="Texture2D" uid="uid://cxikrd4nwe1hn" path="res://Assets/Images/UI/SettingMenu/一级设置按钮底.png" id="2_iay5r"]
+[ext_resource type="Texture2D" uid="uid://by78h3wdgyfr5" path="res://Assets/Images/UI/SettingMenu/设置界面边框.png" id="2_v6w4y"]
+[ext_resource type="Texture2D" uid="uid://bhw17ujyybmm8" path="res://Assets/Images/UI/HandbookMenu/返回外框.png" id="2_vkq3o"]
+[ext_resource type="FontFile" uid="uid://cgokx2yjk7oug" path="res://Assets/Fonts/SmileySans-Oblique.ttf" id="3_iay5r"]
 
-[node name="Setting" type="Control"]
+[sub_resource type="LabelSettings" id="LabelSettings_c2i1c"]
+font = ExtResource("3_iay5r")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_vkq3o"]
+font = ExtResource("3_iay5r")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_73t6f"]
+font = ExtResource("3_iay5r")
+font_size = 32
+
+[node name="Setting" type="Control" unique_id=1946020202]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,11 +27,159 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Back" parent="." instance=ExtResource("1_clo8n")]
+[node name="BG" type="TextureRect" parent="." unique_id=691519442]
+self_modulate = Color(0.26666668, 0.26666668, 0.26666668, 1)
+layout_mode = 0
+offset_left = 85.0
+offset_top = 53.0
+offset_right = 1184.0
+offset_bottom = 659.0
+texture = ExtResource("1_efio3")
+expand_mode = 1
+
+[node name="Back" type="TextureButton" parent="." unique_id=1579578936]
+self_modulate = Color(0.2, 0.2, 0.2, 1)
+layout_mode = 0
+offset_left = 100.0
+offset_top = 67.0
+offset_right = 221.0
+offset_bottom = 125.0
+pivot_offset = Vector2(61, 29)
+texture_normal = ExtResource("1_efio3")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Border" type="TextureRect" parent="Back" unique_id=556445309]
+layout_mode = 0
+offset_right = 121.0
+offset_bottom = 58.0
+texture = ExtResource("2_vkq3o")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Back" unique_id=253015105]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 3.0
+offset_right = 83.0
+offset_bottom = 43.0
+text = "返回"
+label_settings = SubResource("LabelSettings_c2i1c")
+
+[node name="SettingPlane" type="Control" parent="." unique_id=196632886]
+anchors_preset = 0
+offset_left = 464.0
+offset_top = 120.0
+offset_right = 1126.0
+offset_bottom = 618.0
+
+[node name="Canvas" type="Control" parent="SettingPlane" unique_id=1733430960]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -80.0
-offset_bottom = 0.0
-grow_vertical = 0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FirstButton" type="Control" parent="." unique_id=1546603880]
+anchors_preset = 0
+offset_left = 104.0
+offset_top = 64.0
+offset_right = 472.0
+offset_bottom = 648.0
+
+[node name="Front" type="TextureButton" parent="FirstButton" unique_id=1543668093]
+self_modulate = Color(0.2, 0.2, 0.2, 1)
+layout_mode = 0
+offset_left = 117.0
+offset_right = 354.0
+offset_bottom = 61.0
+pivot_offset = Vector2(119, 31)
+texture_normal = ExtResource("2_iay5r")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Border" type="TextureRect" parent="FirstButton/Front" unique_id=1707150765]
+layout_mode = 0
+offset_top = 46.0
+offset_right = 232.0
+offset_bottom = 61.0
+texture = ExtResource("1_efio3")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="FirstButton/Front" unique_id=587218543]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 6.0
+offset_right = 159.0
+offset_bottom = 46.0
+text = "上一个"
+label_settings = SubResource("LabelSettings_vkq3o")
+
+[node name="Graph" type="TextureButton" parent="FirstButton" unique_id=96794328]
+self_modulate = Color(0.33333334, 0.33333334, 0.33333334, 1)
+layout_mode = 0
+offset_left = 102.0
+offset_top = 69.0
+offset_right = 342.0
+offset_bottom = 135.0
+pivot_offset = Vector2(120, 33)
+texture_normal = ExtResource("2_iay5r")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="FirstButton/Graph" unique_id=1693849957]
+layout_mode = 0
+offset_left = 91.0
+offset_top = 13.0
+offset_right = 142.0
+offset_bottom = 53.0
+text = "画面"
+label_settings = SubResource("LabelSettings_73t6f")
+
+[node name="Next" type="TextureButton" parent="FirstButton" unique_id=1696468085]
+self_modulate = Color(0.2, 0.2, 0.2, 1)
+layout_mode = 0
+offset_top = 526.0
+offset_right = 237.0
+offset_bottom = 587.0
+pivot_offset = Vector2(119, 31)
+texture_normal = ExtResource("2_iay5r")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Border" type="TextureRect" parent="FirstButton/Next" unique_id=1867304031]
+layout_mode = 0
+offset_left = 11.0
+offset_right = 243.0
+offset_bottom = 15.0
+texture = ExtResource("1_efio3")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="FirstButton/Next" unique_id=219223174]
+layout_mode = 0
+offset_left = 79.0
+offset_top = 15.0
+offset_right = 162.0
+offset_bottom = 55.0
+text = "下一个
+"
+label_settings = SubResource("LabelSettings_vkq3o")
+
+[node name="Border" type="TextureRect" parent="." unique_id=1045093628]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 53.0
+offset_right = 1184.0
+offset_bottom = 659.0
+texture = ExtResource("2_v6w4y")
+expand_mode = 1
+
+[node name="Simple" type="TextureRect" parent="." unique_id=1040451571]
+visible = false
+layout_mode = 0
+offset_left = 16.0
+offset_top = -16.0
+offset_right = 1256.0
+offset_bottom = 728.0
+texture = ExtResource("2_2q4pn")
+expand_mode = 1

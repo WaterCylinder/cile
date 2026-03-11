@@ -12,6 +12,8 @@ public partial class Terrain : Node2D
 	[Export]public TerrainData data;
 	[ExportCategory("组件")]
 	[Export]public Sprite2D sprite;
+	[Export]public Area2D area;
+	[Export]public CollisionShape2D collision;
 	[ExportCategory("相邻区块（上下左右）")]
 	[Export]public Array<Terrain> neighbors = new();
 
@@ -25,6 +27,12 @@ public partial class Terrain : Node2D
 
 	public TerrainType Type => data.type;
 
+	public bool isMouseEnter = false;
+	public bool isPressed = false;
+
+	[Signal]
+	public delegate void TerrainSellectedEventHandler(Terrain terrain);
+
     public override void _Ready()
     {
 		for(Node prt = GetParent(); prt != null; prt = prt.GetParent())
@@ -36,6 +44,15 @@ public partial class Terrain : Node2D
             }
         }
         map.map[Y,X] = this;
+		area.MouseEntered += () =>
+        {
+			isMouseEnter = true;
+        };
+		area.MouseExited += () =>
+        {
+			isMouseEnter = false;
+			isPressed = false;
+        };
     }
 
 	// 根据地块数据初始化地块信息
@@ -57,7 +74,40 @@ public partial class Terrain : Node2D
 		Vector2 textureSize = sprite.Texture.GetSize();
 		sprite.Scale = new Vector2(width / textureSize.X, height / textureSize.Y);
 		// GD.Print($"{X}-{Y}贴图缩放:{sprite.Scale}");
+
+		//设置碰撞箱大小
+		collision.Shape = new RectangleShape2D()
+        {
+            Size = new Vector2(width, height)
+        };
     }
+
+    public override void _Input(InputEvent @event)
+    {
+        base._Input(@event);
+		if(@event is InputEventMouseButton mouseEvent) 
+        {
+            if(isMouseEnter && mouseEvent.ButtonIndex == MouseButton.Left)
+            {
+                if(mouseEvent.Pressed)
+                {
+					isPressed = true;
+                }
+				if(!mouseEvent.Pressed)
+                {
+					if(isPressed)
+                    {
+						isPressed = false;
+						if(!GameManager.Instance.game.mainCamera.isDrug)
+                        {
+							Selected();
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 
 	/// <summary>
     /// 更改地形的数据，如果需要则重新初始化
@@ -71,6 +121,20 @@ public partial class Terrain : Node2D
         {
 			Init();
         }
+    }
+
+	/// <summary>
+    /// 被选择
+    /// </summary>
+	public void Selected()
+    {
+		GD.Print($"{X}-{Y}被选择");
+        GameManager.Instance.game.mainCamera.SetTargetPosition(area.GlobalPosition);
+		GameManager.Instance.game.mainCamera.SetTargetZoom(2);
+		//区块选择，暂时只支持单选，所以设置前清除当前选中集合
+		GameManager.Instance.game.selectedTerrains.Clear();
+		GameManager.Instance.game.selectedTerrains.Add(this);
+		EmitSignal("TerrainSellected", this);
     }
 
 }

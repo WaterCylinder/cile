@@ -31,6 +31,7 @@ public partial class Map : Node2D
     public void Generate()
     {   
         GD.Print("地图框架生成");
+        //左下角为0，0
         PackedScene packedScene = AssetManager.GetDefaultObject("terrain");
         for(int i = 0; i < mapHeight; i++)
         {
@@ -41,6 +42,7 @@ public partial class Map : Node2D
                 t.mapPosW = j;
                 t.Position = new Vector2(j * t.width, -i * t.height);
                 map[i,j] = t;
+                t.Name = $"Terrain_{i}_{j}";
                 AddChild(t);
             }
         }
@@ -88,6 +90,10 @@ public partial class Map : Node2D
                 // GD.Print($"初始化地图区块: {t}");
                 t.Init();
                 map[i,j] = t;
+                if(i < mapHeight-1)t.neighbors.Add(map[i+1,j]); //上
+                if(i > 0)t.neighbors.Add(map[i-1,j]);           //下
+                if(j > 0)t.neighbors.Add(map[i,j-1]);           //左
+                if(j < mapWidth-1)t.neighbors.Add(map[i,j+1]);  //右
             }
         }
         GD.Print($"初始化了{mapHeight * mapWidth}个区块");

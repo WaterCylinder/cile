@@ -1,27 +1,41 @@
-[gd_scene load_steps=17 format=3 uid="uid://bk0l3scyfmc4m"]
+[gd_scene format=3 uid="uid://bk0l3scyfmc4m"]
 
-[ext_resource type="Texture2D" uid="uid://0wdxlltbyl37" path="res://Assets/Images/UI/LOGO带背景.png" id="1_ghw46"]
+[ext_resource type="Texture2D" uid="uid://0wdxlltbyl37" path="res://Assets/Images/UI/MainMenu/LOGO带背景.png" id="1_ghw46"]
 [ext_resource type="FontFile" uid="uid://cgokx2yjk7oug" path="res://Assets/Fonts/SmileySans-Oblique.ttf" id="1_tt5f1"]
-[ext_resource type="Texture2D" uid="uid://cy0kr6ndr2whh" path="res://Assets/Images/UI/主菜单标题mask.png" id="2_7467j"]
-[ext_resource type="Texture2D" uid="uid://c0e2kdatmarlp" path="res://Assets/Images/UI/主菜单标题框.png" id="2_df05h"]
+[ext_resource type="Script" uid="uid://dcukd7j51225t" path="res://Scripts/Component/ColorSheet.cs" id="2_2x1g0"]
+[ext_resource type="Texture2D" uid="uid://cy0kr6ndr2whh" path="res://Assets/Images/UI/MainMenu/主菜单标题mask.png" id="2_7467j"]
+[ext_resource type="Texture2D" uid="uid://chpn74t221q52" path="res://Assets/Images/UI/MainMenu/主菜单标题框.png" id="2_df05h"]
 [ext_resource type="Script" uid="uid://dv2l7glnpxkh4" path="res://Scripts/UI/MainMenu.cs" id="3_8saeu"]
-[ext_resource type="Texture2D" uid="uid://uq66labp3ao" path="res://Assets/Images/UI/主菜单按钮背景.png" id="3_8um5k"]
-[ext_resource type="Texture2D" uid="uid://s7c4kvnd8oa4" path="res://Assets/Images/UI/主菜单开始游戏按钮.png" id="4_koqhg"]
-[ext_resource type="Texture2D" uid="uid://c15rf2env1x3x" path="res://Assets/Images/UI/主菜单技能按钮.png" id="4_xim88"]
-[ext_resource type="Texture2D" uid="uid://c67akr57e0n6t" path="res://Assets/Images/UI/主菜单设置按钮.png" id="5_cmrfp"]
-[ext_resource type="Script" uid="uid://c4ukgj0cy5hxn" path="res://Scripts/UI/Button/TextureButtonColorChangeByState.cs" id="6_8e205"]
+[ext_resource type="Texture2D" uid="uid://dpoyt5n30stjc" path="res://Assets/Images/UI/MainMenu/主菜单按钮背景.png" id="3_8um5k"]
+[ext_resource type="Script" uid="uid://c4ukgj0cy5hxn" path="res://Scripts/UI/Button/TextureButtonSizeChangeByState.cs" id="6_8e205"]
 [ext_resource type="Theme" uid="uid://dlpl0wp4l5rsr" path="res://Assets/Thames/main_menu_text_theme.tres" id="6_if7li"]
-[ext_resource type="Texture2D" uid="uid://b560h2qua5q6l" path="res://Assets/Images/UI/主菜单图鉴按钮.png" id="6_loo7a"]
-[ext_resource type="Texture2D" uid="uid://dku48fyticl70" path="res://Assets/Images/UI/主菜单角色按钮.png" id="7_if7li"]
+[ext_resource type="Texture2D" uid="uid://cfh4ps35kd71e" path="res://Assets/Images/UI/MainMenu/主菜单开始游戏按钮边框.png" id="8_loo7a"]
 [ext_resource type="Texture2D" uid="uid://m8bkk5yn67mr" path="res://Assets/Images/熄了头像.jpg" id="10_fh7cp"]
-[ext_resource type="Texture2D" uid="uid://bvonf7ulvt66g" path="res://Assets/Images/UI/主菜单角色按钮边框.png" id="10_rrcx7"]
+[ext_resource type="Texture2D" uid="uid://dlw11mfvoquy3" path="res://Assets/Images/UI/MainMenu/主菜单设置按钮边框.png" id="10_if7li"]
+[ext_resource type="Texture2D" uid="uid://dlhewb2jcx0me" path="res://Assets/Images/UI/MainMenu/主菜单图鉴按钮边框.png" id="11_rrcx7"]
+[ext_resource type="Texture2D" uid="uid://cljajw6aajs2s" path="res://Assets/Images/UI/MainMenu/主菜单角色按钮.png" id="12_7467j"]
+[ext_resource type="Texture2D" uid="uid://dujxbxlwdtsnd" path="res://Assets/Images/UI/MainMenu/主菜单角色按钮边框.png" id="13_2x1g0"]
+[ext_resource type="Texture2D" uid="uid://drrnmt81kxpga" path="res://Assets/Images/UI/MainMenu/主菜单技能按钮边框.png" id="13_fh7cp"]
+[ext_resource type="Texture2D" uid="uid://da6wv5bilwhu" path="res://Assets/Images/UI/MainMenu/主菜单角色按钮边框2.png" id="15_riqfo"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_koqhg"]
+load_path = "res://.godot/imported/主菜单开始游戏按钮.png-8b68357c0a0ea7455f320ef54e3f8d06.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cmrfp"]
+load_path = "res://.godot/imported/主菜单设置按钮.png-852fa7f18f936537892a505bad51382c.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_loo7a"]
+load_path = "res://.godot/imported/主菜单图鉴按钮.png-60b29ee682d8edf03d31016c94611f58.ctex"
 
 [sub_resource type="LabelSettings" id="LabelSettings_fh7cp"]
 font = ExtResource("1_tt5f1")
-font_size = 100
-font_color = Color(0.23137255, 0.23529412, 0.1764706, 1)
+font_size = 50
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("StartGameButton", "SettingButton", "ExitButton")]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fh7cp"]
+load_path = "res://.godot/imported/主菜单技能按钮.png-c0d69aa24fd4d288668faca36e698939.ctex"
+
+[node name="MainMenu" type="Control" unique_id=1549486507 node_paths=PackedStringArray("StartGameButton", "SettingButton", "HandBookButton")]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,9 +45,18 @@ grow_vertical = 2
 script = ExtResource("3_8saeu")
 StartGameButton = NodePath("Buttons/Buttons/StartGame")
 SettingButton = NodePath("Buttons/Buttons/Setting")
-ExitButton = NodePath("Buttons/Buttons/Handbook")
+HandBookButton = NodePath("Buttons/Buttons/Handbook")
 
-[node name="Title" type="Control" parent="."]
+[node name="ColorSheet" type="Node" parent="." unique_id=914128916 node_paths=PackedStringArray("colorSheet1", "colorSheet2", "colorSheet3", "colorSheet4", "colorSheet5", "colorSheet6")]
+script = ExtResource("2_2x1g0")
+colorSheet1 = [NodePath("../Buttons/BG")]
+colorSheet2 = [NodePath("../Title/Border"), NodePath("../Buttons/Buttons/StartGame/Border"), NodePath("../Buttons/Buttons/Setting/Border"), NodePath("../Buttons/Buttons/Handbook/Border"), NodePath("../Buttons/Buttons/Character/Border"), NodePath("../Buttons/Buttons/Skill/Border")]
+colorSheet3 = [NodePath("../Buttons/Buttons/StartGame"), NodePath("../Buttons/Buttons/Setting"), NodePath("../Buttons/Buttons/Handbook"), NodePath("../Buttons/Buttons/Character"), NodePath("../Buttons/Buttons/Skill")]
+colorSheet4 = [NodePath("../Buttons/Buttons/StartGame/Label"), NodePath("../Buttons/Buttons/Setting/Label"), NodePath("../Buttons/Buttons/Handbook/Label"), NodePath("../Buttons/Buttons/Skill/Label")]
+colorSheet5 = [NodePath("../Buttons/Buttons/Character/Label")]
+colorSheet6 = [NodePath("../Buttons/Buttons/Character/Border2")]
+
+[node name="Title" type="Control" parent="." unique_id=1742895736]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,7 +65,7 @@ offset_right = -448.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="IllusMask" type="TextureRect" parent="Title"]
+[node name="IllusMask" type="TextureRect" parent="Title" unique_id=1348510742]
 clip_children = 1
 layout_mode = 0
 offset_left = 104.0
@@ -52,14 +75,16 @@ offset_bottom = 644.0
 texture = ExtResource("2_7467j")
 expand_mode = 1
 
-[node name="Illus" type="TextureRect" parent="Title/IllusMask"]
+[node name="Illus" type="TextureRect" parent="Title/IllusMask" unique_id=1358439004]
 layout_mode = 0
-offset_right = 716.0
-offset_bottom = 592.0
+offset_left = -472.0
+offset_top = 224.0
+offset_right = 876.0
+offset_bottom = 422.0
 texture = ExtResource("10_fh7cp")
 expand_mode = 1
 
-[node name="LOGO" type="TextureRect" parent="Title"]
+[node name="LOGO" type="TextureRect" parent="Title" unique_id=436703176]
 layout_mode = 0
 offset_left = 168.0
 offset_top = 88.0
@@ -69,7 +94,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_ghw46")
 expand_mode = 2
 
-[node name="Border" type="TextureRect" parent="Title"]
+[node name="Border" type="TextureRect" parent="Title" unique_id=1495324264]
 layout_mode = 0
 offset_left = 104.0
 offset_top = 64.0
@@ -78,7 +103,7 @@ offset_bottom = 1250.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_df05h")
 
-[node name="Buttons" type="Control" parent="."]
+[node name="Buttons" type="Control" parent="." unique_id=1385620654]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -87,7 +112,8 @@ offset_left = 832.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BG" type="TextureRect" parent="Buttons"]
+[node name="BG" type="TextureRect" parent="Buttons" unique_id=1764215464]
+self_modulate = Color(0.2, 0.2, 0.2, 1)
 layout_mode = 0
 offset_left = -160.0
 offset_top = 64.0
@@ -96,129 +122,198 @@ offset_bottom = 1248.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_8um5k")
 
-[node name="Buttons" type="Control" parent="Buttons"]
+[node name="Buttons" type="Control" parent="Buttons" unique_id=1048525817]
 anchors_preset = 0
 offset_left = -160.0
 offset_top = 64.0
 offset_right = 352.0
 offset_bottom = 657.0
 
-[node name="StartGame" type="TextureButton" parent="Buttons/Buttons"]
+[node name="StartGame" type="TextureButton" parent="Buttons/Buttons" unique_id=651597902]
+self_modulate = Color(0.2, 0.2, 0.2, 1)
 layout_mode = 0
 offset_left = 18.0
 offset_top = 407.0
-offset_right = 975.0
-offset_bottom = 752.0
-scale = Vector2(0.5, 0.5)
-texture_normal = ExtResource("4_koqhg")
+offset_right = 494.0
+offset_bottom = 580.0
+pivot_offset = Vector2(238, 87)
+texture_normal = SubResource("CompressedTexture2D_koqhg")
+ignore_texture_size = true
+stretch_mode = 0
 script = ExtResource("6_8e205")
 
-[node name="Label" type="Label" parent="Buttons/Buttons/StartGame"]
+[node name="Border" type="TextureRect" parent="Buttons/Buttons/StartGame" unique_id=331810471]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_loo7a")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Buttons/Buttons/StartGame" unique_id=1061332924]
 layout_mode = 0
-offset_left = 604.0
-offset_top = 196.0
-offset_right = 932.0
-offset_bottom = 316.0
+offset_left = 294.0
+offset_top = 97.0
+offset_right = 462.0
+offset_bottom = 158.0
 theme = ExtResource("6_if7li")
 text = "开始游戏"
 
-[node name="Setting" type="TextureButton" parent="Buttons/Buttons"]
+[node name="Setting" type="TextureButton" parent="Buttons/Buttons" unique_id=858793524]
+self_modulate = Color(0.2, 0.2, 0.2, 0.2)
 layout_mode = 0
 offset_left = 381.0
 offset_top = 297.0
-offset_right = 616.0
-offset_bottom = 491.0
-scale = Vector2(0.5, 0.5)
-texture_normal = ExtResource("5_cmrfp")
+offset_right = 494.0
+offset_bottom = 394.0
+pivot_offset = Vector2(57, 49)
+texture_normal = SubResource("CompressedTexture2D_cmrfp")
+ignore_texture_size = true
+stretch_mode = 0
 script = ExtResource("6_8e205")
 
-[node name="Label" type="Label" parent="Buttons/Buttons/Setting"]
+[node name="Border" type="TextureRect" parent="Buttons/Buttons/Setting" unique_id=100351768]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_if7li")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Buttons/Buttons/Setting" unique_id=1167947774]
 layout_mode = 0
-offset_left = 34.0
-offset_top = 44.0
-offset_right = 194.0
-offset_bottom = 164.0
+offset_left = 17.0
+offset_top = 22.0
+offset_right = 98.0
+offset_bottom = 83.0
 theme = ExtResource("6_if7li")
 text = "设置"
 
-[node name="Handbook" type="TextureButton" parent="Buttons/Buttons"]
+[node name="Handbook" type="TextureButton" parent="Buttons/Buttons" unique_id=2126726023]
+self_modulate = Color(0.2, 0.2, 0.2, 0.2)
 layout_mode = 0
 offset_left = 71.0
 offset_top = 297.0
-offset_right = 651.0
-offset_bottom = 490.0
-scale = Vector2(0.5, 0.5)
-texture_normal = ExtResource("6_loo7a")
+offset_right = 368.0
+offset_bottom = 394.0
+pivot_offset = Vector2(153, 49)
+texture_normal = SubResource("CompressedTexture2D_loo7a")
+ignore_texture_size = true
+stretch_mode = 0
 script = ExtResource("6_8e205")
 
-[node name="Label" type="Label" parent="Buttons/Buttons/Handbook"]
+[node name="Border" type="TextureRect" parent="Buttons/Buttons/Handbook" unique_id=1041023483]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_rrcx7")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Buttons/Buttons/Handbook" unique_id=1606848359]
 layout_mode = 0
-offset_left = 380.0
-offset_top = 44.0
-offset_right = 540.0
-offset_bottom = 164.0
+offset_left = 201.0
+offset_top = 22.0
+offset_right = 281.0
+offset_bottom = 83.0
 theme = ExtResource("6_if7li")
 text = "图鉴"
 
-[node name="Character" type="TextureButton" parent="Buttons/Buttons" node_paths=PackedStringArray("modulate")]
-modulate = Object(TextureRect,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":2,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"clip_contents":false,"custom_minimum_size":Vector2(0, 0),"layout_direction":0,"layout_mode":0,"anchors_preset":0,"anchor_left":0.0,"anchor_top":0.0,"anchor_right":0.0,"anchor_bottom":0.0,"offset_left":0.0,"offset_top":0.0,"offset_right":362.0,"offset_bottom":542.0,"grow_horizontal":1,"grow_vertical":1,"rotation":0.0,"scale":Vector2(1, 1),"pivot_offset":Vector2(0, 0),"size_flags_horizontal":1,"size_flags_vertical":1,"size_flags_stretch_ratio":1.0,"localize_numeral_system":true,"tooltip_text":"","tooltip_auto_translate_mode":0,"focus_neighbor_left":NodePath(""),"focus_neighbor_top":NodePath(""),"focus_neighbor_right":NodePath(""),"focus_neighbor_bottom":NodePath(""),"focus_next":NodePath(""),"focus_previous":NodePath(""),"focus_mode":0,"focus_behavior_recursive":0,"mouse_filter":1,"mouse_behavior_recursive":0,"mouse_force_pass_scroll_events":true,"mouse_default_cursor_shape":0,"shortcut_context":null,"accessibility_name":"","accessibility_description":"","accessibility_live":0,"accessibility_controls_nodes":Array[NodePath]([]),"accessibility_described_by_nodes":Array[NodePath]([]),"accessibility_labeled_by_nodes":Array[NodePath]([]),"accessibility_flow_to_nodes":Array[NodePath]([]),"theme":null,"theme_type_variation":&"","texture":ExtResource("10_rrcx7"),"expand_mode":0,"stretch_mode":0,"flip_h":false,"flip_v":false,"script":null)
-
+[node name="Character" type="TextureButton" parent="Buttons/Buttons" unique_id=1628595586]
+self_modulate = Color(0.2, 0.2, 0.2, 1)
 layout_mode = 0
 offset_left = 320.0
 offset_top = 16.0
-offset_right = 679.0
-offset_bottom = 552.0
-scale = Vector2(0.5, 0.5)
-texture_normal = ExtResource("7_if7li")
+offset_right = 494.0
+offset_bottom = 287.0
+pivot_offset = Vector2(87, 136)
+texture_normal = ExtResource("12_7467j")
+ignore_texture_size = true
+stretch_mode = 0
 script = ExtResource("6_8e205")
-modulate = NodePath("Border")
 
-[node name="IllusMask" type="ColorRect" parent="Buttons/Buttons/Character"]
+[node name="IllusMask" type="ColorRect" parent="Buttons/Buttons/Character" unique_id=1553244034]
 clip_children = 1
-layout_mode = 0
-offset_top = 10.0
-offset_right = 348.0
-offset_bottom = 536.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Illus" type="TextureRect" parent="Buttons/Buttons/Character/IllusMask"]
+[node name="Illus" type="TextureRect" parent="Buttons/Buttons/Character/IllusMask" unique_id=459236241]
 layout_mode = 0
-offset_top = 6.0
-offset_right = 348.0
-offset_bottom = 542.0
+offset_left = -152.0
+offset_top = 112.0
+offset_right = 304.0
+offset_bottom = 186.0
 texture = ExtResource("10_fh7cp")
 expand_mode = 1
 
-[node name="Border" type="TextureRect" parent="Buttons/Buttons/Character"]
-layout_mode = 0
-offset_right = 362.0
-offset_bottom = 542.0
-texture = ExtResource("10_rrcx7")
+[node name="Border" type="TextureRect" parent="Buttons/Buttons/Character" unique_id=1531758545]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_2x1g0")
+expand_mode = 1
 
-[node name="Label" type="Label" parent="Buttons/Buttons/Character"]
+[node name="Border2" type="TextureRect" parent="Buttons/Buttons/Character" unique_id=853974480]
+self_modulate = Color(0.6, 0.85490197, 0.6156863, 1)
 layout_mode = 0
-offset_left = 188.0
-offset_top = 398.0
-offset_right = 348.0
-offset_bottom = 518.0
+offset_left = 72.0
+offset_right = 174.0
+offset_bottom = 271.0
+texture = ExtResource("15_riqfo")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Buttons/Buttons/Character" unique_id=1098043358]
+self_modulate = Color(0.26666668, 0.26666668, 0.26666668, 1)
+layout_mode = 0
+offset_left = 88.0
+offset_top = 208.0
+offset_right = 168.0
+offset_bottom = 269.0
 theme = ExtResource("6_if7li")
 text = "角色"
 label_settings = SubResource("LabelSettings_fh7cp")
 
-[node name="Skill" type="TextureButton" parent="Buttons/Buttons"]
+[node name="Skill" type="TextureButton" parent="Buttons/Buttons" unique_id=1817190804]
+self_modulate = Color(0.2, 0.2, 0.2, 0.2)
 layout_mode = 0
 offset_left = 104.0
 offset_top = 16.0
-offset_right = 496.0
-offset_bottom = 552.0
-scale = Vector2(0.5, 0.5)
-texture_normal = ExtResource("4_xim88")
+offset_right = 304.0
+offset_bottom = 285.0
+pivot_offset = Vector2(120, 135)
+texture_normal = SubResource("CompressedTexture2D_fh7cp")
+ignore_texture_size = true
+stretch_mode = 0
 script = ExtResource("6_8e205")
 
-[node name="Label" type="Label" parent="Buttons/Buttons/Skill"]
+[node name="Border" type="TextureRect" parent="Buttons/Buttons/Skill" unique_id=248968293]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_fh7cp")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Buttons/Buttons/Skill" unique_id=1888511337]
 layout_mode = 0
-offset_left = 200.0
-offset_top = 378.0
-offset_right = 360.0
-offset_bottom = 498.0
+offset_left = 104.0
+offset_top = 192.0
+offset_right = 184.0
+offset_bottom = 253.0
 theme = ExtResource("6_if7li")
 text = "技能"

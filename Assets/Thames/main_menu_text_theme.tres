@@ -1,7 +1,7 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dlpl0wp4l5rsr"]
+[gd_resource type="Theme" format=3 uid="uid://dlpl0wp4l5rsr"]
 
 [ext_resource type="FontFile" uid="uid://cgokx2yjk7oug" path="res://Assets/Fonts/SmileySans-Oblique.ttf" id="1_tqf7p"]
 
 [resource]
-Label/font_sizes/font_size = 100
+Label/font_sizes/font_size = 50
 Label/fonts/font = ExtResource("1_tqf7p")

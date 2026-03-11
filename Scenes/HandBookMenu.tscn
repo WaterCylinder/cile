@@ -1,0 +1,360 @@
+[gd_scene format=3 uid="uid://3k5qxd3n2hkv"]
+
+[ext_resource type="Script" uid="uid://781f2owx1nnj" path="res://Scripts/UI/HandBookMenu.cs" id="1_tlqv7"]
+[ext_resource type="Texture2D" uid="uid://smvpxk3jawjj" path="res://Assets/Images/UI/HandbookMenu/返回底图.png" id="2_fovr7"]
+[ext_resource type="Texture2D" uid="uid://tdb7kt3pa3lp" path="res://Assets/Images/UI/HandbookMenu/大框外框.png" id="2_tlqv7"]
+[ext_resource type="Texture2D" uid="uid://d0xicygouhrvm" path="res://Assets/Images/UI/HandbookMenu/大框底图.png" id="2_uab8r"]
+[ext_resource type="Script" uid="uid://dcukd7j51225t" path="res://Scripts/Component/ColorSheet.cs" id="2_uatjd"]
+[ext_resource type="Texture2D" uid="uid://bhw17ujyybmm8" path="res://Assets/Images/UI/HandbookMenu/返回外框.png" id="3_uab8r"]
+[ext_resource type="FontFile" uid="uid://cgokx2yjk7oug" path="res://Assets/Fonts/SmileySans-Oblique.ttf" id="4_tnyl5"]
+[ext_resource type="Texture2D" uid="uid://bagqs78sxgnrc" path="res://Assets/Images/UI/HandbookMenu/收集率底图.png" id="6_ta15o"]
+[ext_resource type="Texture2D" uid="uid://dfclak25pl5h2" path="res://Assets/Images/UI/HandbookMenu/收集率外框 拷贝.png" id="7_uatjd"]
+[ext_resource type="Texture2D" uid="uid://b05efmb8gtbwx" path="res://Assets/Images/UI/HandbookMenu/小框底图（无边框.png" id="8_ibh85"]
+[ext_resource type="Script" uid="uid://c4ukgj0cy5hxn" path="res://Scripts/UI/Button/TextureButtonSizeChangeByState.cs" id="8_ta15o"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8supy"]
+font = ExtResource("4_tnyl5")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_wlkx3"]
+font = ExtResource("4_tnyl5")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_sioib"]
+font = ExtResource("4_tnyl5")
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_xfxr2"]
+font = ExtResource("4_tnyl5")
+font_size = 44
+
+[node name="HandBookMenu" type="Control" unique_id=1076418376 node_paths=PackedStringArray("selectRateBar", "backButton", "enemyButton", "cgButton", "cardsButton", "settingButton", "wordsButton", "achivementButton", "musicButton")]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tlqv7")
+selectRateBar = NodePath("SelectRate/ColorRect")
+backButton = NodePath("Back")
+enemyButton = NodePath("Buttons/Enemy")
+cgButton = NodePath("Buttons/CG")
+cardsButton = NodePath("Buttons/Cards")
+settingButton = NodePath("Buttons/Setting")
+wordsButton = NodePath("Buttons/Words")
+achivementButton = NodePath("Buttons/Achivement")
+musicButton = NodePath("Buttons/Music")
+
+[node name="ColorSheet" type="Node" parent="." unique_id=816748220 node_paths=PackedStringArray("colorSheet1", "colorSheet2", "colorSheet3", "colorSheet4", "colorSheet6")]
+script = ExtResource("2_uatjd")
+colorSheet1 = [NodePath("../BG"), NodePath("../SelectRate/BG")]
+colorSheet2 = [NodePath("../BG/Border"), NodePath("../Buttons/Enemy/Border"), NodePath("../Buttons/CG/Border"), NodePath("../Buttons/Cards/Border"), NodePath("../Back/Border"), NodePath("../SelectRate/Border")]
+colorSheet3 = [NodePath("../Back"), NodePath("../Buttons/Enemy"), NodePath("../Buttons/CG"), NodePath("../Buttons/Cards"), NodePath("../Buttons/Setting"), NodePath("../Buttons/Words"), NodePath("../Buttons/Achivement"), NodePath("../Buttons/Music"), NodePath("../Back")]
+colorSheet4 = [NodePath("../Buttons/Cards/Label"), NodePath("../Back/Label"), NodePath("../Buttons/Enemy/Label"), NodePath("../Buttons/CG/Label"), NodePath("../Buttons/Cards/Label"), NodePath("../Buttons/Setting/Label"), NodePath("../Buttons/Words/Label"), NodePath("../Buttons/Achivement/Label"), NodePath("../Buttons/Music/Label")]
+colorSheet6 = [NodePath("../SelectRate/ColorRect")]
+
+[node name="BG" type="TextureRect" parent="." unique_id=1136042278]
+self_modulate = Color(0.1882353, 0.1882353, 0.18431373, 1)
+layout_mode = 0
+offset_left = 112.0
+offset_top = 72.0
+offset_right = 1184.0
+offset_bottom = 664.0
+texture = ExtResource("2_uab8r")
+expand_mode = 1
+
+[node name="Border" type="TextureRect" parent="BG" unique_id=581678158]
+layout_mode = 0
+offset_right = 1072.0
+offset_bottom = 584.0
+texture = ExtResource("2_tlqv7")
+expand_mode = 1
+
+[node name="SelectRate" type="Panel" parent="." unique_id=1426117658]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 152.0
+offset_right = 240.0
+offset_bottom = 592.0
+
+[node name="BG" type="TextureRect" parent="SelectRate" unique_id=1205016400]
+layout_mode = 0
+offset_right = 104.0
+offset_bottom = 440.0
+texture = ExtResource("6_ta15o")
+expand_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="SelectRate" unique_id=2067603817]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -44.0
+offset_top = -412.0
+offset_right = 44.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1, 0.66)
+pivot_offset = Vector2(44, 384)
+color = Color(0.41568628, 0.8901961, 0.9019608, 1)
+
+[node name="Border" type="TextureRect" parent="SelectRate" unique_id=638752308]
+layout_mode = 0
+offset_right = 104.0
+offset_bottom = 440.0
+texture = ExtResource("7_uatjd")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="SelectRate" unique_id=1351954866]
+layout_mode = 0
+offset_top = 440.0
+offset_right = 104.0
+offset_bottom = 480.0
+text = "收集率"
+label_settings = SubResource("LabelSettings_8supy")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Back" type="TextureButton" parent="." unique_id=1085961542]
+self_modulate = Color(0.19607843, 0.2, 0.2, 1)
+layout_mode = 0
+offset_left = 120.0
+offset_top = 80.0
+offset_right = 240.0
+offset_bottom = 136.0
+texture_normal = ExtResource("2_fovr7")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("8_ta15o")
+
+[node name="Border" type="TextureRect" parent="Back" unique_id=1123776100]
+layout_mode = 0
+offset_right = 119.89428
+offset_bottom = 56.0
+texture = ExtResource("3_uab8r")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Back" unique_id=611215105]
+layout_mode = 0
+offset_right = 120.0
+offset_bottom = 56.0
+pivot_offset = Vector2(60, 24)
+text = "返回"
+label_settings = SubResource("LabelSettings_wlkx3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="Control" parent="." unique_id=1740692325]
+anchors_preset = 0
+offset_left = 296.0
+offset_top = 136.0
+offset_right = 1128.0
+offset_bottom = 608.0
+
+[node name="Setting" type="TextureButton" parent="Buttons" unique_id=110562394]
+self_modulate = Color(0.33333334, 0.33333334, 0.33333334, 1)
+layout_mode = 0
+offset_left = 616.0
+offset_top = 232.0
+offset_right = 832.0
+offset_bottom = 344.0
+pivot_offset = Vector2(108, 56)
+texture_normal = ExtResource("8_ibh85")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("8_ta15o")
+
+[node name="Label" type="Label" parent="Buttons/Setting" unique_id=1882212409]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 64.0
+offset_right = 216.0
+offset_bottom = 113.0
+text = "设定
+"
+label_settings = SubResource("LabelSettings_sioib")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Words" type="TextureButton" parent="Buttons" unique_id=1866643182]
+self_modulate = Color(0.33333334, 0.33333334, 0.33333334, 1)
+layout_mode = 0
+offset_left = 392.0
+offset_top = 232.0
+offset_right = 608.0
+offset_bottom = 344.0
+pivot_offset = Vector2(103, 55)
+texture_normal = ExtResource("8_ibh85")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("8_ta15o")
+
+[node name="Label" type="Label" parent="Buttons/Words" unique_id=213388899]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 64.0
+offset_right = 216.0
+offset_bottom = 113.0
+text = "术语"
+label_settings = SubResource("LabelSettings_sioib")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Achivement" type="TextureButton" parent="Buttons" unique_id=747909745]
+self_modulate = Color(0.33333334, 0.33333334, 0.33333334, 1)
+layout_mode = 0
+offset_left = 616.0
+offset_top = 352.0
+offset_right = 832.0
+offset_bottom = 464.0
+pivot_offset = Vector2(108, 56)
+texture_normal = ExtResource("8_ibh85")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("8_ta15o")
+
+[node name="Label" type="Label" parent="Buttons/Achivement" unique_id=319830537]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 64.0
+offset_right = 216.0
+offset_bottom = 113.0
+text = "成就"
+label_settings = SubResource("LabelSettings_sioib")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Music" type="TextureButton" parent="Buttons" unique_id=315753440]
+self_modulate = Color(0.33333334, 0.33333334, 0.33333334, 1)
+layout_mode = 0
+offset_left = 392.0
+offset_top = 352.0
+offset_right = 608.0
+offset_bottom = 464.0
+pivot_offset = Vector2(108, 56)
+texture_normal = ExtResource("8_ibh85")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("8_ta15o")
+
+[node name="Label" type="Label" parent="Buttons/Music" unique_id=222836022]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 64.0
+offset_right = 216.0
+offset_bottom = 113.0
+pivot_offset = Vector2(-32, -8)
+text = "音乐"
+label_settings = SubResource("LabelSettings_sioib")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Enemy" type="TextureButton" parent="Buttons" unique_id=1733862141]
+self_modulate = Color(0.2, 0.2, 0.2, 0.2)
+layout_mode = 0
+offset_left = 392.0
+offset_right = 832.0
+offset_bottom = 232.0
+pivot_offset = Vector2(216, 116)
+texture_normal = ExtResource("2_uab8r")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("8_ta15o")
+
+[node name="Border" type="TextureRect" parent="Buttons/Enemy" unique_id=706468266]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(214, 117)
+texture = ExtResource("2_tlqv7")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Buttons/Enemy" unique_id=350033393]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 176.0
+offset_right = 432.0
+offset_bottom = 230.0
+text = "敌人"
+label_settings = SubResource("LabelSettings_xfxr2")
+horizontal_alignment = 2
+vertical_alignment = 1
+autowrap_trim_flags = 128
+
+[node name="CG" type="TextureButton" parent="Buttons" unique_id=329143331]
+self_modulate = Color(0.2, 0.2, 0.2, 0.2)
+layout_mode = 0
+offset_top = 232.0
+offset_right = 392.0
+offset_bottom = 464.0
+pivot_offset = Vector2(196, 113)
+texture_normal = ExtResource("2_uab8r")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("8_ta15o")
+
+[node name="Border" type="TextureRect" parent="Buttons/CG" unique_id=272656212]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(195, 118)
+texture = ExtResource("2_tlqv7")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Buttons/CG" unique_id=1982219098]
+layout_mode = 0
+offset_left = 312.0
+offset_top = 176.0
+offset_right = 384.0
+offset_bottom = 230.0
+text = "CG
+"
+label_settings = SubResource("LabelSettings_xfxr2")
+horizontal_alignment = 2
+vertical_alignment = 1
+autowrap_trim_flags = 128
+
+[node name="Cards" type="TextureButton" parent="Buttons" unique_id=774932602]
+self_modulate = Color(0.2, 0.2, 0.2, 0.2)
+layout_mode = 0
+offset_right = 392.0
+offset_bottom = 232.0
+pivot_offset = Vector2(196, 116)
+texture_normal = ExtResource("2_uab8r")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("8_ta15o")
+
+[node name="Border" type="TextureRect" parent="Buttons/Cards" unique_id=2135360875]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(193, 117)
+texture = ExtResource("2_tlqv7")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Buttons/Cards" unique_id=881610142]
+layout_mode = 0
+offset_left = 312.0
+offset_top = 176.0
+offset_right = 384.0
+offset_bottom = 230.0
+text = "卡牌"
+label_settings = SubResource("LabelSettings_xfxr2")
+horizontal_alignment = 2
+vertical_alignment = 1
+autowrap_trim_flags = 128

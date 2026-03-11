@@ -6,13 +6,13 @@ public partial class MainMenu : Control
 {
 	[Export]public TextureButton StartGameButton;
 	[Export]public TextureButton SettingButton;
-	[Export]public TextureButton ExitButton;
+	[Export]public TextureButton HandBookButton;
 
 	public override void _Ready()
 	{
 		StartGameButton.Pressed += OnStartGameButtonPressed;
 		SettingButton.Pressed += OnSettingButtonPressed;
-		ExitButton.Pressed += OnExitButtonPressed;
+		HandBookButton.Pressed += OnHandBookButtonPressed;
 	}
 	public void OnStartGameButtonPressed()
     {
@@ -25,9 +25,9 @@ public partial class MainMenu : Control
 		GD.Print("进入设置");
 		GameManager.SM.CheckForward("Setting");
 	}
-	public void OnExitButtonPressed()
+	public void OnHandBookButtonPressed()
     {
 		GD.Print("退出游戏");
-		GameManager.Instance.QuitGame();
+		GameManager.SM.CheckForward("HandBookMenu");
 	}
 }

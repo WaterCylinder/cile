@@ -26,6 +26,7 @@ public partial class GameManager : Node
 
     public User user;
 
+    // 游戏初始化
 	public override void _Ready()
     {	
 		GD.Print("初始化GameManager");
@@ -39,6 +40,9 @@ public partial class GameManager : Node
         gameInfoDefault.users.Add(user);
 
         InitCoreManager();
+
+        //加载配置
+        Global.LoadConfig();
     }
 
     private void InitCoreManager() //初始化核心管理器
