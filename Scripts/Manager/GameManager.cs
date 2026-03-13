@@ -19,6 +19,7 @@ public partial class GameManager : Node
     public static CardManager CM => CardManager.Instance;
     public static SceneManager SM => SceneManager.Instance;
     public static InputManager IM => InputManager.Instance;
+    public static AudioManager AM => AudioManager.Instance;
 
     public Game game;
 
@@ -50,6 +51,7 @@ public partial class GameManager : Node
         CardManager.Instance.Init();
         SceneManager.Instance.Init();
         InputManager.Instance.Init();
+        AudioManager.Instance.Init();
     }
 
     /// <summary>

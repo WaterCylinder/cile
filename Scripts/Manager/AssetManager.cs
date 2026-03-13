@@ -41,10 +41,15 @@ public partial class AssetManager : Node
     /// 数据资源地址
     /// </summary>
 	public string dataResourcePath = Global.ResourcePath.PathJoin("Datas");
+    /// <summary>
+    /// 媒体资源地址
+    /// </summary>
+    public string audioResourcePath = Global.ResourcePath.PathJoin("Audios");
 	
 	[Export] private Dictionary<string, PackedScene> _objectDict = new();
 	[Export] public Dictionary<string, Texture2D> _spriteDict = new();
 	[Export] public Dictionary<string, Resource> _dataDict = new();
+    [Export] public Dictionary<string, AudioStream> _audioDict = new();
 
 	/// <summary>
     /// 缓存并获取物体资源（tscn）,从Resources/Objects目录下加载
@@ -177,6 +182,33 @@ public partial class AssetManager : Node
                 return Instance.GetData("Default.character_data_default");
             default:
                 return null;
+        }
+    }
+
+    /// <summary>
+    /// 缓存并获取媒体资源,从Resources/Audios目录下加载
+    /// </summary>
+    /// <param name="path">资源地址，使用Folder1.Folder2.resname的格式(媒体格式自己添加后缀)</param>
+    /// <returns></returns>
+	public AudioStream GetAudio(string path, string exten = ".wav")
+    {
+		path = Tools.Path(path,spriteResourcePath);
+        path += exten;
+        if (_audioDict.ContainsKey(path))
+        {
+            return _audioDict[path];
+        }
+        try
+        {
+            AudioStream sprite = ResourceLoader.Load<AudioStream>(path);
+			_audioDict.Add(path, sprite);
+            GD.Print($"加载媒体成功：{path}");
+			return sprite;
+        }
+        catch(Exception e)
+        {
+            GD.PrintErr($"AssetManager加载媒体资源出错：{e}");
+			return null;
         }
     }
 }

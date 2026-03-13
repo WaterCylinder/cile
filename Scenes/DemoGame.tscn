@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://c5cxvarb8jma1" path="res://Scripts/UI/GameUI/DebugUI.cs" id="5_unw7f"]
 [ext_resource type="Script" uid="uid://sl4vm85tc6no" path="res://Scripts/UI/ActiveUI/TurnPanel.cs" id="6_pfs8u"]
 [ext_resource type="Script" uid="uid://bka50x8hk57og" path="res://Scripts/Component/CameraController.cs" id="7_tepq2"]
-[ext_resource type="AudioStream" uid="uid://bvl2555f81fbw" path="res://Assets/Music/fight.ogg" id="10_pmlgl"]
+[ext_resource type="AudioStream" uid="uid://ddfpaljduaw54" path="res://Resources/Audios/Voice/op_voice.wav" id="10_pmlgl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_pfs8u"]
 font_size = 32
@@ -130,6 +130,16 @@ vertical_alignment = 1
 
 [node name="Player" type="Node" parent="." unique_id=1041044808]
 
+[node name="Music" type="Node" parent="." unique_id=1148616687]
+
+[node name="AudioPlayer1" type="AudioStreamPlayer" parent="Music" unique_id=2024216237]
+stream = ExtResource("10_pmlgl")
+autoplay = true
+
+[node name="AudioPlayer2" type="AudioStreamPlayer" parent="Music" unique_id=1844484751]
+stream = ExtResource("10_pmlgl")
+autoplay = true
+
 [node name="Scene" type="Node2D" parent="." unique_id=1623421780]
 
 [node name="Marks" type="Control" parent="." unique_id=277835427 node_paths=PackedStringArray("selector")]
@@ -162,8 +172,3 @@ expand_mode = 1
 
 [node name="MainCamera" type="Camera2D" parent="." unique_id=1184612408]
 script = ExtResource("7_tepq2")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2024216237]
-stream = ExtResource("10_pmlgl")
-autoplay = true
-parameters/looping = true
