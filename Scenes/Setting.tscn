@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://bosy6bgdlx534"]
 
+[ext_resource type="Script" uid="uid://r0gqj0g1iqe3" path="res://Scripts/UI/SettingMenu.cs" id="1_c2i1c"]
 [ext_resource type="Texture2D" uid="uid://dfefywu0ucirs" path="res://Assets/Images/UI/SettingMenu/二级按钮底色等.png" id="1_efio3"]
 [ext_resource type="Texture2D" uid="uid://w1drphklgdli" path="res://Assets/Images/UI/SettingMenu/设置界面参考图.png" id="2_2q4pn"]
 [ext_resource type="Texture2D" uid="uid://cxikrd4nwe1hn" path="res://Assets/Images/UI/SettingMenu/一级设置按钮底.png" id="2_iay5r"]
 [ext_resource type="Texture2D" uid="uid://by78h3wdgyfr5" path="res://Assets/Images/UI/SettingMenu/设置界面边框.png" id="2_v6w4y"]
 [ext_resource type="Texture2D" uid="uid://bhw17ujyybmm8" path="res://Assets/Images/UI/HandbookMenu/返回外框.png" id="2_vkq3o"]
+[ext_resource type="Script" uid="uid://c4ukgj0cy5hxn" path="res://Scripts/UI/Button/TextureButtonSizeChangeByState.cs" id="3_73t6f"]
 [ext_resource type="FontFile" uid="uid://cgokx2yjk7oug" path="res://Assets/Fonts/SmileySans-Oblique.ttf" id="3_iay5r"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_c2i1c"]
-font = ExtResource("3_iay5r")
-font_size = 32
+[ext_resource type="Script" uid="uid://dcukd7j51225t" path="res://Scripts/Component/ColorSheet.cs" id="3_nmbau"]
+[ext_resource type="Script" uid="uid://dmebh1gg56q7k" path="res://Scripts/UI/SettingUI/GraphSetting.cs" id="7_e1h0i"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vkq3o"]
 font = ExtResource("3_iay5r")
@@ -19,13 +19,28 @@ font_size = 32
 font = ExtResource("3_iay5r")
 font_size = 32
 
-[node name="Setting" type="Control" unique_id=1946020202]
+[sub_resource type="LabelSettings" id="LabelSettings_nmbau"]
+font = ExtResource("3_iay5r")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_c2i1c"]
+font = ExtResource("3_iay5r")
+font_size = 32
+
+[node name="Setting" type="Control" unique_id=1946020202 node_paths=PackedStringArray("backButton", "frontButton", "nextButton", "buttonList", "planeList")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_c2i1c")
+backButton = NodePath("Back")
+frontButton = NodePath("FirstButton/Front")
+nextButton = NodePath("FirstButton/Next")
+buttonList = [NodePath("FirstButton/Graph"), NodePath("FirstButton/BaseSetting")]
+planeList = [NodePath("SettingPlane/Graph"), NodePath("SettingPlane/BaseSetting")]
 
 [node name="BG" type="TextureRect" parent="." unique_id=691519442]
 self_modulate = Color(0.26666668, 0.26666668, 0.26666668, 1)
@@ -37,48 +52,12 @@ offset_bottom = 659.0
 texture = ExtResource("1_efio3")
 expand_mode = 1
 
-[node name="Back" type="TextureButton" parent="." unique_id=1579578936]
-self_modulate = Color(0.2, 0.2, 0.2, 1)
-layout_mode = 0
-offset_left = 100.0
-offset_top = 67.0
-offset_right = 221.0
-offset_bottom = 125.0
-pivot_offset = Vector2(61, 29)
-texture_normal = ExtResource("1_efio3")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Border" type="TextureRect" parent="Back" unique_id=556445309]
-layout_mode = 0
-offset_right = 121.0
-offset_bottom = 58.0
-texture = ExtResource("2_vkq3o")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="Back" unique_id=253015105]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 3.0
-offset_right = 83.0
-offset_bottom = 43.0
-text = "返回"
-label_settings = SubResource("LabelSettings_c2i1c")
-
-[node name="SettingPlane" type="Control" parent="." unique_id=196632886]
-anchors_preset = 0
-offset_left = 464.0
-offset_top = 120.0
-offset_right = 1126.0
-offset_bottom = 618.0
-
-[node name="Canvas" type="Control" parent="SettingPlane" unique_id=1733430960]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ColorSheet" type="Node" parent="." unique_id=320533989 node_paths=PackedStringArray("colorSheet1", "colorSheet2", "colorSheet3", "colorSheet4")]
+script = ExtResource("3_nmbau")
+colorSheet1 = [NodePath("../BG")]
+colorSheet2 = [NodePath("../Back/Border"), NodePath("../FirstButton/Front/Border"), NodePath("../FirstButton/Next/Border"), NodePath("../Border")]
+colorSheet3 = [NodePath("../Back"), NodePath("../FirstButton/Front"), NodePath("../FirstButton/Graph"), NodePath("../FirstButton/BaseSetting"), NodePath("../FirstButton/Next")]
+colorSheet4 = [NodePath("../Back/Label"), NodePath("../FirstButton/Front/Label"), NodePath("../FirstButton/Graph/Label"), NodePath("../FirstButton/BaseSetting/Label"), NodePath("../FirstButton/Next/Label")]
 
 [node name="FirstButton" type="Control" parent="." unique_id=1546603880]
 anchors_preset = 0
@@ -97,6 +76,7 @@ pivot_offset = Vector2(119, 31)
 texture_normal = ExtResource("2_iay5r")
 ignore_texture_size = true
 stretch_mode = 0
+script = ExtResource("3_73t6f")
 
 [node name="Border" type="TextureRect" parent="FirstButton/Front" unique_id=1707150765]
 layout_mode = 0
@@ -126,6 +106,7 @@ pivot_offset = Vector2(120, 33)
 texture_normal = ExtResource("2_iay5r")
 ignore_texture_size = true
 stretch_mode = 0
+script = ExtResource("3_73t6f")
 
 [node name="Label" type="Label" parent="FirstButton/Graph" unique_id=1693849957]
 layout_mode = 0
@@ -134,6 +115,28 @@ offset_top = 13.0
 offset_right = 142.0
 offset_bottom = 53.0
 text = "画面"
+label_settings = SubResource("LabelSettings_73t6f")
+
+[node name="BaseSetting" type="TextureButton" parent="FirstButton" unique_id=572281983]
+self_modulate = Color(0.33333334, 0.33333334, 0.33333334, 1)
+layout_mode = 0
+offset_left = 87.0
+offset_top = 141.0
+offset_right = 323.36365
+offset_bottom = 206.0
+pivot_offset = Vector2(182, 53)
+texture_normal = ExtResource("2_iay5r")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_73t6f")
+
+[node name="Label" type="Label" parent="FirstButton/BaseSetting" unique_id=332619132]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 12.0
+offset_right = 171.0
+offset_bottom = 52.0
+text = "基础设置"
 label_settings = SubResource("LabelSettings_73t6f")
 
 [node name="Next" type="TextureButton" parent="FirstButton" unique_id=1696468085]
@@ -146,6 +149,7 @@ pivot_offset = Vector2(119, 31)
 texture_normal = ExtResource("2_iay5r")
 ignore_texture_size = true
 stretch_mode = 0
+script = ExtResource("3_73t6f")
 
 [node name="Border" type="TextureRect" parent="FirstButton/Next" unique_id=1867304031]
 layout_mode = 0
@@ -165,12 +169,123 @@ text = "下一个
 "
 label_settings = SubResource("LabelSettings_vkq3o")
 
+[node name="SettingPlane" type="Control" parent="." unique_id=196632886]
+anchors_preset = 0
+offset_left = 464.0
+offset_top = 120.0
+offset_right = 1126.0
+offset_bottom = 618.0
+
+[node name="Graph" type="Control" parent="SettingPlane" unique_id=534972171 node_paths=PackedStringArray("colorSheet", "colorSelectors")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_e1h0i")
+colorSheet = NodePath("../../ColorSheet")
+colorSelectors = [NodePath("ColorSelector/ColorScheme1"), NodePath("ColorSelector/ColorScheme2"), NodePath("ColorSelector/ColorScheme3")]
+
+[node name="ColorSelector" type="Control" parent="SettingPlane/Graph" unique_id=791115950]
+anchors_preset = 0
+offset_left = 8.0
+offset_top = 5.0
+offset_right = 500.0
+offset_bottom = 111.0
+
+[node name="Label" type="Label" parent="SettingPlane/Graph/ColorSelector" unique_id=1991909977]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 40.0
+offset_right = 176.0
+offset_bottom = 80.0
+text = "界面配色"
+label_settings = SubResource("LabelSettings_nmbau")
+
+[node name="ColorScheme1" type="TextureButton" parent="SettingPlane/Graph/ColorSelector" unique_id=2134669733]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 40.0
+offset_right = 265.0
+offset_bottom = 80.0
+pivot_offset = Vector2(20, 20)
+texture_normal = ExtResource("1_efio3")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ColorScheme2" type="TextureButton" parent="SettingPlane/Graph/ColorSelector" unique_id=967252988]
+layout_mode = 0
+offset_left = 301.0
+offset_top = 40.0
+offset_right = 341.0
+offset_bottom = 80.0
+pivot_offset = Vector2(20, 20)
+texture_normal = ExtResource("1_efio3")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ColorScheme3" type="TextureButton" parent="SettingPlane/Graph/ColorSelector" unique_id=1544598174]
+layout_mode = 0
+offset_left = 377.0
+offset_top = 40.0
+offset_right = 417.0
+offset_bottom = 80.0
+pivot_offset = Vector2(20, 20)
+texture_normal = ExtResource("1_efio3")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="BaseSetting" type="Control" parent="SettingPlane" unique_id=2101973867]
+visible = false
+anchors_preset = 0
+offset_left = 68.0
+offset_top = 66.0
+offset_right = 108.0
+offset_bottom = 106.0
+
+[node name="CheckButton" type="CheckButton" parent="SettingPlane/BaseSetting" unique_id=525650989]
+layout_mode = 0
+offset_right = 44.0
+offset_bottom = 24.0
+text = "全屏"
+
+[node name="Back" type="TextureButton" parent="." unique_id=1579578936]
+self_modulate = Color(0.2, 0.2, 0.2, 1)
+layout_mode = 0
+offset_left = 100.0
+offset_top = 67.0
+offset_right = 221.0
+offset_bottom = 125.0
+pivot_offset = Vector2(61, 29)
+texture_normal = ExtResource("1_efio3")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_73t6f")
+
+[node name="Border" type="TextureRect" parent="Back" unique_id=556445309]
+layout_mode = 0
+offset_right = 121.0
+offset_bottom = 58.0
+texture = ExtResource("2_vkq3o")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Back" unique_id=253015105]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 3.0
+offset_right = 83.0
+offset_bottom = 43.0
+text = "返回"
+label_settings = SubResource("LabelSettings_c2i1c")
+
 [node name="Border" type="TextureRect" parent="." unique_id=1045093628]
 layout_mode = 0
 offset_left = 85.0
 offset_top = 53.0
 offset_right = 1184.0
 offset_bottom = 659.0
+mouse_filter = 2
 texture = ExtResource("2_v6w4y")
 expand_mode = 1
 

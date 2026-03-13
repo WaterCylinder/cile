@@ -4,9 +4,12 @@
 [ext_resource type="Theme" uid="uid://cvddfmai7mse5" path="res://Assets/Thames/inner_ui_theme.tres" id="1_pqcu6"]
 [ext_resource type="PackedScene" uid="uid://d2bla3dfrrpai" path="res://Assets/UI/inner_menu.tscn" id="2_ed3lb"]
 [ext_resource type="PackedScene" uid="uid://b7klfx5hegpul" path="res://Assets/Map/demo_map.tscn" id="3_eafrm"]
-[ext_resource type="Script" uid="uid://c5cxvarb8jma1" path="res://Scripts/UI/DebugUI.cs" id="5_unw7f"]
+[ext_resource type="Script" uid="uid://b70loibpega7l" path="res://Scripts/UI/GameUI/UIMarks.cs" id="4_fydjb"]
+[ext_resource type="Texture2D" uid="uid://yvc2tsotv50d" path="res://Assets/Images/Marks/白框.png" id="5_fwgcq"]
+[ext_resource type="Script" uid="uid://c5cxvarb8jma1" path="res://Scripts/UI/GameUI/DebugUI.cs" id="5_unw7f"]
 [ext_resource type="Script" uid="uid://sl4vm85tc6no" path="res://Scripts/UI/ActiveUI/TurnPanel.cs" id="6_pfs8u"]
 [ext_resource type="Script" uid="uid://bka50x8hk57og" path="res://Scripts/Component/CameraController.cs" id="7_tepq2"]
+[ext_resource type="AudioStream" uid="uid://bvl2555f81fbw" path="res://Assets/Music/fight.ogg" id="10_pmlgl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_pfs8u"]
 font_size = 32
@@ -129,5 +132,38 @@ vertical_alignment = 1
 
 [node name="Scene" type="Node2D" parent="." unique_id=1623421780]
 
+[node name="Marks" type="Control" parent="." unique_id=277835427 node_paths=PackedStringArray("selector")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("4_fydjb")
+selector = NodePath("Selector")
+
+[node name="Selector" type="Control" parent="Marks" unique_id=1121004367]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+pivot_offset = Vector2(32, 32)
+
+[node name="TextureRect" type="TextureRect" parent="Marks/Selector" unique_id=388535846]
+self_modulate = Color(1, 0.44705883, 0.4509804, 0.60784316)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+texture = ExtResource("5_fwgcq")
+expand_mode = 1
+
 [node name="MainCamera" type="Camera2D" parent="." unique_id=1184612408]
 script = ExtResource("7_tepq2")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2024216237]
+stream = ExtResource("10_pmlgl")
+autoplay = true
+parameters/looping = true

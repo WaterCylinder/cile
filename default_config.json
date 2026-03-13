@@ -6,5 +6,39 @@
 		"color4":"#ffffff",
 		"color5":"#444444",
 		"color6":"#99da9d"
-	}
+	},
+	"color_schemes":[
+		{
+			"color1":"#6c6c6c",
+			"color2":"#f3a5a6",
+			"color3":"#544451",
+			"color4":"#ffffff",
+			"color5":"#444444",
+			"color6":"#99da9d"
+		},
+		{
+			"color1":"#32322f",
+			"color2":"#99f57d",
+			"color3":"#34383b",
+			"color4":"#ffffff",
+			"color5":"#777777",
+			"color6":"#4cad45"
+		},
+		{
+			"color1":"#bee7ed",
+			"color2":"#73c5de",
+			"color3":"#ebebeb",
+			"color4":"#0071d4",
+			"color5":"#ffffff",
+			"color6":"#296096"
+		},
+		{
+			"color1":"#6c6c6c",
+			"color2":"#f3a5a6",
+			"color3":"#544451",
+			"color4":"#ffffff",
+			"color5":"#444444",
+			"color6":"#99da9d"
+		}
+	]
 }

@@ -17,6 +17,17 @@ public static class Global
 	public static string ConfigPath = "user://config.json";
 
 	public static Variant config = new();
+	public static Variant Config
+	{
+		get
+		{
+			if (config.VariantType == Variant.Type.Nil)
+			{
+				LoadConfig();
+			}
+			return config;
+		}
+	}
 
 	/// <summary>
     /// 加载配置

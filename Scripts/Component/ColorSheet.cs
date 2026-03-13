@@ -34,7 +34,7 @@ public partial class ColorSheet : Node
 	public void UpdateColor()
     {	
         Dictionary colors = Global.config.As<Dictionary>()["menu_color"].As<Dictionary>();
-		GD.Print(colors);	
+		//GD.Print(colors);	
 		foreach(Control ui in colorSheet1)
         {
             ui.SelfModulate = colors["color1"].As<Color>();
