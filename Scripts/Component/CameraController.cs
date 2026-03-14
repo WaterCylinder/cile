@@ -16,6 +16,11 @@ public partial class CameraController : Camera2D
     public bool isDrug = false;
 	public Vector2 mousePressedPos;
 
+    /// <summary>
+    /// 信号：屏幕开始移动
+    /// </summary>
+    [Signal]public delegate void OnScreenStartMoveEventHandler();
+
     public override void _Process(double delta)
     {	
         base._Process(delta);
@@ -28,6 +33,36 @@ public partial class CameraController : Camera2D
 		float zoom = this.Zoom.X + (targetZoom - this.Zoom.X) * (float)delta * zoomSpeed;
 		this.Zoom = new Vector2(zoom, zoom);
 		Move();
+    }
+
+    /// <summary>
+    /// 获取世界坐标到屏幕左边的转换
+    /// </summary>
+    /// <param name="worldPos"></param>
+    /// <returns></returns>
+    public Vector2 ToScreenPosition(Vector2 worldPos)
+    {
+        // 2. 获取视口在屏幕上的实际位置和大小
+        Rect2 viewportRect = GetViewport().GetVisibleRect();  // 视口在屏幕上的矩形
+        
+        // 3. 计算视口中心在屏幕上的位置
+        Vector2 viewportCenter = new Vector2(
+            viewportRect.Position.X + viewportRect.Size.X * 0.5f,
+            viewportRect.Position.Y + viewportRect.Size.Y * 0.5f
+        );
+        
+        // 4. 计算相对于相机的偏移
+        Vector2 relativePos = worldPos - GlobalPosition;
+        
+        // 5. 应用缩放
+        relativePos *= Zoom.X;
+        
+        // 6. 转换到屏幕坐标
+        Vector2 screenPos = viewportCenter + relativePos;
+
+        GD.Print($"中心位置{viewportCenter}，相对位置{relativePos}，最终位置{screenPos}");
+        
+        return screenPos;
     }
 
 	/// <summary>
@@ -102,6 +137,7 @@ public partial class CameraController : Camera2D
                 Vector2 toward = mousePos - mousePressedPos;
                 if (toward.Length() > 5)
                 {
+                    EmitSignal("OnScreenStartMove");
                     isDrug = true;
                 }
             }

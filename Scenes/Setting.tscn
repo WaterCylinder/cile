@@ -10,6 +10,7 @@
 [ext_resource type="FontFile" uid="uid://cgokx2yjk7oug" path="res://Assets/Fonts/SmileySans-Oblique.ttf" id="3_iay5r"]
 [ext_resource type="Script" uid="uid://dcukd7j51225t" path="res://Scripts/Component/ColorSheet.cs" id="3_nmbau"]
 [ext_resource type="Script" uid="uid://dmebh1gg56q7k" path="res://Scripts/UI/SettingUI/GraphSetting.cs" id="7_e1h0i"]
+[ext_resource type="Script" uid="uid://b2r5cap1b8c3e" path="res://Scripts/UI/SettingUI/BaseSetting.cs" id="8_hthjr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vkq3o"]
 font = ExtResource("3_iay5r")
@@ -20,6 +21,14 @@ font = ExtResource("3_iay5r")
 font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_nmbau"]
+font = ExtResource("3_iay5r")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_e1h0i"]
+font = ExtResource("3_iay5r")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_hthjr"]
 font = ExtResource("3_iay5r")
 font_size = 32
 
@@ -236,19 +245,92 @@ texture_normal = ExtResource("1_efio3")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="BaseSetting" type="Control" parent="SettingPlane" unique_id=2101973867]
+[node name="BaseSetting" type="Control" parent="SettingPlane" unique_id=2101973867 node_paths=PackedStringArray("masterVolumeBar", "musicVolumeBar", "soundVolumeBar", "resetButton")]
 visible = false
-anchors_preset = 0
-offset_left = 68.0
-offset_top = 66.0
-offset_right = 108.0
-offset_bottom = 106.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_hthjr")
+masterVolumeBar = NodePath("MasterVolume")
+musicVolumeBar = NodePath("MusicVolume")
+soundVolumeBar = NodePath("SoundVolume")
+resetButton = NodePath("ResetVolume")
 
-[node name="CheckButton" type="CheckButton" parent="SettingPlane/BaseSetting" unique_id=525650989]
+[node name="MasterVolume" type="HScrollBar" parent="SettingPlane/BaseSetting" unique_id=2123780116]
 layout_mode = 0
-offset_right = 44.0
-offset_bottom = 24.0
-text = "全屏"
+offset_left = 109.0
+offset_top = 66.0
+offset_right = 609.0
+offset_bottom = 97.0
+max_value = 1.0
+
+[node name="Label" type="Label" parent="SettingPlane/BaseSetting/MasterVolume" unique_id=689873028]
+layout_mode = 0
+offset_left = -89.0
+offset_top = -5.0
+offset_right = -12.0
+offset_bottom = 35.0
+text = "主音量"
+label_settings = SubResource("LabelSettings_e1h0i")
+
+[node name="MusicVolume" type="HScrollBar" parent="SettingPlane/BaseSetting" unique_id=1755951836]
+layout_mode = 0
+offset_left = 109.0
+offset_top = 137.0
+offset_right = 609.0
+offset_bottom = 168.0
+max_value = 1.0
+
+[node name="Label" type="Label" parent="SettingPlane/BaseSetting/MusicVolume" unique_id=2031724528]
+layout_mode = 0
+offset_left = -89.0
+offset_top = -5.0
+offset_right = -12.0
+offset_bottom = 35.0
+text = "音乐"
+label_settings = SubResource("LabelSettings_e1h0i")
+
+[node name="SoundVolume" type="HScrollBar" parent="SettingPlane/BaseSetting" unique_id=881772947]
+layout_mode = 0
+offset_left = 109.0
+offset_top = 209.0
+offset_right = 609.0
+offset_bottom = 240.0
+max_value = 1.0
+
+[node name="Label" type="Label" parent="SettingPlane/BaseSetting/SoundVolume" unique_id=1156326554]
+layout_mode = 0
+offset_left = -89.0
+offset_top = -5.0
+offset_right = -12.0
+offset_bottom = 35.0
+text = "音效"
+label_settings = SubResource("LabelSettings_e1h0i")
+
+[node name="ResetVolume" type="TextureButton" parent="SettingPlane/BaseSetting" unique_id=543666657]
+self_modulate = Color(0.33333334, 0.33333334, 0.33333334, 1)
+layout_mode = 0
+offset_left = 20.0
+offset_top = 266.0
+offset_right = 163.0
+offset_bottom = 321.0
+pivot_offset = Vector2(72, 28)
+texture_normal = ExtResource("1_efio3")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_73t6f")
+
+[node name="Label" type="Label" parent="SettingPlane/BaseSetting/ResetVolume" unique_id=501504363]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 9.0
+offset_right = 122.0
+offset_bottom = 49.0
+text = "重置音量"
+label_settings = SubResource("LabelSettings_hthjr")
 
 [node name="Back" type="TextureButton" parent="." unique_id=1579578936]
 self_modulate = Color(0.2, 0.2, 0.2, 1)

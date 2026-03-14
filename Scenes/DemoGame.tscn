@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://d2bla3dfrrpai" path="res://Assets/UI/inner_menu.tscn" id="2_ed3lb"]
 [ext_resource type="PackedScene" uid="uid://b7klfx5hegpul" path="res://Assets/Map/demo_map.tscn" id="3_eafrm"]
 [ext_resource type="Script" uid="uid://b70loibpega7l" path="res://Scripts/UI/GameUI/UIMarks.cs" id="4_fydjb"]
+[ext_resource type="Script" uid="uid://dap6gcu3gru6s" path="res://Scripts/UI/GameUI/PUI.cs" id="5_2kisj"]
 [ext_resource type="Texture2D" uid="uid://yvc2tsotv50d" path="res://Assets/Images/Marks/白框.png" id="5_fwgcq"]
 [ext_resource type="Script" uid="uid://c5cxvarb8jma1" path="res://Scripts/UI/GameUI/DebugUI.cs" id="5_unw7f"]
 [ext_resource type="Script" uid="uid://sl4vm85tc6no" path="res://Scripts/UI/ActiveUI/TurnPanel.cs" id="6_pfs8u"]
@@ -39,7 +40,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_pqcu6")
 
-[node name="PUI" type="Control" parent="CanvasLayer/UI" unique_id=358070890]
+[node name="PUI" type="Control" parent="CanvasLayer/UI" unique_id=358070890 node_paths=PackedStringArray("terrainSelectUI")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -47,6 +48,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("5_2kisj")
+terrainSelectUI = NodePath("SelectedUI")
+
+[node name="SelectedUI" type="Panel" parent="CanvasLayer/UI/PUI" unique_id=223034195]
+visible = false
+layout_mode = 0
+offset_left = 640.0
+offset_top = 312.0
+offset_right = 784.0
+offset_bottom = 512.0
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/PUI/SelectedUI" unique_id=382440666]
+layout_mode = 0
+offset_right = 144.0
+offset_bottom = 56.0
+text = "地形UI"
 
 [node name="Debug" type="Control" parent="CanvasLayer/UI" unique_id=1107609925 node_paths=PackedStringArray("nextRoundButton", "changeMusicButton", "turnText")]
 layout_mode = 1
@@ -155,6 +172,9 @@ bus = &"Music"
 
 [node name="Scene" type="Node2D" parent="." unique_id=1623421780]
 
+[node name="Test" type="Node2D" parent="Scene" unique_id=1195227577]
+position = Vector2(632, 0)
+
 [node name="Marks" type="Control" parent="." unique_id=277835427 node_paths=PackedStringArray("selector")]
 layout_mode = 3
 anchors_preset = 0
@@ -165,10 +185,12 @@ script = ExtResource("4_fydjb")
 selector = NodePath("Selector")
 
 [node name="Selector" type="Control" parent="Marks" unique_id=1121004367]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 pivot_offset = Vector2(32, 32)
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="Marks/Selector" unique_id=388535846]
 self_modulate = Color(1, 0.44705883, 0.4509804, 0.60784316)

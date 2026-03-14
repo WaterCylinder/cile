@@ -78,7 +78,7 @@ public static class Global
 	public static void SaveConfig()
     {
 		using FileAccess file = FileAccess.Open(ConfigPath, FileAccess.ModeFlags.Write);
-		file.StoreString(Json.Stringify(config));
+		file.StoreString(Json.Stringify(config, indent: "    "));
 		GD.Print($"配置文件保存成功: {ConfigPath}");
     }
 	

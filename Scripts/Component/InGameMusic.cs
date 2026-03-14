@@ -21,7 +21,7 @@ public partial class InGameMusic : Node
 
     public override void _Ready()
     {
-        
+        AudioManager.Instance.UpdateVolume();
     }
 
 	public void LoadMusic(string musicName)

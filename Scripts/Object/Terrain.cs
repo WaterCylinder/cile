@@ -30,9 +30,6 @@ public partial class Terrain : Node2D
 	public bool isMouseEnter = false;
 	public bool isPressed = false;
 
-	[Signal]
-	public delegate void TerrainSellectedEventHandler(Terrain terrain);
-
     public override void _Ready()
     {
 		for(Node prt = GetParent(); prt != null; prt = prt.GetParent())
@@ -134,7 +131,7 @@ public partial class Terrain : Node2D
 		//区块选择，暂时只支持单选，所以设置前清除当前选中集合
 		GameManager.Instance.game.selectedTerrains.Clear();
 		GameManager.Instance.game.selectedTerrains.Add(this);
-		EmitSignal("TerrainSellected", this);
+		GameManager.Instance.game.EmitSignal("OnTerrainSelected", this);
     }
 
 }

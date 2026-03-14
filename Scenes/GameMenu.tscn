@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvcj0ugfj6k4k"]
+[gd_scene format=3 uid="uid://cvcj0ugfj6k4k"]
 
 [ext_resource type="PackedScene" uid="uid://dxoy57bpc8jvj" path="res://Assets/UI/back_button.tscn" id="1_4f8b7"]
 [ext_resource type="Script" uid="uid://4aghxrml77gy" path="res://Scripts/UI/GameMenu.cs" id="1_wd3g4"]
 [ext_resource type="Theme" uid="uid://2iwgf3r0jy52" path="res://Assets/Thames/only_text_button_theme.tres" id="3_d6vgs"]
 
-[node name="GameMenu" type="Control" node_paths=PackedStringArray("StartTestGame")]
+[node name="GameMenu" type="Control" unique_id=1650985550 node_paths=PackedStringArray("StartTestGame")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,7 +14,7 @@ grow_vertical = 2
 script = ExtResource("1_wd3g4")
 StartTestGame = NodePath("Buttons/Button")
 
-[node name="Back" parent="." instance=ExtResource("1_4f8b7")]
+[node name="Back" parent="." unique_id=1667725383 instance=ExtResource("1_4f8b7")]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -23,7 +23,7 @@ offset_top = -80.0
 offset_bottom = 0.0
 grow_vertical = 0
 
-[node name="Buttons" type="Control" parent="."]
+[node name="Buttons" type="Control" parent="." unique_id=871730523]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -37,7 +37,7 @@ offset_bottom = 188.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="Buttons"]
+[node name="Button" type="Button" parent="Buttons" unique_id=1483394125]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 16.0

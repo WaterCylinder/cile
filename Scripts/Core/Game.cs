@@ -32,6 +32,18 @@ public partial class Game : Node
     // 回合循环实例
     public RoundCricle roundCricle = new RoundCricle();
 
+    //信号
+    /// <summary>
+    /// 信号：选择地形
+    /// </summary>
+    /// <param name="terrain"></param>
+    [Signal]public delegate void OnTerrainSelectedEventHandler(Terrain terrain);
+    /// <summary>
+    /// 信号：取消选择地形
+    /// </summary>
+    /// <param name="terrain"></param>
+    [Signal]public delegate void OnTerrainSelectedCancleEventHandler();
+
     // 是否可操作
     public bool CanOpera
     {

@@ -10,22 +10,26 @@ public partial class UIMarks : Node
 
 	public Terrain lastTerrain = null;
 
-    public override void _Process(double delta)
-    {
-        base._Process(delta);
-		if (GameManager.Instance.game.selectedTerrains.Count <= 0)
+	private bool isEventSet = false;
+
+	public override void _Process(double delta)
+	{
+		if(GameManager.Instance.game != null && !isEventSet)
 		{
-			selector.Visible = false;
-			return;
+			isEventSet = true;
+			GameManager.Instance.game.OnTerrainSelected += (tr) =>
+			{
+				selector.Visible = true;
+				lastTerrain = tr;
+				selector.SetSize(new Vector2(lastTerrain.width, lastTerrain.height));
+				selector.Position = lastTerrain.GlobalPosition;
+				selector.Position -= selector.PivotOffset;
+			};
+			GameManager.Instance.game.OnTerrainSelectedCancle += () =>
+			{
+				selector.Visible = false;
+			};
 		}
-		if (GameManager.Instance.game.selectedTerrains[0] != lastTerrain)
-		{
-			selector.Visible = true;
-			lastTerrain = GameManager.Instance.game.selectedTerrains[0];
-			selector.SetSize(new Vector2(lastTerrain.width, lastTerrain.height));
-			selector.Position = lastTerrain.GlobalPosition;
-			selector.Position -= selector.PivotOffset;
-		}
-    }
+	}
 
 }
