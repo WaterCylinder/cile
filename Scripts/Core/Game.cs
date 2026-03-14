@@ -19,6 +19,7 @@ public partial class Game : Node
     [Export] public PackedScene defaultMapPackedScene;
     [ExportCategory("场景实体")]
     [Export] public CameraController mainCamera;
+    [Export] public InGameMusic inGameMusic;
     [Export] public Array<Terrain> selectedTerrains = new Array<Terrain>();
     [ExportCategory("可变节点{运行时加载}")]
     [Export] public Control innerMenu;
@@ -217,6 +218,8 @@ public partial class Game : Node
             case 400:
                 //开始回合循环
                 roundCricle.Start();
+                //从温和战斗音乐开始
+                GameManager.Instance.game.inGameMusic.LoadMusic("fight");
                 Next();
                 break;
             case 500:

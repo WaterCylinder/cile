@@ -4,6 +4,7 @@ using System;
 public partial class DebugUI : Node
 {
 	[Export] public Button nextRoundButton;
+	[Export] public Button changeMusicButton;
 	[Export] public RichTextLabel turnText;
 
 	public override void _Ready()
@@ -11,6 +12,13 @@ public partial class DebugUI : Node
 		nextRoundButton.Pressed += () =>
         {
             GameManager.Instance.game.roundCricle.NextTurn();
+        };
+		changeMusicButton.Pressed += () =>
+        {
+			if (GameManager.Instance.game.inGameMusic.musicState == MusicState.Smooth)
+                GameManager.Instance.game.inGameMusic.ChangeState(MusicState.Fast);
+			else
+				GameManager.Instance.game.inGameMusic.ChangeState(MusicState.Smooth);
         };
 	}
 

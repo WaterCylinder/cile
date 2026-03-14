@@ -192,7 +192,7 @@ public partial class AssetManager : Node
     /// <returns></returns>
 	public AudioStream GetAudio(string path, string exten = ".wav")
     {
-		path = Tools.Path(path,spriteResourcePath);
+		path = Tools.Path(path,audioResourcePath);
         path += exten;
         if (_audioDict.ContainsKey(path))
         {

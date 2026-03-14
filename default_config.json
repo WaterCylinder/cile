@@ -40,5 +40,9 @@
 			"color5":"#444444",
 			"color6":"#99da9d"
 		}
-	]
+	],
+	"volume":{
+		"music_volume":0.5,
+		"sound_volume":0.5
+	}
 }

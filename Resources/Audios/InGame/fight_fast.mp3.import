@@ -12,8 +12,8 @@ dest_files=["res://.godot/imported/fight_fast.mp3-065dddb1fdb749436f0a2d15be8c9a
 
 [params]
 
-loop=false
-loop_offset=0
-bpm=0
+loop=true
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4

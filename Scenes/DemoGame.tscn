@@ -8,13 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://yvc2tsotv50d" path="res://Assets/Images/Marks/白框.png" id="5_fwgcq"]
 [ext_resource type="Script" uid="uid://c5cxvarb8jma1" path="res://Scripts/UI/GameUI/DebugUI.cs" id="5_unw7f"]
 [ext_resource type="Script" uid="uid://sl4vm85tc6no" path="res://Scripts/UI/ActiveUI/TurnPanel.cs" id="6_pfs8u"]
+[ext_resource type="Script" uid="uid://csxxccalvryyc" path="res://Scripts/Component/InGameMusic.cs" id="7_ddpk8"]
 [ext_resource type="Script" uid="uid://bka50x8hk57og" path="res://Scripts/Component/CameraController.cs" id="7_tepq2"]
 [ext_resource type="AudioStream" uid="uid://ddfpaljduaw54" path="res://Resources/Audios/Voice/op_voice.wav" id="10_pmlgl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_pfs8u"]
 font_size = 32
 
-[node name="DemoGame" type="Node" unique_id=1474349995 node_paths=PackedStringArray("UI", "scene", "PUI", "ActiveUI", "playerNode", "mainCamera")]
+[node name="DemoGame" type="Node" unique_id=1474349995 node_paths=PackedStringArray("UI", "scene", "PUI", "ActiveUI", "playerNode", "mainCamera", "inGameMusic")]
 script = ExtResource("1_dkiyr")
 UI = NodePath("CanvasLayer/UI")
 scene = NodePath("Scene")
@@ -24,6 +25,7 @@ playerNode = NodePath("Player")
 innerMenuPackedScene = ExtResource("2_ed3lb")
 defaultMapPackedScene = ExtResource("3_eafrm")
 mainCamera = NodePath("MainCamera")
+inGameMusic = NodePath("Music")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=248229199]
 
@@ -46,7 +48,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Debug" type="Control" parent="CanvasLayer/UI" unique_id=1107609925 node_paths=PackedStringArray("nextRoundButton", "turnText")]
+[node name="Debug" type="Control" parent="CanvasLayer/UI" unique_id=1107609925 node_paths=PackedStringArray("nextRoundButton", "changeMusicButton", "turnText")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -57,6 +59,7 @@ mouse_filter = 2
 theme = ExtResource("1_pqcu6")
 script = ExtResource("5_unw7f")
 nextRoundButton = NodePath("NextRoundButton")
+changeMusicButton = NodePath("ChangeMusic")
 turnText = NodePath("TurnInfo/RichTextLabel")
 
 [node name="NextRoundButton" type="Button" parent="CanvasLayer/UI/Debug" unique_id=2076318059]
@@ -69,6 +72,14 @@ offset_top = 576.0
 offset_bottom = -80.0
 button_mask = 7
 text = "下一回合"
+
+[node name="ChangeMusic" type="Button" parent="CanvasLayer/UI/Debug" unique_id=1681290962]
+layout_mode = 0
+offset_left = 1024.0
+offset_top = 504.0
+offset_right = 1280.0
+offset_bottom = 568.0
+text = "切换音乐"
 
 [node name="TurnInfo" type="Panel" parent="CanvasLayer/UI/Debug" unique_id=95563843]
 self_modulate = Color(1, 1, 1, 0.50980395)
@@ -130,15 +141,17 @@ vertical_alignment = 1
 
 [node name="Player" type="Node" parent="." unique_id=1041044808]
 
-[node name="Music" type="Node" parent="." unique_id=1148616687]
+[node name="Music" type="Node" parent="." unique_id=1148616687 node_paths=PackedStringArray("audioPlayerList")]
+script = ExtResource("7_ddpk8")
+audioPlayerList = [NodePath("AudioPlayer1"), NodePath("AudioPlayer2")]
 
 [node name="AudioPlayer1" type="AudioStreamPlayer" parent="Music" unique_id=2024216237]
 stream = ExtResource("10_pmlgl")
-autoplay = true
+bus = &"Music"
 
 [node name="AudioPlayer2" type="AudioStreamPlayer" parent="Music" unique_id=1844484751]
 stream = ExtResource("10_pmlgl")
-autoplay = true
+bus = &"Music"
 
 [node name="Scene" type="Node2D" parent="." unique_id=1623421780]
 
