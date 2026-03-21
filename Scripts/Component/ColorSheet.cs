@@ -60,9 +60,10 @@ public partial class ColorSheet : Node
             ui.SelfModulate = colors["color6"].As<Color>();
         }
     }
-
+    
     public override void _Process(double delta)
     {
+        // 调用基类的_Process方法，确保基类的逻辑得以执行
         base._Process(delta);
 		//单次加载颜色
 		if (!isUpdate)
@@ -71,5 +72,4 @@ public partial class ColorSheet : Node
             isUpdate = true;
         }
     }
-
 }

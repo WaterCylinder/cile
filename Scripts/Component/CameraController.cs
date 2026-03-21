@@ -60,7 +60,7 @@ public partial class CameraController : Camera2D
         // 6. 转换到屏幕坐标
         Vector2 screenPos = viewportCenter + relativePos;
 
-        GD.Print($"中心位置{viewportCenter}，相对位置{relativePos}，最终位置{screenPos}");
+        //GD.Print($"中心位置{viewportCenter}，相对位置{relativePos}，最终位置{screenPos}");
         
         return screenPos;
     }

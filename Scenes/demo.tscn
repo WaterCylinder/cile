@@ -6,16 +6,20 @@
 [ext_resource type="Script" uid="uid://b45wre7upmg8i" path="res://Scripts/Test/AudioTest.cs" id="3_qdju7"]
 [ext_resource type="AudioStream" uid="uid://bl1opnwwqu6u7" path="res://Resources/Audios/InGame/fight_smooth.mp3" id="5_qdju7"]
 [ext_resource type="AudioStream" uid="uid://utuj4bqhrc6u" path="res://Resources/Audios/InGame/fight_fast.mp3" id="6_lvddk"]
+[ext_resource type="VideoStream" uid="uid://guexuhrrq78g" path="res://Resources/Audios/cile_logo.ogv" id="7_lvddk"]
 
 [node name="Root" type="Node2D" unique_id=955113142]
 
 [node name="Test" type="Node2D" parent="." unique_id=293618934]
+visible = false
 script = ExtResource("1_nsw6b")
 
 [node name="Unit" parent="." unique_id=1837432875 instance=ExtResource("2_ie00b")]
+visible = false
 position = Vector2(659, 323)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2044079787]
+visible = false
 
 [node name="MusicTest" type="Control" parent="CanvasLayer" unique_id=1043847123 node_paths=PackedStringArray("button", "audioPlayer1", "audioPlayer2")]
 layout_mode = 3
@@ -44,4 +48,14 @@ autoplay = true
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="CanvasLayer/MusicTest" unique_id=2023583513]
 stream = ExtResource("6_lvddk")
+autoplay = true
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=2122979563]
+offset_left = 467.99994
+offset_top = 239.99997
+offset_right = 2388.0
+offset_bottom = 1320.0
+scale = Vector2(0.2, 0.2)
+stream = ExtResource("7_lvddk")
+volume_db = -80.0
 autoplay = true

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SingalCondition" format=3 uid="uid://d1uxxlq4f7g65"]
+
+[ext_resource type="Script" uid="uid://dap5hs4p56xf3" path="res://Scripts/Effect/Conditions/SingalCondition.cs" id="1_mud4a"]
+[ext_resource type="Script" uid="uid://b84i0tjh1tt4x" path="res://Scripts/Effect/Behaviors/ConditionBehavior.cs" id="1_sm255"]
+
+[sub_resource type="Resource" id="Resource_3tcdm"]
+script = ExtResource("1_sm255")
+behaviorName = "True"
+metadata/_custom_type_script = "uid://b84i0tjh1tt4x"
+
+[resource]
+script = ExtResource("1_mud4a")
+behavior = SubResource("Resource_3tcdm")
+metadata/_custom_type_script = "uid://dap5hs4p56xf3"

@@ -61,10 +61,11 @@ public partial class Game : Node
         }
     }
 
-    public override void _Ready()
+    public override void _EnterTree()
     {
         GameManager.Instance.game = this;   
     }
+
     # region A状态机
     public void Next(int step  = 0)
     {
