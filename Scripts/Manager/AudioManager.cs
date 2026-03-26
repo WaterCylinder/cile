@@ -94,10 +94,27 @@ public partial class AudioManager : Node
 		UpdateBusVolume();
 	}
 
+	/// <summary>
+	/// 获取游戏内音乐
+	/// </summary>
+	/// <param name="musicName"></param>
+	/// <returns></returns>
 	public AudioStream GetInGameMusic(string musicName)
 	{
 		AudioStream audioStream = AssetManager.Instance.GetAudio($"InGame.{musicName}",".mp3");
 		GD.Print($"Core：获取音乐{musicName}:{audioStream}");
 		return audioStream;
+	}
+
+	/// <summary>
+	/// 获取视频资源
+	/// </summary>
+	/// <param name="videoName"></param>
+	/// <returns></returns>
+	public VideoStreamTheora GetVideo(string videoName)
+	{
+		VideoStreamTheora videoStream = AssetManager.Instance.GetVideo(videoName);
+		GD.Print($"Core：获取视频{videoName}:{videoStream}");
+		return videoStream;
 	}
 }

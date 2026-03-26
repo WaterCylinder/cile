@@ -211,4 +211,26 @@ public partial class AssetManager : Node
 			return null;
         }
     }
+
+    /// <summary>
+    /// 加载视频资源，不主动缓存
+    /// </summary>
+    /// <param name="path"></param>
+    /// <returns></returns>
+    public VideoStreamTheora GetVideo(string path)
+    {
+        path = Tools.Path(path,audioResourcePath);
+        path += ".ogv";
+        try
+        {
+            VideoStreamTheora video = ResourceLoader.Load<VideoStreamTheora>(path);
+            GD.Print($"加载视频成功：{path}");
+            return video;
+        }
+        catch(Exception e)
+        {
+            GD.PrintErr($"AssetManager加载视频媒体资源出错：{e}");
+			return null;
+        }
+    }
 }

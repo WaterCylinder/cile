@@ -5,6 +5,7 @@ using Godot.Collections;
 public abstract partial class Condition : Resource
 {
 	[Export]public string info;
+	[Export]public bool not;
 	[Export]public bool result;
 	public virtual bool Run()
 	{

@@ -2,16 +2,22 @@
 
 [ext_resource type="Texture2D" uid="uid://dfefywu0ucirs" path="res://Assets/Images/UI/SettingMenu/二级按钮底色等.png" id="1_dwqqf"]
 [ext_resource type="Script" uid="uid://qwlg6by3pt8n" path="res://Scripts/UI/Button/ActiveButton.cs" id="2_dnlvk"]
+[ext_resource type="FontFile" uid="uid://cgokx2yjk7oug" path="res://Assets/Fonts/SmileySans-Oblique.ttf" id="3_rwgsu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_y8qp1"]
+font = ExtResource("3_rwgsu")
 
 [node name="TextureButton" type="TextureButton" unique_id=532142437 node_paths=PackedStringArray("label")]
 self_modulate = Color(0.46666667, 0.46666667, 0.46666667, 1)
 offset_right = 144.0
 offset_bottom = 40.0
+pivot_offset = Vector2(72, 20)
 texture_normal = ExtResource("1_dwqqf")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("2_dnlvk")
 label = NodePath("Label")
+colorDisable = Color(0.26666668, 0.26666668, 0.26666668, 1)
 
 [node name="Label" type="Label" parent="." unique_id=1220187633]
 layout_mode = 1
@@ -20,6 +26,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(72, 20)
 text = "按钮"
+label_settings = SubResource("LabelSettings_y8qp1")
 horizontal_alignment = 1
 vertical_alignment = 1

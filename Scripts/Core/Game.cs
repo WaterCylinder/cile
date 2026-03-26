@@ -10,6 +10,7 @@ public partial class Game : Node
     [Export] public Control PUI;
     [Export] public Control ActiveUI;
     [Export] public Node playerNode;
+    [Export] public InGameMusic inGameMusic;
     [ExportCategory("A状态机")]
     [Export] public int A;
     [Export] public int ATemp;
@@ -19,7 +20,7 @@ public partial class Game : Node
     [Export] public PackedScene defaultMapPackedScene;
     [ExportCategory("场景实体")]
     [Export] public CameraController mainCamera;
-    [Export] public InGameMusic inGameMusic;
+    [Export] public Node2D unitNode;
     [Export] public Array<Terrain> selectedTerrains = new Array<Terrain>();
     [ExportCategory("可变节点{运行时加载}")]
     [Export] public Control innerMenu;
@@ -29,8 +30,9 @@ public partial class Game : Node
     
     public Map Map => mapNode as Map;
 
-    // 回合循环实例
+    // 局内系统
     public RoundCricle roundCricle = new RoundCricle();
+    public UnitSystem unitSystem = new UnitSystem();
 
     //信号
     /// <summary>
@@ -131,6 +133,7 @@ public partial class Game : Node
         mapNode.Name = "Map";
         mapNode.Position = Vector2.Zero;
         scene.AddChild(mapNode);
+        scene.MoveChild(mapNode, 0);
     }
 
     //加载对局信息
@@ -175,6 +178,7 @@ public partial class Game : Node
     public void GameInit()
     {
         GD.Print("回合前初始化");
+        unitSystem.Init();
     }
 
 	public override void _Input(InputEvent @event)

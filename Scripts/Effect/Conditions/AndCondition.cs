@@ -20,6 +20,8 @@ public partial class AndCondition : Condition
 				return result;
 			}
 		}
+		if (not)
+			result = !result;
 		return result;
 	}
 

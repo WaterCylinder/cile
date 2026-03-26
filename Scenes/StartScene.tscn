@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://doonmtnhh3inl"]
+
+[ext_resource type="VideoStream" uid="uid://guexuhrrq78g" path="res://Resources/Audios/cile_logo.ogv" id="1_dgtb2"]
+[ext_resource type="Script" uid="uid://btpk1i78c7arj" path="res://Scripts/GameSystem/StartScene.cs" id="1_t5ln1"]
+
+[node name="StartScene" type="Node2D" unique_id=684828763 node_paths=PackedStringArray("videoPlayer", "frontBlack")]
+script = ExtResource("1_t5ln1")
+videoPlayer = NodePath("CanvasLayer/VideoStreamPlayer")
+frontBlack = NodePath("CanvasLayer/FrontBlack")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=739385000]
+
+[node name="BG" type="ColorRect" parent="CanvasLayer" unique_id=1709859906]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="CanvasLayer" unique_id=675496569]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+pivot_offset = Vector2(960, 540)
+stream = ExtResource("1_dgtb2")
+volume_db = -80.0
+autoplay = true
+
+[node name="FrontBlack" type="ColorRect" parent="CanvasLayer" unique_id=12135674]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)

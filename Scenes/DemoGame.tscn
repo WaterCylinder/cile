@@ -20,17 +20,18 @@
 [sub_resource type="LabelSettings" id="LabelSettings_pfs8u"]
 font_size = 32
 
-[node name="DemoGame" type="Node" unique_id=1474349995 node_paths=PackedStringArray("UI", "scene", "PUI", "ActiveUI", "playerNode", "mainCamera", "inGameMusic")]
+[node name="DemoGame" type="Node" unique_id=1474349995 node_paths=PackedStringArray("UI", "scene", "PUI", "ActiveUI", "playerNode", "inGameMusic", "mainCamera", "unitNode")]
 script = ExtResource("1_dkiyr")
 UI = NodePath("CanvasLayer/UI")
 scene = NodePath("Scene")
 PUI = NodePath("CanvasLayer/UI/PUI")
 ActiveUI = NodePath("CanvasLayer/UI/ActiveUI")
 playerNode = NodePath("Player")
+inGameMusic = NodePath("Music")
 innerMenuPackedScene = ExtResource("2_ed3lb")
 defaultMapPackedScene = ExtResource("3_eafrm")
 mainCamera = NodePath("MainCamera")
-inGameMusic = NodePath("Music")
+unitNode = NodePath("Scene/Units")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=248229199]
 
@@ -55,7 +56,7 @@ mouse_filter = 2
 script = ExtResource("5_2kisj")
 terrainSelectUI = NodePath("SelectedUI")
 
-[node name="SelectedUI" type="Panel" parent="CanvasLayer/UI/PUI" unique_id=223034195 node_paths=PackedStringArray("terrainNameLabel", "terrainButtons")]
+[node name="SelectedUI" type="Panel" parent="CanvasLayer/UI/PUI" unique_id=223034195 node_paths=PackedStringArray("terrainNameLabel")]
 visible = false
 layout_mode = 0
 offset_left = 640.0
@@ -65,7 +66,6 @@ offset_bottom = 424.0
 script = ExtResource("6_71sxd")
 buttonPrefab = ExtResource("7_qn7gy")
 terrainNameLabel = NodePath("Label")
-terrainButtons = []
 
 [node name="Label" type="Label" parent="CanvasLayer/UI/PUI/SelectedUI" unique_id=382440666]
 layout_mode = 0
@@ -77,6 +77,8 @@ horizontal_alignment = 1
 
 [node name="TextureButton" parent="CanvasLayer/UI/PUI/SelectedUI" unique_id=532142437 instance=ExtResource("7_qn7gy")]
 layout_mode = 0
+offset_top = 24.0
+offset_bottom = 64.0
 
 [node name="Debug" type="Control" parent="CanvasLayer/UI" unique_id=1107609925 node_paths=PackedStringArray("nextRoundButton", "changeMusicButton", "turnText")]
 layout_mode = 1
@@ -187,6 +189,8 @@ bus = &"Music"
 
 [node name="Test" type="Node2D" parent="Scene" unique_id=1195227577]
 position = Vector2(632, 0)
+
+[node name="Units" type="Node2D" parent="Scene" unique_id=701047759]
 
 [node name="Marks" type="Control" parent="." unique_id=277835427 node_paths=PackedStringArray("selector")]
 layout_mode = 3

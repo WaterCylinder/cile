@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=2 format=3 uid="uid://dwirv6c7xdf3x"]
+[gd_resource type="Resource" script_class="UnitData" format=3 uid="uid://dwirv6c7xdf3x"]
 
 [ext_resource type="Script" uid="uid://dvalus1olte" path="res://Scripts/Resource/UnitData.cs" id="1_ippas"]
 

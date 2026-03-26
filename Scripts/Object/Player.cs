@@ -43,6 +43,9 @@ public partial class Player : Node
     /// </summary>
 	[Export]public Array<CardData> handCards;
 
+    [Export]public UnitData unitBig;
+    [Export]public UnitData unitSmall;
+
 	public User user;
 
 	public void Init()
@@ -53,5 +56,22 @@ public partial class Player : Node
             characterData = AssetManager.GetDefaultData("character") as CharacterData;
         }
 		activatePoint = characterData.activatePoint;
+        if(characterData.unitBigName != "")
+        {
+            GD.Print(characterData.unitBigName);
+            unitBig = AssetManager.Instance.GetData("Units." + characterData.unitBigName) as UnitData;
+        }
+        if(unitBig == null)
+        {
+            unitBig = AssetManager.GetDefaultData("unit") as UnitData;
+        }
+        if(characterData.unitSmallName != "")
+        {
+            unitSmall = AssetManager.Instance.GetData("Units." + characterData.unitSmallName) as UnitData;
+        }
+        if(unitSmall == null)
+        {
+            unitSmall = AssetManager.GetDefaultData("unit") as UnitData;
+        }
     }
 }

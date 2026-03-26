@@ -12,6 +12,8 @@ public partial class SingalCondition : Condition
 	public override bool Run()
 	{
 		result = behavior.Run<bool>();
+		if (not)
+			result = !result;
 		return result;
 	}
 }

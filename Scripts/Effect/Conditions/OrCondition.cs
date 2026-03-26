@@ -19,6 +19,8 @@ public partial class OrCondition : Condition
 				return result;
 			}
 		}
+		if (not)
+			result = !result;
 		return result;
 	}
 

@@ -7,7 +7,7 @@ using System;
 /// </summary>
 public enum CharacterTag
 {
-    
+    None,
 }
 public partial class CharacterData : Resource
 {
@@ -20,5 +20,7 @@ public partial class CharacterData : Resource
     /// 初始行动点数
     /// </summary>
     [Export]public int activatePoint;
-    [Export]public int hp;
+    [Export]public int maxHp;
+    [Export]public string unitBigName = "";
+    [Export]public string unitSmallName = "";
 }

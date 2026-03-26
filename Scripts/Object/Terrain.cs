@@ -10,12 +10,15 @@ public partial class Terrain : Node2D
 	[Export]public int mapPosH;
 	[Export]public int mapPosW;
 	[Export]public TerrainData data;
+	[Export]public Array<Effect> effects = new();
 	[ExportCategory("组件")]
 	[Export]public Sprite2D sprite;
 	[Export]public Area2D area;
 	[Export]public CollisionShape2D collision;
 	[ExportCategory("相邻区块（上下左右）")]
 	[Export]public Array<Terrain> neighbors = new();
+	[ExportCategory("挂载实体")]
+	[Export]public Unit unit;
 
 	public int Y {get{return mapPosH;}}
 	public int X {get{return mapPosW;}}
@@ -77,6 +80,10 @@ public partial class Terrain : Node2D
         {
             Size = new Vector2(width, height)
         };
+
+		//设置初始效果组(浅克隆)
+		if(data.effects != null)
+			effects = data.effects.Duplicate(false);
     }
 
     public override void _Input(InputEvent @event)
