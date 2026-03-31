@@ -11,6 +11,7 @@ public partial class Terrain : Node2D
 	[Export]public int mapPosW;
 	[Export]public TerrainData data;
 	[Export]public Array<Effect> effects = new();
+	[Export]public Array<bool> effectDisable = new();
 	[ExportCategory("组件")]
 	[Export]public Sprite2D sprite;
 	[Export]public Area2D area;
@@ -83,7 +84,13 @@ public partial class Terrain : Node2D
 
 		//设置初始效果组(浅克隆)
 		if(data.effects != null)
+		{
 			effects = data.effects.Duplicate(false);
+			//设置禁用状态(默认全部启用)
+			effectDisable = new Array<bool>();
+			effectDisable.Resize(effects.Count);
+		}
+			
     }
 
     public override void _Input(InputEvent @event)
@@ -112,7 +119,6 @@ public partial class Terrain : Node2D
         }
     }
 
-
 	/// <summary>
     /// 更改地形的数据，如果需要则重新初始化
     /// </summary>
@@ -140,5 +146,85 @@ public partial class Terrain : Node2D
 		GameManager.Instance.game.selectedTerrains.Add(this);
 		GameManager.Instance.game.EmitSignal("OnTerrainSelected", this);
     }
+	# region 地形效果相关方法
+	/// <summary>
+	/// 获取地形效果是否启用
+	/// </summary>
+	/// <param name="index"></param>
+	/// <returns></returns>
+	public bool GetEffectIsEnable(int index)
+	{	
+		if(effects == null)
+		{
+			return false;
+		}
+		if(index >= effects.Count || index < 0)
+        {
+			return false;
+        }
+		return !effectDisable[index];
+	}
+	/// <summary>
+	/// 设置地形效果启用
+	/// </summary>
+	/// <param name="index"></param>
+	/// <param name="isEnable"></param>
+	public void SetEffectEnable(int index, bool isEnable = true)
+	{
+		if(effects == null)
+		{
+			return;
+		}
+		if(index >= effects.Count || index < 0)
+        {
+			return;
+        }
+		effectDisable[index] = !isEnable;
+	}
 
+	/// <summary>
+	/// 给地形添加效果
+	/// </summary>
+	/// <param name="effect"></param>
+	public void AddEffect(Effect effect)
+	{
+		if(effects == null)
+        {
+			effects = new Array<Effect>();
+        }
+		effects.Add(effect);
+		effectDisable.Add(false);
+	}
+	/// <summary>
+	/// 移除指定索引的效果
+	/// </summary>
+	/// <param name="index"></param>
+	public void RemoveEffect(int index)
+	{
+		if(effects == null)
+		{
+			return;
+		}
+		if(index >= effects.Count || index < 0)
+        {
+			return;
+        }
+		effects.RemoveAt(index);
+	}
+	/// <summary>
+	/// 移除指定效果
+	/// </summary>
+	/// <param name="effect"></param>
+	public void RemoveEffect(Effect effect)
+    {
+		if(effects == null)
+        {
+			return;
+        }
+		effects.Remove(effect);
+    }
+
+	# endregion
+
+	
 }

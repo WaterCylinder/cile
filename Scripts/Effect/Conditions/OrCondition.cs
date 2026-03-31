@@ -1,5 +1,6 @@
 using Godot;
 using Godot.Collections;
+
 /// <summary>
 /// 或条件集
 /// </summary>
@@ -13,6 +14,7 @@ public partial class OrCondition : Condition
 		result = false;
 		foreach(Condition c in conditionArray)
 		{
+			c.OnBehaviorInit = OnBehaviorInit;
 			if (c.Run())
 			{
 				result = true;

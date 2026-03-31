@@ -7,14 +7,6 @@ using Godot.Collections;
 [GlobalClass]
 public partial class SingalCondition : Condition
 {
-	[Export]public Behavior behavior;
 	
-	public override bool Run()
-	{
-		result = behavior.Run<bool>();
-		if (not)
-			result = !result;
-		return result;
-	}
 }
 

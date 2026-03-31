@@ -14,6 +14,7 @@ public partial class AndCondition : Condition
 		result = true;
 		foreach(Condition c in conditionArray)
 		{
+			c.OnBehaviorInit = OnBehaviorInit;
 			if (!c.Run())
 			{
 				result = false;

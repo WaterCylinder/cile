@@ -14,17 +14,23 @@ public partial class StartScene : Node
 		isVideoFinished = false;
 		frontBlack.Color = new Color(0, 0, 0, 0);
 
+		//延迟加载AssetManager
+		CallDeferred(nameof(Init));
+
+		videoPlayer.Finished += () =>
+		{
+			isVideoFinished = true;
+		};
+	}
+
+	public void Init()
+	{
 		VideoStreamTheora video = AudioManager.Instance.GetVideo("cile_logo");
 		if(video != null)
 		{
 			videoPlayer.Stream = video;
 			videoPlayer.Play();
 		}
-
-		videoPlayer.Finished += () =>
-		{
-			isVideoFinished = true;
-		};
 	}
 
 	float alpha = 0;

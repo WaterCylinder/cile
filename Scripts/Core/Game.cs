@@ -34,7 +34,7 @@ public partial class Game : Node
     public RoundCricle roundCricle = new RoundCricle();
     public UnitSystem unitSystem = new UnitSystem();
 
-    //信号
+    # region 信号
     /// <summary>
     /// 信号：选择地形
     /// </summary>
@@ -43,8 +43,13 @@ public partial class Game : Node
     /// <summary>
     /// 信号：取消选择地形
     /// </summary>
-    /// <param name="terrain"></param>
     [Signal]public delegate void OnTerrainSelectedCancleEventHandler();
+    /// <summary>
+    /// 信号：执行地形事件
+    /// </summary>
+    [Signal]public delegate void OnTerrainEffectEventHandler();
+
+    # endregion
 
     // 是否可操作
     public bool CanOpera
