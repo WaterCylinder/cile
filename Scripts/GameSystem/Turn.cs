@@ -10,6 +10,8 @@ public partial class Turn
     public TurnPanel turnPanel;
     public RoundCricle roundCricle;
 
+    public int turnCount => roundCricle.turn;
+
     private int turn
     {
         get

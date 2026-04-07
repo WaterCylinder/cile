@@ -1,5 +1,6 @@
+using System.Linq;
 using Godot;
-using System;
+using Godot.Collections;
 
 public partial class Map : Node2D
 {
@@ -9,6 +10,12 @@ public partial class Map : Node2D
     [ExportCategory("地图属性")]
     [Export] public int mapWidth;
     [Export] public int mapHeight;
+
+    //特殊地形索引
+    /// <summary>
+    /// 准备地形
+    /// </summary>
+    public Dictionary<Vector2, Array<Terrain>> readyTerrains;
 
 	private Terrain[,] _map;
     public Terrain[,] map
@@ -51,9 +58,9 @@ public partial class Map : Node2D
     }
 
     /// <summary>
-    /// 设置特殊地形，比如准备区域等
+    /// 设置准备区域相关特殊区域
     /// </summary>
-    public void SpecialTerrainSet()
+    public void ReadyTerrainSet()
     {   
         GD.Print("特殊地图区块设置");
         // 设置屏蔽区域(四个角)
@@ -63,16 +70,27 @@ public partial class Map : Node2D
         map[mapHeight-1,0].ChangeData(terrain_data_blocked);
         map[mapHeight-1,mapWidth-1].ChangeData(terrain_data_blocked);
         // 设置准备区域(四个边)
+        readyTerrains = new Dictionary<Vector2, Array<Terrain>>()
+        {
+            {Vector2.Up, new Array<Terrain>()},
+            {Vector2.Down, new Array<Terrain>()},
+            {Vector2.Left, new Array<Terrain>()},
+            {Vector2.Right, new Array<Terrain>()}
+        };
         TerrainData terrain_data_ready = AssetManager.Instance.GetData("Terrains.terrain_data_ready") as TerrainData;
         for (int i = 1; i< mapHeight-1; i++)
         {
             map[i, 0].ChangeData(terrain_data_ready);
+            readyTerrains[Vector2.Left].Add(map[i, 0]);
             map[i, mapWidth-1].ChangeData(terrain_data_ready);
+            readyTerrains[Vector2.Right].Add(map[i, mapWidth-1]);
         }
         for (int j = 1; j< mapWidth-1; j++)
         {
             map[0, j].ChangeData(terrain_data_ready);
+            readyTerrains[Vector2.Down].Add(map[0, j]);
             map[mapHeight-1, j].ChangeData(terrain_data_ready);
+            readyTerrains[Vector2.Up].Add(map[mapHeight-1, j]);
         }
     }
 

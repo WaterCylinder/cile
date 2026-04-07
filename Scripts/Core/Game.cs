@@ -6,8 +6,9 @@ public partial class Game : Node
 {
 	[Export] public Control UI;
     [Export] public Node2D scene;
+    [Export] public string gameMode;
     [ExportCategory("固定节点")]
-    [Export] public Control PUI;
+    [Export] public PUI pui;
     [Export] public Control ActiveUI;
     [Export] public Node playerNode;
     [Export] public InGameMusic inGameMusic;
@@ -28,7 +29,9 @@ public partial class Game : Node
     public Array<Player> players = new Array<Player>();
     public GameInfo gameInfo = null;
     
+    //索引
     public Map Map => mapNode as Map;
+    public Player CurrentPlayer => roundCricle.turnLogic.turnPlayer;
 
     // 局内系统
     public RoundCricle roundCricle = new RoundCricle();
@@ -115,7 +118,7 @@ public partial class Game : Node
 
     public void ChangePUIVisable(bool visable)
     {
-        PUI.Visible = visable;
+        pui.Visible = visable;
     }
 
     /// <summary>
@@ -221,7 +224,7 @@ public partial class Game : Node
             case 100: //地图生成
                 //初始化地图
                 Map.Generate();
-                Map.SpecialTerrainSet();
+                Map.ReadyTerrainSet();
                 Map.Init();
                 Next();
                 break;

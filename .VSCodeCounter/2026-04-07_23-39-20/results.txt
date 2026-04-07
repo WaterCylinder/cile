@@ -1,0 +1,109 @@
+Date : 2026-04-07 23:39:20
+Directory : d:\Workspace\GodotProject\cile\Scripts
+Total : 61 files,  3075 codes, 517 comments, 423 blanks, all 4015 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| C#       |         61 |      3,075 |        517 |        423 |      4,015 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                               | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                  |         61 |      3,075 |        517 |        423 |      4,015 |
+| Component                                                                          |          4 |        300 |         57 |         41 |        398 |
+| Core                                                                               |          2 |        278 |         35 |         32 |        345 |
+| DataFormat                                                                         |          2 |         25 |         21 |          3 |         49 |
+| Effect                                                                             |         10 |        243 |         38 |         42 |        323 |
+| Effect (Files)                                                                     |          3 |        115 |         26 |         18 |        159 |
+| Effect\Behaviors                                                                   |          4 |         76 |          3 |         14 |         93 |
+| Effect\Conditions                                                                  |          3 |         52 |          9 |         10 |         71 |
+| GameSystem                                                                         |          6 |        319 |         68 |         74 |        461 |
+| GameSystem (Files)                                                                 |          5 |        251 |         60 |         68 |        379 |
+| GameSystem\GameMode                                                                |          1 |         68 |          8 |          6 |         82 |
+| Manager                                                                            |          7 |        588 |        105 |         62 |        755 |
+| Object                                                                             |          5 |        448 |        102 |         47 |        597 |
+| Resource                                                                           |          4 |         68 |         30 |         11 |        109 |
+| Server                                                                             |          2 |         38 |          7 |          4 |         49 |
+| Server\Entity                                                                      |          1 |         17 |          3 |          1 |         21 |
+| Server\Service                                                                     |          1 |         21 |          4 |          3 |         28 |
+| Test                                                                               |          2 |         89 |          0 |          7 |         96 |
+| UI                                                                                 |         15 |        549 |         17 |         85 |        651 |
+| UI (Files)                                                                         |          4 |        126 |          4 |         19 |        149 |
+| UI\ActiveUI                                                                        |          1 |         51 |          0 |          7 |         58 |
+| UI\Button                                                                          |          4 |        101 |          0 |         20 |        121 |
+| UI\GameUI                                                                          |          4 |        203 |          9 |         29 |        241 |
+| UI\SettingUI                                                                       |          2 |         68 |          4 |         10 |         82 |
+| Utils                                                                              |          2 |        130 |         37 |         15 |        182 |
++------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                           | language | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| d:\Workspace\GodotProject\cile\Scripts\Component\CameraController.cs               | C#       |        118 |         23 |         18 |        159 |
+| d:\Workspace\GodotProject\cile\Scripts\Component\ColorSheet.cs                     | C#       |         50 |         21 |          5 |         76 |
+| d:\Workspace\GodotProject\cile\Scripts\Component\InGameMusic.cs                    | C#       |         84 |         10 |         10 |        104 |
+| d:\Workspace\GodotProject\cile\Scripts\Component\SpriteSheetAnimation.cs           | C#       |         48 |          3 |          8 |         59 |
+| d:\Workspace\GodotProject\cile\Scripts\Core\Game.cs                                | C#       |        208 |         28 |         23 |        259 |
+| d:\Workspace\GodotProject\cile\Scripts\Core\Global.cs                              | C#       |         70 |          7 |          9 |         86 |
+| d:\Workspace\GodotProject\cile\Scripts\DataFormat\Info.cs                          | C#       |         14 |         12 |          2 |         28 |
+| d:\Workspace\GodotProject\cile\Scripts\DataFormat\State.cs                         | C#       |         11 |          9 |          1 |         21 |
+| d:\Workspace\GodotProject\cile\Scripts\Effect\Behavior.cs                          | C#       |         55 |         19 |          4 |         78 |
+| d:\Workspace\GodotProject\cile\Scripts\Effect\Behaviors\BindBehavior.cs            | C#       |         22 |          0 |          1 |         23 |
+| d:\Workspace\GodotProject\cile\Scripts\Effect\Behaviors\CardBehavior.cs            | C#       |          6 |          0 |          3 |          9 |
+| d:\Workspace\GodotProject\cile\Scripts\Effect\Behaviors\ConditionBehavior.cs       | C#       |         14 |          0 |          2 |         16 |
+| d:\Workspace\GodotProject\cile\Scripts\Effect\Behaviors\TerrainBehavior.cs         | C#       |         34 |          3 |          8 |         45 |
+| d:\Workspace\GodotProject\cile\Scripts\Effect\Condition.cs                         | C#       |         24 |          4 |          8 |         36 |
+| d:\Workspace\GodotProject\cile\Scripts\Effect\Conditions\AndCondition.cs           | C#       |         23 |          3 |          3 |         29 |
+| d:\Workspace\GodotProject\cile\Scripts\Effect\Conditions\OrCondition.cs            | C#       |         23 |          3 |          3 |         29 |
+| d:\Workspace\GodotProject\cile\Scripts\Effect\Conditions\SingalCondition.cs        | C#       |          6 |          3 |          4 |         13 |
+| d:\Workspace\GodotProject\cile\Scripts\Effect\Effect.cs                            | C#       |         36 |          3 |          6 |         45 |
+| d:\Workspace\GodotProject\cile\Scripts\GameSystem\GameMode.cs                      | C#       |         65 |          2 |         10 |         77 |
+| d:\Workspace\GodotProject\cile\Scripts\GameSystem\GameMode\GameModeDemo.cs         | C#       |         68 |          8 |          6 |         82 |
+| d:\Workspace\GodotProject\cile\Scripts\GameSystem\RoundCricle.cs                   | C#       |         77 |         30 |         27 |        134 |
+| d:\Workspace\GodotProject\cile\Scripts\GameSystem\StartScene.cs                    | C#       |         50 |          1 |         11 |         62 |
+| d:\Workspace\GodotProject\cile\Scripts\GameSystem\Turn.cs                          | C#       |         26 |         17 |         14 |         57 |
+| d:\Workspace\GodotProject\cile\Scripts\GameSystem\UnitSystem.cs                    | C#       |         33 |         10 |          6 |         49 |
+| d:\Workspace\GodotProject\cile\Scripts\Manager\AssetManager.cs                     | C#       |        179 |         47 |         11 |        237 |
+| d:\Workspace\GodotProject\cile\Scripts\Manager\AudioManager.cs                     | C#       |         90 |         21 |         10 |        121 |
+| d:\Workspace\GodotProject\cile\Scripts\Manager\CardManager.cs                      | C#       |         31 |          3 |          5 |         39 |
+| d:\Workspace\GodotProject\cile\Scripts\Manager\EntityManager.cs                    | C#       |         69 |          0 |          6 |         75 |
+| d:\Workspace\GodotProject\cile\Scripts\Manager\GameManager.cs                      | C#       |         46 |          7 |         13 |         66 |
+| d:\Workspace\GodotProject\cile\Scripts\Manager\InputManager.cs                     | C#       |         76 |          5 |         10 |         91 |
+| d:\Workspace\GodotProject\cile\Scripts\Manager\SceneManager.cs                     | C#       |         97 |         22 |          7 |        126 |
+| d:\Workspace\GodotProject\cile\Scripts\Object\Card.cs                              | C#       |          6 |          0 |          2 |          8 |
+| d:\Workspace\GodotProject\cile\Scripts\Object\Map.cs                               | C#       |         97 |         15 |          9 |        121 |
+| d:\Workspace\GodotProject\cile\Scripts\Object\Player.cs                            | C#       |         47 |         25 |          6 |         78 |
+| d:\Workspace\GodotProject\cile\Scripts\Object\Terrain.cs                           | C#       |        264 |         50 |         23 |        337 |
+| d:\Workspace\GodotProject\cile\Scripts\Object\Unit.cs                              | C#       |         34 |         12 |          7 |         53 |
+| d:\Workspace\GodotProject\cile\Scripts\Resource\CardData.cs                        | C#       |         19 |         18 |          3 |         40 |
+| d:\Workspace\GodotProject\cile\Scripts\Resource\CharacterData.cs                   | C#       |         16 |          9 |          2 |         27 |
+| d:\Workspace\GodotProject\cile\Scripts\Resource\TerrainData.cs                     | C#       |         20 |          0 |          2 |         22 |
+| d:\Workspace\GodotProject\cile\Scripts\Resource\UnitData.cs                        | C#       |         13 |          3 |          4 |         20 |
+| d:\Workspace\GodotProject\cile\Scripts\Server\Entity\User.cs                       | C#       |         17 |          3 |          1 |         21 |
+| d:\Workspace\GodotProject\cile\Scripts\Server\Service\UserManager.cs               | C#       |         21 |          4 |          3 |         28 |
+| d:\Workspace\GodotProject\cile\Scripts\Test\AudioTest.cs                           | C#       |         64 |          0 |          2 |         66 |
+| d:\Workspace\GodotProject\cile\Scripts\Test\Test.cs                                | C#       |         25 |          0 |          5 |         30 |
+| d:\Workspace\GodotProject\cile\Scripts\UI\ActiveUI\TurnPanel.cs                    | C#       |         51 |          0 |          7 |         58 |
+| d:\Workspace\GodotProject\cile\Scripts\UI\Button\ActiveButton.cs                   | C#       |         39 |          0 |          5 |         44 |
+| d:\Workspace\GodotProject\cile\Scripts\UI\Button\BackButton.cs                     | C#       |         14 |          0 |          4 |         18 |
+| d:\Workspace\GodotProject\cile\Scripts\UI\Button\BackMainMenuButton.cs             | C#       |         14 |          0 |          4 |         18 |
+| d:\Workspace\GodotProject\cile\Scripts\UI\Button\TextureButtonSizeChangeByState.cs | C#       |         34 |          0 |          7 |         41 |
+| d:\Workspace\GodotProject\cile\Scripts\UI\GameMenu.cs                              | C#       |         15 |          0 |          4 |         19 |
+| d:\Workspace\GodotProject\cile\Scripts\UI\GameUI\DebugUI.cs                        | C#       |         47 |          2 |          6 |         55 |
+| d:\Workspace\GodotProject\cile\Scripts\UI\GameUI\PUI.cs                            | C#       |         55 |          3 |          7 |         65 |
+| d:\Workspace\GodotProject\cile\Scripts\UI\GameUI\SelectedUI.cs                     | C#       |         74 |          1 |         10 |         85 |
+| d:\Workspace\GodotProject\cile\Scripts\UI\GameUI\UIMarks.cs                        | C#       |         27 |          3 |          6 |         36 |
+| d:\Workspace\GodotProject\cile\Scripts\UI\HandBookMenu.cs                          | C#       |         21 |          0 |          4 |         25 |
+| d:\Workspace\GodotProject\cile\Scripts\UI\MainMenu.cs                              | C#       |         30 |          0 |          4 |         34 |
+| d:\Workspace\GodotProject\cile\Scripts\UI\SettingMenu.cs                           | C#       |         60 |          4 |          7 |         71 |
+| d:\Workspace\GodotProject\cile\Scripts\UI\SettingUI\BaseSetting.cs                 | C#       |         39 |          0 |          6 |         45 |
+| d:\Workspace\GodotProject\cile\Scripts\UI\SettingUI\GraphSetting.cs                | C#       |         29 |          4 |          4 |         37 |
+| d:\Workspace\GodotProject\cile\Scripts\Utils\Coroutine.cs                          | C#       |        112 |         37 |         13 |        162 |
+| d:\Workspace\GodotProject\cile\Scripts\Utils\Tools.cs                              | C#       |         18 |          0 |          2 |         20 |
+| Total                                                                              |          |      3,075 |        517 |        423 |      4,015 |
++------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+

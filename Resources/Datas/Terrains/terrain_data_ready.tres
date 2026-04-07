@@ -27,6 +27,7 @@ script = ExtResource("2_wa27n")
 effectName = "放置小单位"
 condition = SubResource("Resource_em274")
 behavior = SubResource("Resource_ojxm0")
+tags = Array[int]([1])
 metadata/_custom_type_script = "uid://dui0qei00bamx"
 
 [sub_resource type="Resource" id="Resource_4s2h3"]
@@ -50,10 +51,12 @@ script = ExtResource("2_wa27n")
 effectName = "放置大单位"
 condition = SubResource("Resource_0qggx")
 behavior = SubResource("Resource_4s2h3")
+tags = Array[int]([1])
 metadata/_custom_type_script = "uid://dui0qei00bamx"
 
 [resource]
 script = ExtResource("1_rs4m5")
+tags = Array[int]([1])
 texture = ExtResource("2_rs4m5")
 effects = Array[Object]([SubResource("Resource_0iqek"), SubResource("Resource_wa27n")])
 metadata/_custom_type_script = "uid://b4wdgjosrgm34"

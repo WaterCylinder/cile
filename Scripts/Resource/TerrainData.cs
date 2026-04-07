@@ -2,16 +2,18 @@ using Godot;
 using Godot.Collections;
 using System;
 
-public enum TerrainType
+public enum TerrainTag
 {
     None,
+	Ready,
+	Blocked,
 }
 [GlobalClass]
 public partial class TerrainData : Resource
 {
 	[ExportCategory("地形属性")]
 	[Export]public string terrainName = "地形";
-	[Export]public TerrainType type;
+	[Export]public Array<TerrainTag> tags;
 	[Export]public int sourceLevel;
 	[Export]public int sourceLimit;
 	[Export]public Texture2D texture;

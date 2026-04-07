@@ -39,7 +39,7 @@ public partial class StartScene : Node
 	{
 		if (isVideoFinished)
 		{
-			alpha += (float)delta * 2f;
+			alpha += (float)delta * 4f;
 			if (alpha >= 1)
 			{
 				GD.Print("LOGO展示结束，跳转到主界面");
@@ -48,4 +48,14 @@ public partial class StartScene : Node
 			frontBlack.Color = new Color(0, 0, 0, alpha);
 		}
 	}
+
+    public override void _Input(InputEvent @event)
+    {
+		if (@event.IsPressed())
+		{
+			GD.Print("按键跳过LOGO");
+			isVideoFinished = true;
+		}
+    }
+
 }

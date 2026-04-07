@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using Godot.Collections;
 
@@ -11,7 +12,8 @@ public partial class Terrain : Node2D
 	[Export]public int mapPosW;
 	[Export]public TerrainData data;
 	[Export]public Array<Effect> effects = new();
-	[Export]public Array<bool> effectDisable = new();
+	[Export]public Array<TerrainTag> tags = new();
+	[Export]public Array<bool> effectEnable = new();
 	[ExportCategory("组件")]
 	[Export]public Sprite2D sprite;
 	[Export]public Area2D area;
@@ -29,7 +31,11 @@ public partial class Terrain : Node2D
 	public Terrain Left => neighbors[2];
 	public Terrain Right => neighbors[3];
 
-	public TerrainType Type => data.type;
+	[Signal]public delegate void OnEffectInvokeEventHandler(Terrain terrain, Effect effect);
+	/// <summary>
+	/// 效果无效状态检查结束前执行的方法，用于在效果无效状态检查前执行一些操作以修改检查结果
+	/// </summary>
+	public Func<bool, bool> BeforeEffctEnableCheck;
 
 	public bool isMouseEnter = false;
 	public bool isPressed = false;
@@ -87,8 +93,17 @@ public partial class Terrain : Node2D
 		{
 			effects = data.effects.Duplicate(false);
 			//设置禁用状态(默认全部启用)
-			effectDisable = new Array<bool>();
-			effectDisable.Resize(effects.Count);
+			effectEnable = new Array<bool>();
+			effectEnable.Resize(effects.Count);
+			for(int i = 0; i < effects.Count; i++)
+			{
+				effectEnable[i] = true;
+			}
+		}
+
+		if(data.tags != null)
+		{
+			tags = data.tags.Duplicate(false);
 		}
 			
     }
@@ -147,6 +162,75 @@ public partial class Terrain : Node2D
 		GameManager.Instance.game.EmitSignal("OnTerrainSelected", this);
     }
 	# region 地形效果相关方法
+	public void EffectInit(Effect effect)
+	{
+		if(effect == null)
+			return;
+		if(effect.behavior is not TerrainBehavior)
+			return;
+		TerrainBehavior behavior = effect.behavior as TerrainBehavior;
+		if(behavior.terrain == this)
+			return;
+		behavior.terrain = this;
+		//为条件里可能存在的地形行为设置地形对象
+		Condition condition = effect.condition as SingalCondition;
+		condition.OnBehaviorInit = (b) =>{
+			if(b is TerrainBehavior)
+			{
+				(b as TerrainBehavior).terrain = this;
+			}
+		};
+	}
+	public void EffectInvoke(int index, Action onInvoke = null)
+	{
+		if(effects == null)
+			return;
+		GD.Print($"调用效果ID：{index}， {effects}");
+		Effect effect = effects[index];
+		if(effect != null)
+		{
+			EffectInit(effect);
+			effect.Run();
+			//本体的事件信号
+			EmitSignal(nameof(OnEffectInvoke), this, effect);
+			//全局地形事件信号
+			try{ GameManager.Instance.game.EmitSignal(nameof(GameManager.Instance.game.OnTerrainEffect)); } catch {}
+			onInvoke?.Invoke();
+		}
+	}
+	public Effect GetEffect(int index)
+	{
+		if(effects == null)
+		{
+			return null;
+		}
+		if(index >= effects.Count || index < 0)
+        {
+			return null;
+        }
+		return effects[index];
+	}
+	/// <summary>
+	/// 根据效果的行为名称获取效果，可以输入部分字符串，自带包含检测
+	/// </summary>
+	/// <param name="behaviornName"></param>
+	/// <returns></returns>
+	public int GetEffectIndex(string behaviornName)
+	{
+		if(effects == null)
+		{
+			return -1;
+		}
+		for(int i = 0; i <= effects.Count - 1; i++)
+		{
+			Effect e = effects[i];
+			if(e.behavior.behaviorName.Contains(behaviornName))
+			{
+				return i;
+			}
+		}
+		return -1;
+	}
 	/// <summary>
 	/// 获取地形效果是否启用
 	/// </summary>
@@ -162,8 +246,15 @@ public partial class Terrain : Node2D
         {
 			return false;
         }
-		return !effectDisable[index];
+		bool result = effectEnable[index];
+		//执行操作改变检查结果
+		if(BeforeEffctEnableCheck != null)
+		{
+			result = BeforeEffctEnableCheck.Invoke(result);
+		}
+		return result;
 	}
+
 	/// <summary>
 	/// 设置地形效果启用
 	/// </summary>
@@ -179,7 +270,7 @@ public partial class Terrain : Node2D
         {
 			return;
         }
-		effectDisable[index] = !isEnable;
+		effectEnable[index] = isEnable;
 	}
 
 	/// <summary>
@@ -193,7 +284,7 @@ public partial class Terrain : Node2D
 			effects = new Array<Effect>();
         }
 		effects.Add(effect);
-		effectDisable.Add(false);
+		effectEnable.Add(false);
 	}
 	/// <summary>
 	/// 移除指定索引的效果
@@ -226,5 +317,24 @@ public partial class Terrain : Node2D
 
 	# endregion
 
-	
+	# region 地形tag相关方法
+
+	public bool CheckTag(TerrainTag tag)
+	{
+		return tags.Contains(tag);
+	}
+
+	public void AddTag(TerrainTag tag)
+	{
+		if (!CheckTag(tag))
+			tags.Add(tag);
+	}
+
+	public void RemoveTag(TerrainTag tag)
+	{
+		if (CheckTag(tag))
+			tags.Remove(tag);
+	}
+
+	# endregion
 }

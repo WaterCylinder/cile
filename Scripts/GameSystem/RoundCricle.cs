@@ -26,6 +26,9 @@ public class RoundCricle
     public Array<Player> players;
 
     public Turn turnLogic = new Turn();
+    public GameMode gameMode;
+
+    public float roundCricleProcessTime = 0.5f;
 
     /// <summary>
     /// 切换玩家
@@ -53,7 +56,7 @@ public class RoundCricle
         
 		game = GameManager.Instance.game;
 		GD.Print($"开始回合循环，当前A值{game.A}");
-        coroutine = CoroutineManager.Instance.StartCoroutine(Callable.From(Process), 0.5);
+        coroutine = CoroutineManager.Instance.StartCoroutine(Callable.From(Process), roundCricleProcessTime);
 		round = 0;
         turn = 0;
 		isRunning = true;
@@ -62,7 +65,15 @@ public class RoundCricle
 
         turnLogic.roundCricle = this;
 
+        gameMode = GameMode.CreatModeObject(game.gameMode, game);
+        gameMode?.Start();
+
         NextTurn();
+    }
+
+    public void NextTurnCheck()
+    {
+        //TODO:检查是否可以进行下一个回合
     }
 
     /// <summary>
@@ -70,6 +81,8 @@ public class RoundCricle
     /// </summary>
     public void NextTurn()
     {   
+        if(turn > 0)
+            gameMode?.TurnEnd(turnLogic);
         turn += 1;
         if(turn % players.Count == 1)
         {
@@ -78,6 +91,7 @@ public class RoundCricle
         GD.Print($"开始第{turn}回合");
         turnLogic.EnterTurn();
         NextPlayer();
+        gameMode?.TurnStart(turnLogic);
     }
 
     /// <summary>
@@ -85,8 +99,11 @@ public class RoundCricle
     /// </summary>
     public void NextRound()
     {
+        if(round > 0)
+            gameMode?.RoundEnd();
         round += 1;
         GD.Print($"开始第{round}轮");
+        gameMode?.RoundStart();
     }
 
     /// <summary>
@@ -97,6 +114,8 @@ public class RoundCricle
 		game = GameManager.Instance.game;
 		GD.Print($"结束回合循环，当前A值{game.A}");
 		
+        gameMode.End();
+
 		if(coroutine != null)coroutine.Stop();
 		else GD.PushWarning("回合循环未开始");
         isRunning = false;
@@ -105,7 +124,7 @@ public class RoundCricle
     // 回合循环方法
 	private void Process()
     {
-		
+		gameMode.Update(roundCricleProcessTime);
     }
 
 

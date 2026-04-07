@@ -3,7 +3,7 @@ using System;
 
 public partial class PUI : Control
 {
-	[Export]public Control terrainSelectUI;
+	[Export]public SelectedUI selectedUI;
 
 	//设置事件
 	private bool isEventSet = false;
@@ -31,33 +31,32 @@ public partial class PUI : Control
 			isEventSet = true;
 			GameManager.Instance.game.OnTerrainSelected += (tr) =>
 			{
-				if (!terrainSelectUI.Visible)
+				if (!selectedUI.Visible)
 				{
-					terrainSelectUI.Visible = true;
+					selectedUI.Visible = true;
 				}
 			};
 			GameManager.Instance.game.OnTerrainSelectedCancle += () =>
 			{
-				if (terrainSelectUI.Visible)
+				if (selectedUI.Visible)
 				{
-					terrainSelectUI.Visible = false;
+					selectedUI.Visible = false;
 				}
 			};
 			GameManager.Instance.game.mainCamera.OnScreenStartMove += () =>
 			{
-				if (terrainSelectUI.Visible)
+				if (selectedUI.Visible)
 				{
-					//terrainSelectUI.Visible = false;
+					//selectedUI.Visible = false;
 				}
 			};
 		}
-
-		if (terrainSelectUI.Visible)
+		if (selectedUI.Visible)
 		{
 			Vector2 pos = GameManager.Instance.game.selectedTerrains[0].GlobalPosition;
 			pos += new Vector2(GameManager.Instance.game.selectedTerrains[0].width/2, -GameManager.Instance.game.selectedTerrains[0].height/2);
 			pos = GameManager.Instance.game.mainCamera.ToScreenPosition(pos);
-			terrainSelectUI.GlobalPosition = pos;
+			selectedUI.GlobalPosition = pos;
 		}
     }
 
