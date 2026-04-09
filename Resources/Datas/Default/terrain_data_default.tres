@@ -1,9 +1,27 @@
-[gd_resource type="Resource" script_class="TerrainData" load_steps=3 format=3 uid="uid://cgvyln8u4stt5"]
+[gd_resource type="Resource" script_class="TerrainData" format=3 uid="uid://cgvyln8u4stt5"]
 
 [ext_resource type="Script" uid="uid://b4wdgjosrgm34" path="res://Scripts/Resource/TerrainData.cs" id="1_c3d6u"]
+[ext_resource type="Script" uid="uid://chlbomkquekwg" path="res://Scripts/Effect/Behaviors/TerrainBehavior.cs" id="1_msb8f"]
+[ext_resource type="Resource" uid="uid://d1uxxlq4f7g65" path="res://Resources/Effects/Conditions/true_condition.tres" id="2_dwrnx"]
 [ext_resource type="Texture2D" uid="uid://c1v0v47n2xsxt" path="res://Resources/Sprites/Default/block2_default.png" id="2_q14jc"]
+[ext_resource type="Script" uid="uid://dui0qei00bamx" path="res://Scripts/Effect/Effect.cs" id="3_3wckj"]
+
+[sub_resource type="Resource" id="Resource_24qww"]
+script = ExtResource("1_msb8f")
+behaviorName = "TerrainLog"
+metadata/_custom_type_script = "uid://chlbomkquekwg"
+
+[sub_resource type="Resource" id="Resource_y52ha"]
+script = ExtResource("3_3wckj")
+effectName = "测试地形"
+condition = ExtResource("2_dwrnx")
+behavior = SubResource("Resource_24qww")
+tags = null
+metadata/_custom_type_script = "uid://dui0qei00bamx"
 
 [resource]
 script = ExtResource("1_c3d6u")
+tags = null
 texture = ExtResource("2_q14jc")
+effects = Array[Object]([SubResource("Resource_y52ha")])
 metadata/_custom_type_script = "uid://b4wdgjosrgm34"

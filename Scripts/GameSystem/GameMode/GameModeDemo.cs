@@ -59,7 +59,7 @@ public class GameModeDemo : GameMode
                     }
                 };
                 //一个玩家只能选一个方位的准备区块来准备单位
-                t.BeforeEffctEnableCheck = r =>
+                t.BeforeEffctEnableCheck += r =>
                 {
                     Player player = game.CurrentPlayer;
                     if (readyPos.ContainsKey(player))
@@ -73,6 +73,19 @@ public class GameModeDemo : GameMode
                     return r;
                 };
             }
+        }
+
+        //给除了准备地形以外的所有地形添加：第五回合之前禁用效果
+        foreach(Terrain t in map.innerTerrains)
+        {
+            t.BeforeEffctEnableCheck += r =>
+            {
+                if (turnLogic.turnCount < 5)
+                {
+                    return false;
+                }
+                return r;
+            };
         }
     }
     

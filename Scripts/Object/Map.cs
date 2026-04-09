@@ -16,6 +16,7 @@ public partial class Map : Node2D
     /// 准备地形
     /// </summary>
     public Dictionary<Vector2, Array<Terrain>> readyTerrains;
+    public Array<Terrain> innerTerrains;
 
 	private Terrain[,] _map;
     public Terrain[,] map
@@ -94,6 +95,18 @@ public partial class Map : Node2D
         }
     }
 
+    public void SetInnerTerrain()
+    {
+        innerTerrains = new Array<Terrain>();
+        for(int i = 1; i < mapHeight-1; i++)
+        {
+            for(int j = 1; j < mapWidth-1; j++)
+            {
+                innerTerrains.Add(map[i,j]);
+            }
+        }
+    }
+
     /// <summary>
     /// 初始化所有区域的地形
     /// </summary>
@@ -114,6 +127,7 @@ public partial class Map : Node2D
                 if(j < mapWidth-1)t.neighbors.Add(map[i,j+1]);  //右
             }
         }
+        SetInnerTerrain();
         GD.Print($"初始化了{mapHeight * mapWidth}个区块");
     }
 

@@ -35,7 +35,7 @@ public partial class Terrain : Node2D
 	/// <summary>
 	/// 效果无效状态检查结束前执行的方法，用于在效果无效状态检查前执行一些操作以修改检查结果
 	/// </summary>
-	public Func<bool, bool> BeforeEffctEnableCheck;
+	public BoolEventSheet BeforeEffctEnableCheck = new();
 
 	public bool isMouseEnter = false;
 	public bool isPressed = false;
