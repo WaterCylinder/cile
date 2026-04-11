@@ -30,6 +30,8 @@ public class RoundCricle
 
     public float roundCricleProcessTime = 0.5f;
 
+    public BoolEventSheet nextTurnCheck = new();
+
     /// <summary>
     /// 切换玩家
     /// </summary>
@@ -53,7 +55,6 @@ public class RoundCricle
     /// </summary>
 	public void Start()
     {	
-        
 		game = GameManager.Instance.game;
 		GD.Print($"开始回合循环，当前A值{game.A}");
         coroutine = CoroutineManager.Instance.StartCoroutine(Callable.From(Process), roundCricleProcessTime);
@@ -71,8 +72,11 @@ public class RoundCricle
         NextTurn();
     }
 
-    public void NextTurnCheck()
+    public bool NextTurnCheck()
     {
+        bool result = true;
+        result = nextTurnCheck.Invoke(result);
+        return result;
         //TODO:检查是否可以进行下一个回合
     }
 

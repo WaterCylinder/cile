@@ -7,6 +7,8 @@ public class GameModeDemo : GameMode
     /// 玩家选择的判断位置
     /// </summary>
     public Dictionary<Player, Vector2> readyPos = new();
+    // 玩家选择准备地形的状态，0表示没选，1表示只选了小单位，2表示只选了大单位，3表示全选了
+    public Dictionary<Player, int> selectReadyTerrainState = new(); 
 
     public override void Start()
     {
@@ -26,6 +28,11 @@ public class GameModeDemo : GameMode
                 int putSmallIndex = t.GetEffectIndex("Small");
                 t.OnEffectInvoke += (t,e) =>
                 {
+                    Player player = game.CurrentPlayer;
+                    if (!selectReadyTerrainState.ContainsKey(player))
+                    {
+                        selectReadyTerrainState.Add(player, 0);
+                    }
                     //针对添加单位的效果
                     if(!e.CheckTag(EffectTag.AddUnit))return;
                     if(readyPos.ContainsKey(game.CurrentPlayer))
@@ -48,6 +55,8 @@ public class GameModeDemo : GameMode
                             GD.Print($"移除{pos}方位的大单位放置效果，{tt}");
                             tt.SetEffectEnable(putBigIndex,false);
                         }
+                        //记录状态当前玩家已选择大单位
+                        selectReadyTerrainState[player] |= 2;
                     }
                     else if(e == t.GetEffect(putSmallIndex))
                     {
@@ -56,6 +65,8 @@ public class GameModeDemo : GameMode
                             GD.Print($"移除{pos}方位的小单位放置效果，{tt.Name}");
                             tt.SetEffectEnable(putSmallIndex,false);
                         }
+                        //记录状态当前玩家已选择小单位
+                        selectReadyTerrainState[player] |= 1;
                     }
                 };
                 //一个玩家只能选一个方位的准备区块来准备单位
@@ -87,6 +98,24 @@ public class GameModeDemo : GameMode
                 return r;
             };
         }
+    
+        roundCricle.nextTurnCheck += r =>
+        {
+            Player player = game.CurrentPlayer;
+            if (selectReadyTerrainState.ContainsKey(player))
+            {
+                if (selectReadyTerrainState[player] != 3)
+                {
+                    GD.Print($"玩家{player}未选择准备地形, 当前状态{selectReadyTerrainState[player]}，不能进入下一回合");
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            return false;
+        };
     }
     
     public override void TurnStart(Turn turn)

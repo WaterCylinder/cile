@@ -11,7 +11,15 @@ public partial class DebugUI : Node
 	{
 		nextRoundButton.Pressed += () =>
         {
-            GameManager.Instance.game.roundCricle.NextTurn();
+			if (GameManager.Instance.game.roundCricle.NextTurnCheck())
+			{
+				GameManager.Instance.game.roundCricle.NextTurn();
+			}
+			else
+			{
+				GD.Print("未满足条件，无法进行下一回合。");
+			}
+            
         };
 		changeMusicButton.Pressed += () =>
         {
