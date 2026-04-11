@@ -8,13 +8,21 @@ public class GameModeDemo : GameMode
     /// </summary>
     public Dictionary<Player, Vector2> readyPos = new();
     // 玩家选择准备地形的状态，0表示没选，1表示只选了小单位，2表示只选了大单位，3表示全选了
-    public Dictionary<Player, int> selectReadyTerrainState = new(); 
+    public Dictionary<Player, int> selectReadyTerrainState = new();
+
+    public override void OnLoadGameInfo(GameInfo gameInfo)
+    {
+        //测试模式添加一个机器人账户
+        gameInfo.users.Add(UserManager.Instance.CreateBotUser());
+    }
+
 
     public override void Start()
     {
         GD.Print("游戏模式demo：游戏开始");
         Map map = game.Map;
         selectedUI = game.pui.selectedUI;
+        int playerCount = game.players.Count;
         //给所有的准备地形事件设置：当同位置的地形有一个单位时，禁用同位置的另一个同大小单位的地形设置。
         //设置按钮禁用检查，当前玩家已经设置了一个单位后，记录玩家设置单位的准备地形的位置，禁用该玩家在不同的位置设置单位。
         foreach(var item in map.readyTerrains)
@@ -91,7 +99,7 @@ public class GameModeDemo : GameMode
         {
             t.BeforeEffctEnableCheck += r =>
             {
-                if (turnLogic.turnCount < 5)
+                if (turnLogic.turnCount < playerCount + 1)
                 {
                     return false;
                 }
@@ -101,20 +109,23 @@ public class GameModeDemo : GameMode
     
         roundCricle.nextTurnCheck += r =>
         {
-            Player player = game.CurrentPlayer;
-            if (selectReadyTerrainState.ContainsKey(player))
-            {
-                if (selectReadyTerrainState[player] != 3)
+            if(turnLogic.turnCount < playerCount + 1){
+                Player player = game.CurrentPlayer;
+                if (selectReadyTerrainState.ContainsKey(player))
                 {
-                    GD.Print($"玩家{player}未选择准备地形, 当前状态{selectReadyTerrainState[player]}，不能进入下一回合");
-                    return false;
+                    if (selectReadyTerrainState[player] != 3)
+                    {
+                        GD.Print($"玩家{player}未选择准备地形, 当前状态{selectReadyTerrainState[player]}，不能进入下一回合");
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
                 }
-                else
-                {
-                    return true;
-                }
+                return false;
             }
-            return false;
+            return r;
         };
     }
     

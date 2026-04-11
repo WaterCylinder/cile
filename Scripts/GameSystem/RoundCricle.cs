@@ -26,7 +26,8 @@ public class RoundCricle
     public Array<Player> players;
 
     public Turn turnLogic = new Turn();
-    public GameMode gameMode;
+
+    public GameMode gameMode => game.gameModeSystem;
 
     public float roundCricleProcessTime = 0.5f;
 
@@ -65,9 +66,6 @@ public class RoundCricle
         players = game.players;
 
         turnLogic.roundCricle = this;
-
-        gameMode = GameMode.CreatModeObject(game.gameMode, game);
-        gameMode?.Start();
 
         NextTurn();
     }

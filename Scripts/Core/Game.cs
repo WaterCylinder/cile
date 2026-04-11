@@ -36,6 +36,7 @@ public partial class Game : Node
     // 局内系统
     public RoundCricle roundCricle = new RoundCricle();
     public UnitSystem unitSystem = new UnitSystem();
+    public GameMode gameModeSystem;
 
     # region 信号
     /// <summary>
@@ -147,19 +148,15 @@ public partial class Game : Node
     //加载对局信息
     public void LoadGameInfo()
     {
+        gameModeSystem = GameMode.CreatModeObject(gameMode, this);
         GD.Print("加载对局信息");
         if(gameInfo == null)
         {
             gameInfo = GameManager.Instance.gameInfoDefault;
         }
-        if (gameInfo.users.Count < 4)
-        {
-            for (int i = gameInfo.users.Count; i < 4; i++)
-            {   
-                gameInfo.users.Add(UserManager.Instance.CreateBotUser());
-            }
-        }
+        gameModeSystem.OnLoadGameInfo(gameInfo);
     }
+    
     //加载玩家信息
     public void LoadPlayer()
     {

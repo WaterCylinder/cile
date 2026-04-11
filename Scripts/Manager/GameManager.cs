@@ -32,7 +32,7 @@ public partial class GameManager : Node
     {	
 		GD.Print("初始化GameManager");
         ProcessMode = ProcessModeEnum.Always;
-		GameManager.instance = this;
+		instance = this;
 
         gameInfoDefault = new GameInfo();
         //读取本地用户（先用生成的用户）

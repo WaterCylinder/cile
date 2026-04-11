@@ -65,6 +65,7 @@ public class GameMode
     }
 
     public virtual void Init(){}
+    public virtual void OnLoadGameInfo(GameInfo gameInfo){} //加载游戏信息时调用
     public virtual void Start(){}
     public virtual void Update(float delta){}
     public virtual void End(){}
