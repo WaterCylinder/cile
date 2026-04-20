@@ -1,7 +1,24 @@
 [gd_resource type="Resource" script_class="UnitData" format=3 uid="uid://dwirv6c7xdf3x"]
 
+[ext_resource type="Script" uid="uid://dui0qei00bamx" path="res://Scripts/Effect/Effect.cs" id="1_fd7kq"]
 [ext_resource type="Script" uid="uid://dvalus1olte" path="res://Scripts/Resource/UnitData.cs" id="1_ippas"]
+[ext_resource type="Script" uid="uid://dp51sfi4tdi1a" path="res://Scripts/Effect/Behaviors/UnitBehavior.cs" id="2_w3lmn"]
+[ext_resource type="Resource" uid="uid://d1uxxlq4f7g65" path="res://Resources/Effects/Conditions/true_condition.tres" id="3_nr52p"]
+
+[sub_resource type="Resource" id="Resource_geb8x"]
+script = ExtResource("2_w3lmn")
+behaviorName = "UnitLog"
+metadata/_custom_type_script = "uid://dp51sfi4tdi1a"
+
+[sub_resource type="Resource" id="Resource_hyvj6"]
+script = ExtResource("1_fd7kq")
+effectName = "测试"
+condition = ExtResource("3_nr52p")
+behavior = SubResource("Resource_geb8x")
+tags = null
+metadata/_custom_type_script = "uid://dui0qei00bamx"
 
 [resource]
 script = ExtResource("1_ippas")
+effects = Array[ExtResource("1_fd7kq")]([SubResource("Resource_hyvj6")])
 metadata/_custom_type_script = "uid://dvalus1olte"

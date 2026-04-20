@@ -232,6 +232,15 @@ public partial class Terrain : Node2D
 		return -1;
 	}
 	/// <summary>
+	/// 检查某个效果是否在地形效果列表里
+	/// </summary>
+	/// <param name="effect"></param>
+	/// <returns></returns>
+	public bool checkEffect(Effect effect)
+	{
+		return effects.Contains(effect);
+	}
+	/// <summary>
 	/// 获取地形效果是否启用
 	/// </summary>
 	/// <param name="index"></param>

@@ -33,7 +33,8 @@ public partial class DebugUI : Node
     public override void _Process(double delta)
     {
         base._Process(delta);
-		RoundCricle rc = GameManager.Instance.game.roundCricle;
+		Game game = GameManager.Instance.game;
+		RoundCricle rc = game.roundCricle;
         // 修改Debug文本
         // 回合信息
         try
@@ -50,7 +51,9 @@ public partial class DebugUI : Node
 				$"- 玩家单位死亡数: {tl.turnPlayer.death}\n" +
 				$"- 玩家手牌: {tl.turnPlayer.handCards}\n" +
 				$"canOpera: {tl.canOpera}\n" +
-				$"isYouCanOpera: {tl.isYouCanOpera}\n";
+				$"isYouCanOpera: {tl.isYouCanOpera}\n" + 
+				$"gameMode: {game.gameMode}\n" +
+				$"gameModeSystem: {game.gameModeSystem}\n";
         }
 		catch
 		{

@@ -67,6 +67,8 @@ public class RoundCricle
 
         turnLogic.roundCricle = this;
 
+        game.gameModeSystem?.Start();
+
         NextTurn();
     }
 

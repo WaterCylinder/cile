@@ -1,27 +1,81 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.Linq;
 
 public partial class SelectedUI : Control
 {
 	[Export]public PackedScene buttonPrefab;
 	[Export]public Terrain selectedTerrain;
 	[Export]public Label terrainNameLabel;
-	[Export]public Array<ActiveButton> terrainButtons = [];
+	[Export]public Array<ActiveButton> buttons = [];
 	[Export]public Array<Effect> effects = [];
 	[Export]public int buttonHeight = 40;
+	[Export]public Effect terrainSelectSwitchToTerrainEffect;
+	[Export]public Effect terrainSelectSwitchToUnitEffect;
+
+	public bool isUnitSelected = false;
 
 	public override void _Ready()
 	{	
 		Game game = GameManager.Instance.game;
 		game.OnTerrainSelected += OnSelected;
+
+		EventBehavior behavior = terrainSelectSwitchToTerrainEffect.behavior as EventBehavior;
+		behavior.action += ChangeToTerrainSelect;
+		behavior.action += GenerateButtons;
+
+		behavior = terrainSelectSwitchToUnitEffect.behavior as EventBehavior;
+		behavior.action += ChangeToUnitSelect;
+		behavior.action += GenerateButtons;
+	}
+
+	void ChangeToTerrainSelect()
+	{
+		if(selectedTerrain != null)
+		{
+			terrainNameLabel.Text = selectedTerrain.data.terrainName;
+			effects = selectedTerrain.effects.Duplicate(false);
+			if(selectedTerrain.unit != null)
+				effects.Add(terrainSelectSwitchToUnitEffect);
+			isUnitSelected = false;
+		}
+	}
+
+	void ChangeToUnitSelect()
+	{
+		if(selectedTerrain != null)
+		{
+			if(selectedTerrain.unit != null)
+			{
+				terrainNameLabel.Text = selectedTerrain.unit.data.unitName;
+				effects = selectedTerrain.unit.effects.Duplicate(false);
+				effects.Add(terrainSelectSwitchToTerrainEffect);
+				isUnitSelected = true;
+			}
+		}
 	}
 	
 	public void OnSelected(Terrain terrain)
 	{
+		isUnitSelected = false;
 		selectedTerrain = terrain;
-		terrainNameLabel.Text = terrain.data.terrainName;
-		//移除所有的按钮对象
+
+		GenerateButtons();
+	}
+
+	public void GenerateButtons()
+	{
+		effects.Clear();
+		if (isUnitSelected)
+		{
+			ChangeToUnitSelect();
+		}	
+		else
+		{
+			ChangeToTerrainSelect();
+		}
+		buttons.Clear();
 		foreach(Node button in GetChildren())
 		{
 			if(button is TextureButton)
@@ -29,56 +83,95 @@ public partial class SelectedUI : Control
 				button.QueueFree();
 			}
 		}
-		if(selectedTerrain.effects != null)
+
+		GD.Print("SelectedUI生成按钮");
+
+		for(int i = 0; i<=effects.Count-1; i++)
 		{
-			effects.Clear();
-			terrainButtons.Clear();
-			for(int i = 0; i<=selectedTerrain.effects.Count-1; i++)
+			Effect effect = effects[i];
+			if(effect != null)
 			{
-				Effect effect = selectedTerrain.effects[i];
-				if(effect != null)
+				selectedTerrain.EffectInit(effect);
+
+				int index = effects.Count-1 - i;
+
+				float posY = terrainNameLabel.Size.Y + buttonHeight * index;
+				Vector2 pos = new Vector2(0, posY);
+				ActiveButton button = buttonPrefab.Instantiate() as ActiveButton;
+
+				index = i;
+
+				button.SetText(effect.effectName);                              //设置按钮文本
+				if (selectedTerrain.checkEffect(effect))
 				{
 					selectedTerrain.EffectInit(effect);
-
-					float posY = terrainNameLabel.Size.Y + buttonHeight * i;
-					Vector2 pos = new Vector2(0, posY);
-					Size = new Vector2(Size.X, posY + buttonHeight);
-					ActiveButton button = buttonPrefab.Instantiate() as ActiveButton;
-
-					int index = i;
-
-					button.SetText(effect.effectName);							//设置按钮文本
-					button.Pressed += () =>	selectedTerrain.EffectInvoke(index);	//设置按钮点击事件
-					button.Pressed += ResetButtonState; 						//点击之后重置状态
-					button.Position = pos;										//设置按钮位置
-					
-					effects.Add(effect);
-					terrainButtons.Add(button);
-
-					AddChild(button);
+					button.Pressed += () =>	selectedTerrain.EffectInvoke(index);//设置按钮点击事件
+				}else if (selectedTerrain.unit.checkEffect(effect))
+				{
+					selectedTerrain.unit.EffectInit(effect);
+					button.Pressed += () =>	selectedTerrain.unit.EffectInvoke(index);//设置按钮点击事件
 				}
+				else
+					button.Pressed += effect.Run;
+				
+				button.Pressed += ResetButtonState; 						//点击之后重置状态
+				button.Pressed += GenerateButtons;						//点击之后重新生成按钮
+				button.Position = pos;											//设置按钮位置
+				
+				buttons.Add(button);
+
+				AddChild(button);
 			}
-			ResetButtonState();
-			Size = new Vector2(Size.X, buttonHeight * selectedTerrain.effects.Count + terrainNameLabel.Size.Y);
 		}
+		
+		ResetButtonState();
+		Size = new Vector2(Size.X, buttonHeight * effects.Count + terrainNameLabel.Size.Y);
 	}
 
 	public void ResetButtonState()
 	{
-		for(int i = 0; i<=effects.Count-1; i++)
+		if (isUnitSelected)
 		{
-			if(!effects[i].condition.Run())
+			for(int i = 0; i<=effects.Count-1; i++)
 			{
-				terrainButtons[i].Switch(false);
-			}
-			else
-			{
-				terrainButtons[i].Switch(true);
-			}
-			if (!selectedTerrain.GetEffectIsEnable(i))
-			{
-				terrainButtons[i].Switch(false);
+				if(!effects[i].condition.Run())
+				{
+					buttons[i].Switch(false);
+				}
+				else
+				{
+					buttons[i].Switch(true);
+				}
+				if(selectedTerrain.unit.checkEffect(effects[i]))
+				{
+					if (!selectedTerrain.unit.GetEffectIsEnable(i))
+					{
+						buttons[i].Switch(false);
+					}
+				}
 			}
 		}
+		else
+		{
+			for(int i = 0; i<=effects.Count-1; i++)
+			{
+				if(!effects[i].condition.Run())
+				{
+					buttons[i].Switch(false);
+				}
+				else
+				{
+					buttons[i].Switch(true);
+				}
+				if(selectedTerrain.checkEffect(effects[i]))
+				{
+					if (!selectedTerrain.GetEffectIsEnable(i))
+					{
+						buttons[i].Switch(false);
+					}
+				}
+			}
+		}
+		
 	}
 }

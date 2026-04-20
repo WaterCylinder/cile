@@ -106,7 +106,8 @@ public class GameModeDemo : GameMode
                 return r;
             };
         }
-    
+
+        //下一回合逻辑添加，如果玩家没有选择完毕准备地形，则不能进入下一回合。
         roundCricle.nextTurnCheck += r =>
         {
             if(turnLogic.turnCount < playerCount + 1){
@@ -127,6 +128,8 @@ public class GameModeDemo : GameMode
             }
             return r;
         };
+    
+        
     }
     
     public override void TurnStart(Turn turn)
