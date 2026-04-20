@@ -1,12 +1,19 @@
-[gd_scene format=3 uid="uid://3aps1cjors3m"]
+[gd_scene format=3 uid="uid://da0mm2lb7b1pa"]
 
-[ext_resource type="Script" uid="uid://co5xhaikq0qyn" path="res://Scripts/Object/Card.cs" id="1_rr1n7"]
-[ext_resource type="Script" uid="uid://bucly4m40nnvi" path="res://Scripts/Resource/CardData.cs" id="2_igfx4"]
+[ext_resource type="Texture2D" uid="uid://cqgkha0djwaal" path="res://Resources/Sprites/Default/card_default.png" id="1_rr1n7"]
 
-[sub_resource type="Resource" id="Resource_f65i6"]
-script = ExtResource("2_igfx4")
-metadata/_custom_type_script = "uid://bucly4m40nnvi"
+[node name="CardTemp" type="Control" unique_id=874630084]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 248.0
+offset_bottom = 368.0
 
-[node name="Card" type="Node2D" unique_id=829165651]
-script = ExtResource("1_rr1n7")
-data = SubResource("Resource_f65i6")
+[node name="CardImage" type="TextureRect" parent="." unique_id=1649230305]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_rr1n7")
+expand_mode = 1

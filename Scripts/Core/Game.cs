@@ -10,6 +10,7 @@ public partial class Game : Node
     [ExportCategory("固定节点")]
     [Export] public PUI pui;
     [Export] public Control ActiveUI;
+    [Export] public CardSelector cardSelector;
     [Export] public Node playerNode;
     [Export] public InGameMusic inGameMusic;
     [ExportCategory("A状态机")]
@@ -42,7 +43,6 @@ public partial class Game : Node
     /// <summary>
     /// 信号：选择地形
     /// </summary>
-    /// <param name="terrain"></param>
     [Signal]public delegate void OnTerrainSelectedEventHandler(Terrain terrain);
     /// <summary>
     /// 信号：取消选择地形
@@ -52,10 +52,14 @@ public partial class Game : Node
     /// 信号：执行地形事件
     /// </summary>
     [Signal]public delegate void OnTerrainEffectEventHandler();
+    /// <summary>
+	/// 信号: 卡牌完成选择
+	/// </summary>
+	[Signal] public delegate void CardSelectedFinishSelectEventHandler(Array<CardData> result);
 
     # endregion
 
-    // 是否可操作
+    // 是否可操作(对当前回合可操作性的判断，控制所有的回合操作)
     public bool CanOpera
     {
         get
@@ -105,7 +109,55 @@ public partial class Game : Node
 
     # endregion
 
-	public void OpenMenu()
+	# region 初始化
+
+    //加载对局信息
+    public void LoadGameInfo()
+    {
+        //初始化游戏模式系统
+        gameModeSystem = GameMode.CreatModeObject(gameMode, this);
+        GD.Print("加载对局信息");
+        if(gameInfo == null)
+        {
+            gameInfo = GameManager.Instance.gameInfoDefault;
+        }
+        gameModeSystem.OnLoadGameInfo(gameInfo);
+    }
+    
+    //加载玩家信息
+    public void LoadPlayer()
+    {
+        GD.Print("加载玩家信息");
+        foreach(User user in gameInfo.users)
+        {
+            GD.Print($"加载用户{user.name},{user.id}");
+            Player player = new Player();
+            player.user = user;
+            player.Init();
+            player.Name = user.name + user.id;
+            playerNode.AddChild(player);
+            players.Add(player);
+        }
+    }
+
+    //加载卡牌数据
+    public void LoadCardData()
+    {
+        GD.Print("加载卡牌数据");
+    }
+
+    //游戏正式开始初始化，包括先后手敲定等
+    public void GameInit()
+    {
+        GD.Print("回合前初始化");
+        unitSystem.Init();
+    }
+
+    # endregion
+
+    # region 功能方法
+
+    public void OpenMenu()
     {
         innerMenu = innerMenuPackedScene.Instantiate<Control>();
 		UI.AddChild(innerMenu);
@@ -145,46 +197,13 @@ public partial class Game : Node
         scene.MoveChild(mapNode, 0);
     }
 
-    //加载对局信息
-    public void LoadGameInfo()
+    public void OpenCardSelector()
     {
-        gameModeSystem = GameMode.CreatModeObject(gameMode, this);
-        GD.Print("加载对局信息");
-        if(gameInfo == null)
-        {
-            gameInfo = GameManager.Instance.gameInfoDefault;
-        }
-        gameModeSystem.OnLoadGameInfo(gameInfo);
-    }
-    
-    //加载玩家信息
-    public void LoadPlayer()
-    {
-        GD.Print("加载玩家信息");
-        foreach(User user in gameInfo.users)
-        {
-            GD.Print($"加载用户{user.name},{user.id}");
-            Player player = new Player();
-            player.user = user;
-            player.Init();
-            player.Name = user.name + user.id;
-            playerNode.AddChild(player);
-            players.Add(player);
-        }
+        cardSelector.Visible = true;
+        cardSelector.Open();
     }
 
-    //加载卡牌数据
-    public void LoadCardData()
-    {
-        GD.Print("加载卡牌数据");
-    }
-
-    //游戏正式开始初始化，包括先后手敲定等
-    public void GameInit()
-    {
-        GD.Print("回合前初始化");
-        unitSystem.Init();
-    }
+    # endregion
 
 	public override void _Input(InputEvent @event)
     {
@@ -228,8 +247,11 @@ public partial class Game : Node
             case 200: //加载
                 //加载对局信息
                 LoadGameInfo();
+                //加载玩家信息
                 LoadPlayer();
+                //加载卡牌数据
                 LoadCardData();
+                //游戏初始化
                 GameInit();
                 Next();
                 break;
@@ -251,5 +273,4 @@ public partial class Game : Node
                 break;
         }
     }
-
 }

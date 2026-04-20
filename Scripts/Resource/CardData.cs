@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 /// <summary>
-/// 卡片类
+/// 卡片类型
 /// </summary>
 public enum CardType
 {	

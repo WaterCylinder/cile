@@ -17,6 +17,10 @@
 [ext_resource type="Script" uid="uid://dui0qei00bamx" path="res://Scripts/Effect/Effect.cs" id="8_qmx1b"]
 [ext_resource type="Resource" uid="uid://d1uxxlq4f7g65" path="res://Resources/Effects/Conditions/true_condition.tres" id="8_x7vk5"]
 [ext_resource type="AudioStream" uid="uid://ddfpaljduaw54" path="res://Resources/Audios/Voice/op_voice.wav" id="10_pmlgl"]
+[ext_resource type="Script" uid="uid://b8nm7eq7jh6m1" path="res://Scripts/UI/GameUI/CardSelector.cs" id="13_16vf7"]
+[ext_resource type="PackedScene" uid="uid://da0mm2lb7b1pa" path="res://Resources/Objects/card.tscn" id="14_ixhow"]
+[ext_resource type="Texture2D" uid="uid://csvtlg5v1ci5e" path="res://Assets/Images/UI/InnerGame/返回.png" id="14_xlvtv"]
+[ext_resource type="Script" uid="uid://c4ukgj0cy5hxn" path="res://Scripts/UI/Button/TextureButtonSizeChangeByState.cs" id="15_ixhow"]
 
 [sub_resource type="Resource" id="Resource_16vf7"]
 script = ExtResource("8_ea3nm")
@@ -49,12 +53,13 @@ metadata/_custom_type_script = "uid://dui0qei00bamx"
 [sub_resource type="LabelSettings" id="LabelSettings_pfs8u"]
 font_size = 32
 
-[node name="DemoGame" type="Node" unique_id=1474349995 node_paths=PackedStringArray("UI", "scene", "pui", "ActiveUI", "playerNode", "inGameMusic", "mainCamera", "unitNode")]
+[node name="DemoGame" type="Node" unique_id=1474349995 node_paths=PackedStringArray("UI", "scene", "pui", "ActiveUI", "cardSelector", "playerNode", "inGameMusic", "mainCamera", "unitNode")]
 script = ExtResource("1_dkiyr")
 UI = NodePath("CanvasLayer/UI")
 scene = NodePath("Scene")
 pui = NodePath("CanvasLayer/UI/PUI")
 ActiveUI = NodePath("CanvasLayer/UI/ActiveUI")
+cardSelector = NodePath("CanvasLayer/UI/CardSelector")
 playerNode = NodePath("Player")
 inGameMusic = NodePath("Music")
 innerMenuPackedScene = ExtResource("2_ed3lb")
@@ -201,6 +206,69 @@ text = "第 X 回合"
 label_settings = SubResource("LabelSettings_pfs8u")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="CardSelector" type="Control" parent="CanvasLayer/UI" unique_id=172217827 node_paths=PackedStringArray("selector", "cardNode", "back")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("13_16vf7")
+cardPrefab = ExtResource("14_ixhow")
+selector = NodePath("Selector")
+cardNode = NodePath("Selector/Cards")
+back = NodePath("Back")
+
+[node name="Selector" type="Control" parent="CanvasLayer/UI/CardSelector" unique_id=422050007]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -312.0
+offset_right = 576.0
+offset_bottom = 312.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Cards" type="Control" parent="CanvasLayer/UI/CardSelector/Selector" unique_id=1760353051]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = -256.0
+offset_right = 512.0
+offset_bottom = 152.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="ColorRect" parent="CanvasLayer/UI/CardSelector/Selector" unique_id=376864524]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.16078432)
+
+[node name="Back" type="TextureButton" parent="CanvasLayer/UI/CardSelector" unique_id=124388610]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 568.0
+offset_right = 197.12
+offset_bottom = 672.0
+pivot_offset = Vector2(64, 52)
+texture_normal = ExtResource("14_xlvtv")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("15_ixhow")
 
 [node name="Player" type="Node" parent="." unique_id=1041044808]
 
