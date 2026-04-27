@@ -4,6 +4,30 @@ using System.Reflection;
 
 public class GameMode
 {
+    public static GameMode CreatModeObject(string modeName, Game game)
+    {
+        GameMode gameMode = null;
+        switch (modeName)
+        {
+            case "Demo":
+                gameMode = new GameModeDemo();
+                break;
+            default:
+                GD.Print("{modeName}未设置, 请在GameMode脚本里添加映射, 默认返回Demo模式对象");
+                gameMode = new GameModeDemo();
+                break;
+        }
+        if(gameMode != null)
+        {
+            gameMode.game = game;
+            gameMode.roundCricle = game.roundCricle;
+            gameMode.turnLogic = game.roundCricle.turnLogic;
+            gameMode.Init();
+        }
+        gameMode.A = 0;
+        return gameMode;
+    }
+
     //初始化时设置的变量
     public Game game;
     public RoundCricle roundCricle;
@@ -40,29 +64,7 @@ public class GameMode
         }
     }
 
-    public static GameMode CreatModeObject(string modeName, Game game)
-    {
-        GameMode gameMode = null;
-        switch (modeName)
-        {
-            case "Demo":
-                gameMode = new GameModeDemo();
-                break;
-            default:
-                GD.Print("{modeName}未设置, 请在GameMode子类脚本里添加映射, 默认返回Demo模式对象");
-                gameMode = new GameModeDemo();
-                break;
-        }
-        if(gameMode != null)
-        {
-            gameMode.game = game;
-            gameMode.roundCricle = game.roundCricle;
-            gameMode.turnLogic = game.roundCricle.turnLogic;
-            gameMode.Init();
-        }
-        gameMode.A = 0;
-        return gameMode;
-    }
+    
 
     public virtual void Init(){}
     public virtual void OnLoadGameInfo(GameInfo gameInfo){} //加载游戏信息时调用

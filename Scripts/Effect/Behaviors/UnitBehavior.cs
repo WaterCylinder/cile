@@ -13,6 +13,11 @@ public partial class UnitBehavior : Behavior
 		GD.Print(unit.Name);
 	}
 
+	public void SmallUnitMove()
+	{
+		
+	}
+
 	# endregion
 
 	# region 单位条件

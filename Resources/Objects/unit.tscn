@@ -6,8 +6,6 @@
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nj1w0"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nj1w0"]
-
 [node name="Unit" type="Node2D" unique_id=1797268648]
 script = ExtResource("1_eqyla")
 
@@ -17,6 +15,3 @@ script = ExtResource("2_eqyla")
 spriteSheet = ExtResource("3_nj1w0")
 frameHight = 64
 frameWidth = 64
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2058613858]
-shape = SubResource("RectangleShape2D_nj1w0")

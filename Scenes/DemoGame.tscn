@@ -163,51 +163,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ActiveUI" type="Control" parent="CanvasLayer/UI" unique_id=753308982]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-grow_horizontal = 2
-mouse_filter = 2
+[node name="ExtraUI" type="Control" parent="CanvasLayer/UI" unique_id=1780834023]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="TurnPanel" type="Panel" parent="CanvasLayer/UI/ActiveUI" unique_id=1270539390 node_paths=PackedStringArray("label")]
-self_modulate = Color(1, 1, 1, 0.1882353)
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -320.0
-offset_top = -64.0
-offset_right = 320.0
-offset_bottom = -3.0517578e-05
-grow_horizontal = 2
-pivot_offset = Vector2(320, 64)
-mouse_filter = 2
-script = ExtResource("6_pfs8u")
-label = NodePath("Label")
-
-[node name="Label" type="Label" parent="CanvasLayer/UI/ActiveUI/TurnPanel" unique_id=1481099761]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -200.00003
-offset_top = -16.0
-offset_right = 199.99933
-offset_bottom = 16.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(200, 16)
-text = "第 X 回合"
-label_settings = SubResource("LabelSettings_pfs8u")
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="UnitMove" type="Control" parent="CanvasLayer/UI/ExtraUI" unique_id=456980683]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="CardSelector" type="Control" parent="CanvasLayer/UI" unique_id=172217827 node_paths=PackedStringArray("selector", "cardNode", "back")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -269,6 +236,50 @@ texture_normal = ExtResource("14_xlvtv")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("15_ixhow")
+
+[node name="ActiveUI" type="Control" parent="CanvasLayer/UI" unique_id=753308982]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="TurnPanel" type="Panel" parent="CanvasLayer/UI/ActiveUI" unique_id=1270539390 node_paths=PackedStringArray("label")]
+self_modulate = Color(1, 1, 1, 0.1882353)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -320.0
+offset_top = -64.0
+offset_right = 320.0
+offset_bottom = -3.0517578e-05
+grow_horizontal = 2
+pivot_offset = Vector2(320, 64)
+mouse_filter = 2
+script = ExtResource("6_pfs8u")
+label = NodePath("Label")
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/ActiveUI/TurnPanel" unique_id=1481099761]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.00003
+offset_top = -16.0
+offset_right = 199.99933
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(200, 16)
+text = "第 X 回合"
+label_settings = SubResource("LabelSettings_pfs8u")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Player" type="Node" parent="." unique_id=1041044808]
 

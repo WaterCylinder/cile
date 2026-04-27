@@ -7,6 +7,7 @@ public partial class Game : Node
 	[Export] public Control UI;
     [Export] public Node2D scene;
     [Export] public string gameMode;
+    [Export] public string seed;
     [ExportCategory("固定节点")]
     [Export] public PUI pui;
     [Export] public Control ActiveUI;
@@ -37,6 +38,7 @@ public partial class Game : Node
     // 局内系统
     public RoundCricle roundCricle = new RoundCricle();
     public UnitSystem unitSystem = new UnitSystem();
+    public RandomSystem randomSystem = null;
     public GameMode gameModeSystem;
 
     # region 信号
@@ -113,7 +115,9 @@ public partial class Game : Node
 
     //加载对局信息
     public void LoadGameInfo()
-    {
+    {   
+        //初始化随机数系统
+        randomSystem = new RandomSystem(seed != "" ? seed : new Random((int)DateTime.Now.Ticks).Next());
         //初始化游戏模式系统
         gameModeSystem = GameMode.CreatModeObject(gameMode, this);
         GD.Print("加载对局信息");
