@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://da0mm2lb7b1pa" path="res://Resources/Objects/card.tscn" id="14_ixhow"]
 [ext_resource type="Texture2D" uid="uid://csvtlg5v1ci5e" path="res://Assets/Images/UI/InnerGame/返回.png" id="14_xlvtv"]
 [ext_resource type="Script" uid="uid://c4ukgj0cy5hxn" path="res://Scripts/UI/Button/TextureButtonSizeChangeByState.cs" id="15_ixhow"]
+[ext_resource type="PackedScene" uid="uid://cvmeyhd01gk2b" path="res://Assets/UI/box.tscn" id="20_h0mqe"]
 
 [sub_resource type="Resource" id="Resource_16vf7"]
 script = ExtResource("8_ea3nm")
@@ -57,6 +58,7 @@ font_size = 32
 script = ExtResource("1_dkiyr")
 UI = NodePath("CanvasLayer/UI")
 scene = NodePath("Scene")
+seed = "114514"
 pui = NodePath("CanvasLayer/UI/PUI")
 ActiveUI = NodePath("CanvasLayer/UI/ActiveUI")
 cardSelector = NodePath("CanvasLayer/UI/CardSelector")
@@ -162,16 +164,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="ExtraUI" type="Control" parent="CanvasLayer/UI" unique_id=1780834023]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="UnitMove" type="Control" parent="CanvasLayer/UI/ExtraUI" unique_id=456980683]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
 [node name="CardSelector" type="Control" parent="CanvasLayer/UI" unique_id=172217827 node_paths=PackedStringArray("selector", "cardNode", "back")]
 visible = false
@@ -302,16 +294,18 @@ position = Vector2(632, 0)
 
 [node name="Units" type="Node2D" parent="Scene" unique_id=701047759]
 
-[node name="Marks" type="Control" parent="." unique_id=277835427 node_paths=PackedStringArray("selector")]
+[node name="Marks" type="Control" parent="." unique_id=277835427 node_paths=PackedStringArray("terrainSelector", "unitSelector")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 script = ExtResource("4_fydjb")
-selector = NodePath("Selector")
+terrainSelector = NodePath("TerrainSelector")
+unitSelector = NodePath("UnitSelector")
+unirSelectorMoveRangeBox = ExtResource("20_h0mqe")
 
-[node name="Selector" type="Control" parent="Marks" unique_id=1121004367]
+[node name="TerrainSelector" type="Control" parent="Marks" unique_id=1121004367]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
@@ -319,7 +313,7 @@ offset_bottom = 40.0
 pivot_offset = Vector2(32, 32)
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="Marks/Selector" unique_id=388535846]
+[node name="TextureRect" type="TextureRect" parent="Marks/TerrainSelector" unique_id=388535846]
 self_modulate = Color(1, 0.44705883, 0.4509804, 0.60784316)
 texture_filter = 1
 layout_mode = 1
@@ -331,6 +325,11 @@ grow_vertical = 2
 pivot_offset = Vector2(20, 20)
 texture = ExtResource("5_fwgcq")
 expand_mode = 1
+
+[node name="UnitSelector" type="Control" parent="Marks" unique_id=1228661984]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="MainCamera" type="Camera2D" parent="." unique_id=1184612408]
 script = ExtResource("7_tepq2")

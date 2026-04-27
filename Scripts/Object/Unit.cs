@@ -15,6 +15,7 @@ public partial class Unit : Node2D
 	[ExportCategory("自身属性")]
 	[Export] public Array<Effect> effects;
 	[Export] public Array<bool> effectEnable;
+	[Export] public Array<Vector2> moveRange;
 
 
 	[Signal]public delegate void OnEffectInvokeEventHandler(Terrain terrain, Effect effect);
@@ -37,6 +38,7 @@ public partial class Unit : Node2D
 		{
 			effectEnable.Add(true);
 		}
+		moveRange = data.moveRange.Duplicate(false);
 	}
 
 	/// <summary>

@@ -25,6 +25,7 @@ public partial class Terrain : Node2D
 
 	public int Y {get{return mapPosH;}}
 	public int X {get{return mapPosW;}}
+	public Vector2 MapPos {get{return new Vector2(X,Y);}}
 
 	public Terrain Up => neighbors[0];
 	public Terrain Down => neighbors[1];

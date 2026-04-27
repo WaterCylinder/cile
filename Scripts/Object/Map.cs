@@ -35,6 +35,20 @@ public partial class Map : Node2D
 		instance = this;
     }
 
+    public bool isInMap(Vector2 pos)
+    {
+        return pos.X >= 0 && pos.X < mapWidth && pos.Y >= 0 && pos.Y < mapHeight;
+    }
+
+    public Terrain GetTerrain(Vector2 pos)
+    {
+        if(isInMap(pos))
+        {
+            return map[(int)pos.Y, (int)pos.X];
+        }
+        return null;
+    }
+
     // 生成地图框架
     public void Generate()
     {   

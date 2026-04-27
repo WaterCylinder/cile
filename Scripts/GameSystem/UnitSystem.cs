@@ -38,6 +38,41 @@ public partial class UnitSystem
 		unitList.Add(unit);
 		unit.MoveTo(terrain);
 	}
+	
+	/// <summary>
+	/// 获取以某个单位为中心符合范围列表的地形列表
+	/// </summary>
+	/// <param name="unit"></param>
+	/// <param name="range"></param>
+	/// <returns></returns>
+	public Array<Terrain> GetUnitRangeTerrains(Unit unit, Array<Vector2> range)
+	{
+		Terrain terrain = unit.terrain;
+		if(terrain == null)
+		{
+			GD.Print($"单位{unit}没有区域");
+			return null;
+		}
+		Array<Terrain> terrains = new Array<Terrain>();
+		foreach(Vector2 rangePos in range)
+		{
+			Vector2 pos = terrain.MapPos + rangePos;
+			if(!terrain.map.isInMap(pos))
+				//超出地图区域
+				continue;
+			Terrain targetTerrain = terrain.map.GetTerrain(pos);
+			if(targetTerrain.CheckTag(TerrainTag.Blocked))
+				// 阻挡区域
+				continue;
+			terrains.Add(targetTerrain);
+		}
+		return terrains;
+	}
+	public Array<Terrain> GetUnitMoveRangeTerrains(Unit unit)
+	{
+		Array<Vector2> range = unit.moveRange;
+		return GetUnitRangeTerrains(unit, range);
+	}
 
 	public void SelectReadyTerrain(Terrain terrain, bool isBig = true)
 	{

@@ -14,7 +14,8 @@ public partial class SelectedUI : Control
 	[Export]public Effect terrainSelectSwitchToTerrainEffect;
 	[Export]public Effect terrainSelectSwitchToUnitEffect;
 
-	public bool isUnitSelected = false;
+	[ExportCategory("运行时变量")]
+	[Export]public bool isUnitSelected = false;
 
 	public override void _Ready()
 	{	
@@ -61,12 +62,13 @@ public partial class SelectedUI : Control
 		isUnitSelected = false;
 		selectedTerrain = terrain;
 
+		ChangeToTerrainSelect();
+
 		GenerateButtons();
 	}
 
 	public void GenerateButtons()
 	{
-		effects.Clear();
 		if (isUnitSelected)
 		{
 			ChangeToUnitSelect();
@@ -83,8 +85,6 @@ public partial class SelectedUI : Control
 				button.QueueFree();
 			}
 		}
-
-		GD.Print("SelectedUI生成按钮");
 
 		for(int i = 0; i<=effects.Count-1; i++)
 		{

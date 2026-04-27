@@ -1,34 +1,106 @@
 using Godot;
-using System;
+using Godot.Collections;
 
 /// <summary>
 /// UI标记，用于标记地区，标记位置等
 /// </summary>
 public partial class UIMarks : Node
 {
-	[Export]public Control selector;
+	[Export]public Control terrainSelector;
+	[Export]public Control unitSelector;
+	[Export]public PackedScene unirSelectorMoveRangeBox;
 
 	public Terrain lastTerrain = null;
+	public Unit lastUnit = null;
 
 	private bool isEventSet = false;
+
+	private void ClearUnitSelector()
+	{
+		for (int i = unitSelector.GetChildCount() - 1; i >= 0; i--)
+		{
+			Node child = unitSelector.GetChild(i);
+			child.QueueFree();
+		}
+	}
+
+	/// <summary>
+	/// 显示单位的可移动范围
+	/// </summary>
+	/// <param name="unit"></param>
+	public void ShowUnitMoveRange(Unit unit)
+	{
+
+		if (GameManager.Instance.game.pui.selectedUI.Visible)
+		{
+			if (!GameManager.Instance.game.pui.selectedUI.isUnitSelected)
+			{
+				unitSelector.Visible = false;
+			}
+			else
+			{
+				unitSelector.Visible = true;
+			}
+		}
+		else
+		{
+			unitSelector.Visible = false;
+		}
+		
+		if(unit == lastUnit)
+		{
+			//相同单位不处理
+			return;
+		}
+
+		if(unit == null)
+		{
+			//如果没有unit则移除所有的移动范围显示
+			ClearUnitSelector();
+		}
+		else
+		{
+			Array<Terrain> moveRange = GameManager.Instance.game.unitSystem.GetUnitMoveRangeTerrains(unit);
+			foreach (Terrain tr in moveRange)
+			{
+				if (tr == null) continue;
+				TextureRect box = unirSelectorMoveRangeBox.Instantiate() as TextureRect;
+				unitSelector.AddChild(box);
+				box.SelfModulate = new Color(0.5f, 1, 1, 0.5f);
+				box.SetSize(new Vector2(lastTerrain.width, lastTerrain.height));
+				box.Position = tr.GlobalPosition;
+				box.Position -= terrainSelector.PivotOffset;
+			}
+		}
+		lastUnit = unit;
+	}
+
+	public void Init()
+	{
+		isEventSet = true;
+		GameManager.Instance.game.OnTerrainSelected += (tr) =>
+		{
+			terrainSelector.Visible = true;
+			lastTerrain = tr;
+			terrainSelector.SetSize(new Vector2(lastTerrain.width, lastTerrain.height));
+			terrainSelector.Position = lastTerrain.GlobalPosition;
+			terrainSelector.Position -= terrainSelector.PivotOffset;
+		};
+		GameManager.Instance.game.OnTerrainSelectedCancle += () =>
+		{
+			terrainSelector.Visible = false;
+		};
+	}
 
 	public override void _Process(double delta)
 	{
 		if(GameManager.Instance.game != null && !isEventSet)
 		{
-			isEventSet = true;
-			GameManager.Instance.game.OnTerrainSelected += (tr) =>
-			{
-				selector.Visible = true;
-				lastTerrain = tr;
-				selector.SetSize(new Vector2(lastTerrain.width, lastTerrain.height));
-				selector.Position = lastTerrain.GlobalPosition;
-				selector.Position -= selector.PivotOffset;
-			};
-			GameManager.Instance.game.OnTerrainSelectedCancle += () =>
-			{
-				selector.Visible = false;
-			};
+			Init();
+		}
+		if(lastTerrain != null)
+		{
+			ShowUnitMoveRange(lastTerrain.unit);
 		}
 	}
 

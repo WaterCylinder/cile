@@ -16,6 +16,7 @@ public partial class UnitData : Resource
     [Export]public Array<UnitTag> tags = new Array<UnitTag>();
     [Export]public string unitName = "单位";
     [Export]public Texture2D spriteSheet;
+    [Export]public Array<Vector2> moveRange = new(); 
     [Export]public Array<Effect> effects = new();
     
 }

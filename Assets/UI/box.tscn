@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cvmeyhd01gk2b"]
+
+[ext_resource type="Texture2D" uid="uid://yvc2tsotv50d" path="res://Assets/Images/Marks/白框.png" id="1_vjl7b"]
+
+[node name="Box" type="TextureRect" unique_id=113097638]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("1_vjl7b")
+expand_mode = 1

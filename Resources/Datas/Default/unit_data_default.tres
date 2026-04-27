@@ -20,5 +20,6 @@ metadata/_custom_type_script = "uid://dui0qei00bamx"
 
 [resource]
 script = ExtResource("1_ippas")
+moveRange = Array[Vector2]([Vector2(1, 0), Vector2(-1, 0), Vector2(0, 1), Vector2(0, -1)])
 effects = Array[ExtResource("1_fd7kq")]([SubResource("Resource_hyvj6")])
 metadata/_custom_type_script = "uid://dvalus1olte"
