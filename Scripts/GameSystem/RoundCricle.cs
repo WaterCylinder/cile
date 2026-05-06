@@ -33,6 +33,11 @@ public class RoundCricle
 
     public BoolEventSheet nextTurnCheck = new();
 
+    public EventSheet OnTurnStart = new();
+    public EventSheet OnTurnEnd = new();
+    public EventSheet OnRoundStart = new();
+    public EventSheet OnRoundEnd = new();
+
     /// <summary>
     /// 切换玩家
     /// </summary>
@@ -86,7 +91,10 @@ public class RoundCricle
     public void NextTurn()
     {   
         if(turn > 0)
+        {
+            OnTurnEnd?.Invoke();
             gameMode?.TurnEnd(turnLogic);
+        }
         turn += 1;
         if(turn % players.Count == 1)
         {
@@ -96,6 +104,7 @@ public class RoundCricle
         turnLogic.EnterTurn();
         NextPlayer();
         gameMode?.TurnStart(turnLogic);
+        OnTurnStart?.Invoke();
     }
 
     /// <summary>
@@ -104,10 +113,14 @@ public class RoundCricle
     public void NextRound()
     {
         if(round > 0)
+        {
+            OnRoundEnd?.Invoke();
             gameMode?.RoundEnd();
+        }   
         round += 1;
         GD.Print($"开始第{round}轮");
         gameMode?.RoundStart();
+        OnRoundStart?.Invoke();
     }
 
     /// <summary>

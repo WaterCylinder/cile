@@ -14,6 +14,7 @@ public partial class Game : Node
     [Export] public CardSelector cardSelector;
     [Export] public Node playerNode;
     [Export] public InGameMusic inGameMusic;
+    [Export] public UIMarks marksUI;
     [ExportCategory("A状态机")]
     [Export] public int A;
     [Export] public int ATemp;
@@ -53,7 +54,11 @@ public partial class Game : Node
     /// <summary>
     /// 信号：执行地形事件
     /// </summary>
-    [Signal]public delegate void OnTerrainEffectEventHandler();
+    [Signal]public delegate void OnTerrainEffectEventHandler(Terrain terrain, Effect effect);
+    /// <summary>
+    /// 信号：执行地形事件
+    /// </summary>
+    [Signal]public delegate void OnUnitEffectEventHandler(Unit unit, Effect effect);
     /// <summary>
 	/// 信号: 卡牌完成选择
 	/// </summary>

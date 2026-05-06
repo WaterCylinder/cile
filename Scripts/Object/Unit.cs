@@ -10,19 +10,31 @@ public partial class Unit : Node2D
 {
 	[Export] public Sprite2D sprite;
 	[Export] public UnitData data;
+	[ExportCategory("所属玩家")]
+	[Export] public Player player;
 	[ExportCategory("所在地形")]
 	[Export] public Terrain terrain;
 	[ExportCategory("自身属性")]
 	[Export] public Array<Effect> effects;
 	[Export] public Array<bool> effectEnable;
 	[Export] public Array<Vector2> moveRange;
-
+	[Export] public int movePoint; //移动点数
 
 	[Signal]public delegate void OnEffectInvokeEventHandler(Terrain terrain, Effect effect);
 	/// <summary>
 	/// 效果无效状态检查结束前执行的方法，用于在效果无效状态检查前执行一些操作以修改检查结果
 	/// </summary>
 	public BoolEventSheet BeforeEffctEnableCheck = new();
+
+	public override void _Ready()
+	{
+		Game game = GameManager.Instance.game;
+		game.roundCricle.OnTurnStart += () =>
+		{
+			// 单位在回合开始的通用初始化
+			movePoint = 1;
+		};
+	}
 	
 	public void Init()
 	{
@@ -39,13 +51,14 @@ public partial class Unit : Node2D
 			effectEnable.Add(true);
 		}
 		moveRange = data.moveRange.Duplicate(false);
+		movePoint = 1; //初始化移动点数
 	}
 
 	/// <summary>
 	/// 移动到指定地形
 	/// </summary>
 	/// <param name="terrain"></param>
-	public void MoveTo(Terrain target)
+	public void MoveTo(Terrain target, bool userPoint = true)
 	{
 		if(target.unit != null)
 		{
@@ -59,6 +72,8 @@ public partial class Unit : Node2D
 		GD.Print($"移动实体{Name}到{terrain.Name}");
 		//移动逻辑，只简单做一个移动位置
 		ResetPosition();
+		if(userPoint)
+			movePoint -= 1;
 	}
 
 	/// <summary>
@@ -101,8 +116,8 @@ public partial class Unit : Node2D
 			effect.Run();
 			//本体的事件信号
 			EmitSignal(nameof(OnEffectInvoke), this, effect);
-			//全局地形事件信号
-			try{ GameManager.Instance.game.EmitSignal(nameof(GameManager.Instance.game.OnTerrainEffect)); } catch {}
+			//全局单位事件信号
+			try{ GameManager.Instance.game.EmitSignal(nameof(GameManager.Instance.game.OnUnitEffect), this, effect); } catch {}
 			onInvoke?.Invoke();
 		}
 	}
@@ -140,7 +155,7 @@ public partial class Unit : Node2D
 		return -1;
 	}
 	/// <summary>
-	/// 检查某个效果是否在地形效果列表里
+	/// 检查某个效果是否在单位效果列表里
 	/// </summary>
 	/// <param name="effect"></param>
 	/// <returns></returns>
@@ -149,7 +164,7 @@ public partial class Unit : Node2D
 		return effects.Contains(effect);
 	}
 	/// <summary>
-	/// 获取地形效果是否启用
+	/// 获取单位效果是否启用
 	/// </summary>
 	/// <param name="index"></param>
 	/// <returns></returns>
@@ -173,7 +188,7 @@ public partial class Unit : Node2D
 	}
 
 	/// <summary>
-	/// 设置地形效果启用
+	/// 设置单位效果启用
 	/// </summary>
 	/// <param name="index"></param>
 	/// <param name="isEnable"></param>

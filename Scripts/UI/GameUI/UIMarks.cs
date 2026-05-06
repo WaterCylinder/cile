@@ -24,11 +24,33 @@ public partial class UIMarks : Node
 		}
 	}
 
+	public void ShowUnitMoveRange(Unit unit)
+	{
+		ClearUnitSelector();
+		if (unit == null)
+		{
+			//单位为空不处理
+			return;
+		}
+		lastUnit = unit;
+		Array<Terrain> moveRange = GameManager.Instance.game.unitSystem.GetUnitMoveRangeTerrains(unit);
+		foreach (Terrain tr in moveRange)
+		{
+			if (tr == null) continue;
+			TextureRect box = unirSelectorMoveRangeBox.Instantiate() as TextureRect;
+			unitSelector.AddChild(box);
+			box.SelfModulate = new Color(0.5f, 1, 1, 0.5f);
+			box.SetSize(new Vector2(lastTerrain.width, lastTerrain.height));
+			box.Position = tr.GlobalPosition;
+			box.Position -= terrainSelector.PivotOffset;
+		}
+	}
+
 	/// <summary>
 	/// 显示单位的可移动范围
 	/// </summary>
 	/// <param name="unit"></param>
-	public void ShowUnitMoveRange(Unit unit)
+	/*public void ShowUnitMoveRange(Unit unit)
 	{
 
 		if (GameManager.Instance.game.pui.selectedUI.Visible)
@@ -73,22 +95,14 @@ public partial class UIMarks : Node
 			}
 		}
 		lastUnit = unit;
-	}
+	}*/
 
 	public void Init()
 	{
 		isEventSet = true;
 		GameManager.Instance.game.OnTerrainSelected += (tr) =>
 		{
-			terrainSelector.Visible = true;
 			lastTerrain = tr;
-			terrainSelector.SetSize(new Vector2(lastTerrain.width, lastTerrain.height));
-			terrainSelector.Position = lastTerrain.GlobalPosition;
-			terrainSelector.Position -= terrainSelector.PivotOffset;
-		};
-		GameManager.Instance.game.OnTerrainSelectedCancle += () =>
-		{
-			terrainSelector.Visible = false;
 		};
 	}
 
@@ -97,10 +111,6 @@ public partial class UIMarks : Node
 		if(GameManager.Instance.game != null && !isEventSet)
 		{
 			Init();
-		}
-		if(lastTerrain != null)
-		{
-			ShowUnitMoveRange(lastTerrain.unit);
 		}
 	}
 

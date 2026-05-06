@@ -195,7 +195,7 @@ public partial class Terrain : Node2D
 			//本体的事件信号
 			EmitSignal(nameof(OnEffectInvoke), this, effect);
 			//全局地形事件信号
-			try{ GameManager.Instance.game.EmitSignal(nameof(GameManager.Instance.game.OnTerrainEffect)); } catch {}
+			try{ GameManager.Instance.game.EmitSignal(nameof(GameManager.Instance.game.OnTerrainEffect), this, effect); } catch {}
 			onInvoke?.Invoke();
 		}
 	}

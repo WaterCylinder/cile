@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Xml.XPath;
 
 
-public class EventSheet<T> where T : MulticastDelegate 
+public class EventSheet<R, T> where T : MulticastDelegate 
 {
     protected Dictionary<string, T> _events;
 
@@ -35,15 +35,28 @@ public class EventSheet<T> where T : MulticastDelegate
         return _events[id];
     }
 
+    public virtual R Invoke(params object[] args)
+    {
+        foreach(T func in _events.Values)
+        {
+            func.DynamicInvoke(args);
+        }
+        return default;
+    }
+
     //运算符重载
-    public static dynamic operator + (EventSheet<T> sheet, T func)
+    public static dynamic operator + (EventSheet<R, T> sheet, T func)
     {
         sheet.Add(func);
         return sheet;
     }
 }
 
-public class BoolEventSheet : EventSheet<Func<bool, bool>>
+public class EventSheet : EventSheet<object, Action>
+{
+}
+
+public class BoolEventSheet : EventSheet<bool, Func<bool, bool>>
 {
     public bool Invoke(bool value)
     {

@@ -11,6 +11,10 @@ public partial class UnitSystem
 
 	public Array<Unit> unitList = new Array<Unit>();
 
+	#region 选择模式
+
+	#endregion
+
 	/// <summary>
 	/// 当前玩家
 	/// </summary>
@@ -37,6 +41,8 @@ public partial class UnitSystem
 		GameManager.Instance.game.unitNode.AddChild(unit);
 		unitList.Add(unit);
 		unit.MoveTo(terrain);
+		Player player = GameManager.Instance.game.CurrentPlayer;
+		unit.player = player;
 	}
 	
 	/// <summary>
@@ -80,4 +86,21 @@ public partial class UnitSystem
 		UnitData data = isBig ? PlayerNow.unitBig : PlayerNow.unitSmall;
 		PutUnit(data, terrain);
 	}
+
+	/// <summary>
+	/// 进入单位的地形选择模式
+	/// </summary>
+	/// <param name="unit"></param>
+	public void StartTerrainSelectMode(Action<Terrain> callback)
+	{
+		Game game = GameManager.Instance.game;
+		Action<Terrain> handler = null;
+		handler = (t) =>
+		{
+			callback?.Invoke(t);
+			game.OnTerrainSelected -= handler.Invoke;
+		};
+		game.OnTerrainSelected += handler.Invoke;
+	}
+
 }

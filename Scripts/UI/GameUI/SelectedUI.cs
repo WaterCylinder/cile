@@ -21,6 +21,7 @@ public partial class SelectedUI : Control
 	{	
 		Game game = GameManager.Instance.game;
 		game.OnTerrainSelected += OnSelected;
+		game.OnTerrainSelectedCancle += Cancel;
 
 		EventBehavior behavior = terrainSelectSwitchToTerrainEffect.behavior as EventBehavior;
 		behavior.action += ChangeToTerrainSelect;
@@ -29,6 +30,11 @@ public partial class SelectedUI : Control
 		behavior = terrainSelectSwitchToUnitEffect.behavior as EventBehavior;
 		behavior.action += ChangeToUnitSelect;
 		behavior.action += GenerateButtons;
+	}
+
+	public void Cancel()
+	{
+		Visible = false;
 	}
 
 	void ChangeToTerrainSelect()
@@ -61,6 +67,8 @@ public partial class SelectedUI : Control
 	{
 		isUnitSelected = false;
 		selectedTerrain = terrain;
+		Visible = true;
+		Position = terrain.GlobalPosition - PivotOffset;
 
 		ChangeToTerrainSelect();
 

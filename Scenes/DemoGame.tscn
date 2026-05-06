@@ -54,7 +54,7 @@ metadata/_custom_type_script = "uid://dui0qei00bamx"
 [sub_resource type="LabelSettings" id="LabelSettings_pfs8u"]
 font_size = 32
 
-[node name="DemoGame" type="Node" unique_id=1474349995 node_paths=PackedStringArray("UI", "scene", "pui", "ActiveUI", "cardSelector", "playerNode", "inGameMusic", "mainCamera", "unitNode")]
+[node name="DemoGame" type="Node" unique_id=1474349995 node_paths=PackedStringArray("UI", "scene", "pui", "ActiveUI", "cardSelector", "playerNode", "inGameMusic", "marksUI", "mainCamera", "unitNode")]
 script = ExtResource("1_dkiyr")
 UI = NodePath("CanvasLayer/UI")
 scene = NodePath("Scene")
@@ -64,6 +64,7 @@ ActiveUI = NodePath("CanvasLayer/UI/ActiveUI")
 cardSelector = NodePath("CanvasLayer/UI/CardSelector")
 playerNode = NodePath("Player")
 inGameMusic = NodePath("Music")
+marksUI = NodePath("Marks")
 innerMenuPackedScene = ExtResource("2_ed3lb")
 defaultMapPackedScene = ExtResource("3_eafrm")
 mainCamera = NodePath("MainCamera")
