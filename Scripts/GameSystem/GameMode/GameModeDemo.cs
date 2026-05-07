@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 
@@ -6,9 +7,9 @@ public class GameModeDemo : GameMode
     /// <summary>
     /// 玩家选择的判断位置
     /// </summary>
-    public Dictionary<Player, Vector2> readyPos = new();
+    public Godot.Collections.Dictionary<Player, Vector2> readyPos = new();
     // 玩家选择准备地形的状态，0表示没选，1表示只选了小单位，2表示只选了大单位，3表示全选了
-    public Dictionary<Player, int> selectReadyTerrainState = new();
+    public Godot.Collections.Dictionary<Player, int> selectReadyTerrainState = new();
 
     public override void OnLoadGameInfo(GameInfo gameInfo)
     {
@@ -139,11 +140,16 @@ public class GameModeDemo : GameMode
             if (t.CheckTag(TerrainTag.Resource))
             {
                 //资源类地形进行抽卡
+                List<Card> cards = new();
                 CardData data = game.cardSystem.PickResourceCard();
                 Card card = CardManager.Instance.CreateCard(data);
-                GD.Print($"游戏模式demo：资源类抽卡，{card.cardInfo}");
+                cards.Add(card);
+                data = game.cardSystem.PickTerrainCard();
+                card = CardManager.Instance.CreateCard(data);
+                cards.Add(card);
+                GD.Print($"游戏模式demo：资源类抽卡，{cards}");
                 //展示卡牌
-                game.layout.cardDisplay.Show(card);
+                game.layout.cardDisplay.Show(cards);
             }
         };
     }

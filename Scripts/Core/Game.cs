@@ -5,6 +5,7 @@ using System;
 public partial class Game : Node
 {
 	[Export] public Control UI;
+    [Export] public Canvas canvas;
     [Export] public Node2D scene;
     [Export] public string gameMode;
     [Export] public string seed;

@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://d2bla3dfrrpai" path="res://Assets/UI/inner_menu.tscn" id="2_ed3lb"]
 [ext_resource type="PackedScene" uid="uid://b7klfx5hegpul" path="res://Assets/Map/demo_map.tscn" id="3_eafrm"]
 [ext_resource type="Script" uid="uid://b70loibpega7l" path="res://Scripts/UI/GameUI/UIMarks.cs" id="4_fydjb"]
+[ext_resource type="Script" uid="uid://dmpxguvqlni0b" path="res://Scripts/UI/Canvas.cs" id="4_skk1d"]
 [ext_resource type="Script" uid="uid://dap6gcu3gru6s" path="res://Scripts/UI/GameUI/PUI.cs" id="5_2kisj"]
 [ext_resource type="Texture2D" uid="uid://yvc2tsotv50d" path="res://Assets/Images/Marks/白框.png" id="5_fwgcq"]
 [ext_resource type="Script" uid="uid://c5cxvarb8jma1" path="res://Scripts/UI/GameUI/DebugUI.cs" id="5_unw7f"]
@@ -23,7 +24,7 @@
 [ext_resource type="Script" uid="uid://c4ukgj0cy5hxn" path="res://Scripts/UI/Button/TextureButtonSizeChangeByState.cs" id="15_ixhow"]
 [ext_resource type="Script" uid="uid://h12j6toq0u6d" path="res://Scripts/UI/Layout/CardDisplay.cs" id="17_kjubh"]
 [ext_resource type="Script" uid="uid://busb72pj30ndq" path="res://Scripts/UI/Layout/Layout.cs" id="17_skk1d"]
-[ext_resource type="Texture2D" uid="uid://bnyhlk1aftek3" path="res://Resources/Sprites/Default/card_default.png" id="17_wgul1"]
+[ext_resource type="PackedScene" uid="uid://dm8p56bohtbg0" path="res://Assets/Objects/showing_card.tscn" id="19_skk1d"]
 [ext_resource type="PackedScene" uid="uid://cvmeyhd01gk2b" path="res://Assets/UI/box.tscn" id="20_h0mqe"]
 
 [sub_resource type="Resource" id="Resource_16vf7"]
@@ -57,9 +58,10 @@ metadata/_custom_type_script = "uid://dui0qei00bamx"
 [sub_resource type="LabelSettings" id="LabelSettings_pfs8u"]
 font_size = 32
 
-[node name="DemoGame" type="Node" unique_id=1474349995 node_paths=PackedStringArray("UI", "scene", "pui", "ActiveUI", "cardSelector", "playerNode", "inGameMusic", "marksUI", "layout", "mainCamera", "unitNode")]
+[node name="DemoGame" type="Node" unique_id=1474349995 node_paths=PackedStringArray("UI", "canvas", "scene", "pui", "ActiveUI", "cardSelector", "playerNode", "inGameMusic", "marksUI", "layout", "mainCamera", "unitNode")]
 script = ExtResource("1_dkiyr")
 UI = NodePath("CanvasLayer/UI")
+canvas = NodePath("CanvasLayer")
 scene = NodePath("Scene")
 seed = "114514"
 testMode = true
@@ -76,6 +78,7 @@ mainCamera = NodePath("MainCamera")
 unitNode = NodePath("Scene/Units")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=248229199]
+script = ExtResource("4_skk1d")
 
 [node name="UI" type="Control" parent="CanvasLayer" unique_id=438813456]
 layout_mode = 3
@@ -287,38 +290,20 @@ offset_bottom = 40.0
 script = ExtResource("17_skk1d")
 cardDisplay = NodePath("CardDisplay")
 
-[node name="CardDisplay" type="Control" parent="CanvasLayer/Layout" unique_id=1789212944 node_paths=PackedStringArray("card", "cardFace")]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="CardDisplay" type="Control" parent="CanvasLayer/Layout" unique_id=1789212944 node_paths=PackedStringArray("cardNode", "showingCardList")]
+anchors_preset = 0
 mouse_filter = 1
 script = ExtResource("17_kjubh")
-card = NodePath("Card")
-cardFace = NodePath("Card/TextureRect")
+cardNode = NodePath("CardNode")
+showingCardPrefab = ExtResource("19_skk1d")
+showingCardList = []
 
-[node name="Card" type="Control" parent="CanvasLayer/Layout/CardDisplay" unique_id=1726540664]
-visible = false
-custom_minimum_size = Vector2(200, 322)
+[node name="CardNode" type="Control" parent="CanvasLayer/Layout/CardDisplay" unique_id=433190324]
 anchors_preset = 0
-offset_left = 544.0
-offset_top = 192.0
-offset_right = 744.0
-offset_bottom = 514.0
-pivot_offset = Vector2(100, 161)
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Layout/CardDisplay/Card" unique_id=2038452877]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("17_wgul1")
-expand_mode = 1
-stretch_mode = 4
+offset_left = 640.0
+offset_top = 368.0
+offset_right = 641.0
+offset_bottom = 369.0
 
 [node name="Player" type="Node" parent="." unique_id=1041044808]
 

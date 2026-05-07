@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dm8p56bohtbg0"]
+
+[ext_resource type="Script" uid="uid://c5mxjan8e50be" path="res://Scripts/UI/Layout/ShowingCard.cs" id="1_udjrl"]
+[ext_resource type="Texture2D" uid="uid://bnyhlk1aftek3" path="res://Resources/Sprites/Default/card_default.png" id="1_x3m7h"]
+
+[node name="ShowingCard" type="Control" unique_id=815760204 node_paths=PackedStringArray("sprite")]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1.0
+offset_bottom = 1.0
+script = ExtResource("1_udjrl")
+sprite = NodePath("TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1329190606]
+layout_mode = 0
+offset_left = -80.0
+offset_top = -120.0
+offset_right = 80.0
+offset_bottom = 120.0
+texture = ExtResource("1_x3m7h")
+expand_mode = 1
+stretch_mode = 4

@@ -1,99 +1,88 @@
+using System.Collections.Generic;
 using Godot;
-using System;
+using Godot.Collections;
 
 public partial class CardDisplay : Control
 {
-	[ExportCategory("组件")]
-	[Export]public Control card;
-	[Export]public TextureRect cardFace;
+	[Export]public Control cardNode;
+	[Export]public PackedScene showingCardPrefab;
+	[Export]public Array<ShowingCard> showingCardList;
+	[Export]public int maxCount = 5;
+	[Export]public float interval = 220;
 	[ExportCategory("属性")]
-	[Export]public string state;
+	[Export]public float showSpeed = 6;
+	[Export]public float waitTime = 2;
+	[Export]public float maxSize = 1;
 
-	public Card cardNow;
+	public Stack<List<Card>> cardStack = new();
 
-	float timer = 0;
-
-    public override void _Ready()
-    {
-		Init();
-    }
-
-	void SetCardSize(float size)
+	public void CreatShowingCard(Card card, Vector2 pos)
 	{
-		card.Scale = new(size, size);
+		ShowingCard showingCard = showingCardPrefab.Instantiate<ShowingCard>();
+		cardNode.AddChild(showingCard);
+		showingCard.Position = pos;
+		showingCard.display = this;
+		showingCard.Start(card);
 	}
 
-	public void Init()
+	public void Show(List<Card> cards)
 	{
-		state = "ready";
-		SetCardSize(0);
-		card.Visible = false;
+		//设置到画面中心位置
+		cardNode.Position = GameManager.Instance.game.canvas.center;
+		cardStack.Clear();
+		if(cards.Count <= maxCount)
+		{
+			cardStack.Push(cards);
+		}
+		else
+		{
+			List<Card> temp = new();
+			foreach(Card card in cards)
+			{
+				temp.Add(card);
+				if(temp.Count >= maxCount)
+				{
+					List<Card> temp2 = [.. temp];
+					cardStack.Push(temp2);
+					temp.Clear();
+				}
+			}
+		}
+		ShowNext();
 	}
 
 	public void Show(Card card)
 	{
-		Init();
-		cardNow = card;
-		this.card.Visible = true;
-		if(card.sprite != null)
+		Show([card]);
+	}
+
+	public void ShowNext()
+	{
+		List<Card> cards = cardStack.Pop();
+		int count = cards.Count - 1;
+		float posx = ((float)count / 2 - count) * interval;
+		foreach(Card card in cards)
 		{
-			cardFace.Texture = card.sprite;
+			CreatShowingCard(card, new Vector2(posx, 0));
+			posx += interval;
 		}
-		else
+		//TODO:根据显示的卡牌数量设置卡牌节点大小
+	}
+
+	public void OnShowEnd()
+	{
+		if(cardStack.Count > 0)
 		{
-			cardFace.Texture = AssetManager.GetDefaultSprite("card");
+			ShowNext();
 		}
-		
-		state = "show";
+		GD.Print("所有卡牌展示完毕！");
 	}
 
     public override void _Input(InputEvent @event)
     {
         if(@event is InputEventMouseButton mouseEvent)
 		{
-			if (mouseEvent.Pressed)
-			{
-				if (state == "wait")
-				{
-					state = "back";
-				}
-			}
-		}
-    }
-
-
-    public override void _Process(double delta)
-    {
-        if(state == "show")
-		{
-			//开始展示
-			float size = card.Scale.X;
-			size += (float)delta * 5;
-			SetCardSize(size);
-			if(size > 1.28)
-			{
-				timer = 0;
-				state = "wait";
-			}
-		}
-		else if(state == "wait")
-		{
-			//等待
-			timer += (float)delta;
-			if(timer >= 3) // 三秒钟自动收起
-			{
-				state = "back";
-			}
-		}
-		else if(state == "back")
-		{
-			float size = card.Scale.X;
-			size -= (float)delta * 5;
-			SetCardSize(size);
-			if(size <= 0)
-			{
-				Init();
-			}
+			
 		}
     }
 
