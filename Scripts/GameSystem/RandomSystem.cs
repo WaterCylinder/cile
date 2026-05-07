@@ -51,6 +51,11 @@ public partial class RandomSystem
 		return generatorName;
 	}
 
+	/// <summary>
+	/// 获取随机数生成器
+	/// </summary>
+	/// <param name="generaotr"></param>
+	/// <returns></returns>
 	public Random GetGenerator(string generaotr)
 	{
 		Random rTemp = null;
@@ -63,6 +68,11 @@ public partial class RandomSystem
 			rTemp = randomObjDict[generaotr];
 		}
 		return rTemp;
+	}
+
+	public Random GetDefaultGenerator()
+	{
+		return GetGenerator(null);
 	}
 
 	/// <summary>

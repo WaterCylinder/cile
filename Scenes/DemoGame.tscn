@@ -21,6 +21,9 @@
 [ext_resource type="PackedScene" uid="uid://da0mm2lb7b1pa" path="res://Resources/Objects/card.tscn" id="14_ixhow"]
 [ext_resource type="Texture2D" uid="uid://csvtlg5v1ci5e" path="res://Assets/Images/UI/InnerGame/返回.png" id="14_xlvtv"]
 [ext_resource type="Script" uid="uid://c4ukgj0cy5hxn" path="res://Scripts/UI/Button/TextureButtonSizeChangeByState.cs" id="15_ixhow"]
+[ext_resource type="Script" uid="uid://h12j6toq0u6d" path="res://Scripts/UI/Layout/CardDisplay.cs" id="17_kjubh"]
+[ext_resource type="Script" uid="uid://busb72pj30ndq" path="res://Scripts/UI/Layout/Layout.cs" id="17_skk1d"]
+[ext_resource type="Texture2D" uid="uid://bnyhlk1aftek3" path="res://Resources/Sprites/Default/card_default.png" id="17_wgul1"]
 [ext_resource type="PackedScene" uid="uid://cvmeyhd01gk2b" path="res://Assets/UI/box.tscn" id="20_h0mqe"]
 
 [sub_resource type="Resource" id="Resource_16vf7"]
@@ -54,17 +57,19 @@ metadata/_custom_type_script = "uid://dui0qei00bamx"
 [sub_resource type="LabelSettings" id="LabelSettings_pfs8u"]
 font_size = 32
 
-[node name="DemoGame" type="Node" unique_id=1474349995 node_paths=PackedStringArray("UI", "scene", "pui", "ActiveUI", "cardSelector", "playerNode", "inGameMusic", "marksUI", "mainCamera", "unitNode")]
+[node name="DemoGame" type="Node" unique_id=1474349995 node_paths=PackedStringArray("UI", "scene", "pui", "ActiveUI", "cardSelector", "playerNode", "inGameMusic", "marksUI", "layout", "mainCamera", "unitNode")]
 script = ExtResource("1_dkiyr")
 UI = NodePath("CanvasLayer/UI")
 scene = NodePath("Scene")
 seed = "114514"
+testMode = true
 pui = NodePath("CanvasLayer/UI/PUI")
 ActiveUI = NodePath("CanvasLayer/UI/ActiveUI")
 cardSelector = NodePath("CanvasLayer/UI/CardSelector")
 playerNode = NodePath("Player")
 inGameMusic = NodePath("Music")
 marksUI = NodePath("Marks")
+layout = NodePath("CanvasLayer/Layout")
 innerMenuPackedScene = ExtResource("2_ed3lb")
 defaultMapPackedScene = ExtResource("3_eafrm")
 mainCamera = NodePath("MainCamera")
@@ -273,6 +278,47 @@ text = "第 X 回合"
 label_settings = SubResource("LabelSettings_pfs8u")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Layout" type="Control" parent="CanvasLayer" unique_id=557945088 node_paths=PackedStringArray("cardDisplay")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("17_skk1d")
+cardDisplay = NodePath("CardDisplay")
+
+[node name="CardDisplay" type="Control" parent="CanvasLayer/Layout" unique_id=1789212944 node_paths=PackedStringArray("card", "cardFace")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("17_kjubh")
+card = NodePath("Card")
+cardFace = NodePath("Card/TextureRect")
+
+[node name="Card" type="Control" parent="CanvasLayer/Layout/CardDisplay" unique_id=1726540664]
+visible = false
+custom_minimum_size = Vector2(200, 322)
+anchors_preset = 0
+offset_left = 544.0
+offset_top = 192.0
+offset_right = 744.0
+offset_bottom = 514.0
+pivot_offset = Vector2(100, 161)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Layout/CardDisplay/Card" unique_id=2038452877]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_wgul1")
+expand_mode = 1
+stretch_mode = 4
 
 [node name="Player" type="Node" parent="." unique_id=1041044808]
 

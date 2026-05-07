@@ -70,6 +70,13 @@ public partial class UnitSystem
 			if(targetTerrain.CheckTag(TerrainTag.Blocked))
 				// 阻挡区域
 				continue;
+			if(targetTerrain.CheckTag(TerrainTag.Ready))
+				// 准备区域
+				continue;
+			if(targetTerrain.unit != null)
+				//有单位的区块不能移动
+				continue;
+			
 			terrains.Add(targetTerrain);
 		}
 		return terrains;

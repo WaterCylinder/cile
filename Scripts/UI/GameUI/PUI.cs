@@ -29,27 +29,6 @@ public partial class PUI : Control
   		if (GameManager.Instance.game != null && !isEventSet)
 		{
 			isEventSet = true;
-			GameManager.Instance.game.OnTerrainSelected += (tr) =>
-			{
-				if (!selectedUI.Visible)
-				{
-					selectedUI.Visible = true;
-				}
-			};
-			GameManager.Instance.game.OnTerrainSelectedCancle += () =>
-			{
-				if (selectedUI.Visible)
-				{
-					selectedUI.Visible = false;
-				}
-			};
-			GameManager.Instance.game.mainCamera.OnScreenStartMove += () =>
-			{
-				if (selectedUI.Visible)
-				{
-					//selectedUI.Visible = false;
-				}
-			};
 		}
 		if (selectedUI.Visible)
 		{

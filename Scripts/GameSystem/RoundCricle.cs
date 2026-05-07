@@ -81,6 +81,12 @@ public class RoundCricle
     {
         bool result = true;
         result = nextTurnCheck.Invoke(result);
+        if (game.testMode)
+        {
+            //测试模式跳过回合检查
+            GD.PushWarning("你正在使用测试模式跳过回合检测！");
+            return true;
+        }
         return result;
         //TODO:检查是否可以进行下一个回合
     }

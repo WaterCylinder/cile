@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using Utils;
 
 public enum DeckPickMode
 {
@@ -24,6 +25,9 @@ public enum DeckPickMode
 public class Deck
 {
 	public Dictionary<CardData, uint> cards = new();
+	public string deckName;
+	public string deckInfo;
+	public Godot.Collections.Array<DeckTag> tags;
 	/// <summary>
 	/// 卡组卡牌总数量
 	/// </summary>
@@ -187,9 +191,61 @@ public partial class CardManager : Node
         }
     }
 
+	public List<Card> cardPool = new();
+
 	public void Init()
     {
         
     }
+
+	public CardData LoadCardData(string cardName)
+	{
+		string path = $"Cards.{cardName}";
+		CardData data = AssetManager.Instance.GetData(path) as CardData;
+		if(data == null)
+		{
+			data = AssetManager.GetDefaultData("card") as CardData;
+		}
+		return data;
+	}
+
+	public Deck LoadDeck(string deckName)
+	{
+		Deck deck = new();
+		string path = $"Decks.{deckName}";
+		DeckData data = AssetManager.Instance.GetData(path) as DeckData;
+		if (data == null)
+		{
+			GD.Print($"未获取到卡组信息{deckName}");
+			return null;
+		}
+		foreach(var item in data.cards)
+		{
+			CardData card = LoadCardData(item.Key);
+			uint count = item.Value;
+			deck.Add(card, count);
+		}
+		deck.deckName = data.deckName;
+		deck.deckInfo = data.deckInfo;
+		deck.tags = data.tags.Duplicate(false);
+		return deck;
+	}
+
+	/// <summary>
+	/// 制造卡牌对象
+	/// </summary>
+	/// <param name="data"></param>
+	/// <returns></returns>
+	public Card CreateCard(CardData data)
+	{
+		Card card = new();
+		if(data == null)
+		{
+			data = LoadCardData(null);
+		}
+		card.Init(data);
+		cardPool.Add(card);
+		return card;
+	}
 
 }

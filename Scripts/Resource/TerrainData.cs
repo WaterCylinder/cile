@@ -7,6 +7,7 @@ public enum TerrainTag
     None,
 	Ready,
 	Blocked,
+	Resource,
 }
 [GlobalClass]
 public partial class TerrainData : Resource

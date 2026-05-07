@@ -132,6 +132,8 @@ public partial class AssetManager : Node
         {
             case "terrain":
                 return Instance.GetSprite("Default.block2_default");
+            case "card":
+                return Instance.GetSprite("Default.card_default");
             default:
                 return null;
         }

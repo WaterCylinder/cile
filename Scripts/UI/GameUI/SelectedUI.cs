@@ -30,6 +30,8 @@ public partial class SelectedUI : Control
 		behavior = terrainSelectSwitchToUnitEffect.behavior as EventBehavior;
 		behavior.action += ChangeToUnitSelect;
 		behavior.action += GenerateButtons;
+
+		game.roundCricle.OnTurnStart += Cancel;
 	}
 
 	public void Cancel()
@@ -65,12 +67,21 @@ public partial class SelectedUI : Control
 	
 	public void OnSelected(Terrain terrain)
 	{
+		if (!GameManager.Instance.game.IsPlayerNow)
+		{
+			//非当前玩家进行选择操作不弹出UI
+			GD.Print("非当前玩家操作");
+			Cancel();
+			return;
+		}
 		isUnitSelected = false;
 		selectedTerrain = terrain;
 		Visible = true;
 		Position = terrain.GlobalPosition - PivotOffset;
-
-		ChangeToTerrainSelect();
+		if(terrain.unit == null)
+			ChangeToTerrainSelect();
+		else
+			ChangeToUnitSelect();
 
 		GenerateButtons();
 	}

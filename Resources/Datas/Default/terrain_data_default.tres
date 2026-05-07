@@ -21,7 +21,7 @@ metadata/_custom_type_script = "uid://dui0qei00bamx"
 
 [resource]
 script = ExtResource("1_c3d6u")
-tags = null
+tags = Array[int]([3])
 texture = ExtResource("2_q14jc")
 effects = Array[Object]([SubResource("Resource_y52ha")])
 metadata/_custom_type_script = "uid://b4wdgjosrgm34"

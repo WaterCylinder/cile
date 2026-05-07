@@ -20,7 +20,7 @@ public partial class Unit : Node2D
 	[Export] public Array<Vector2> moveRange;
 	[Export] public int movePoint; //移动点数
 
-	[Signal]public delegate void OnEffectInvokeEventHandler(Terrain terrain, Effect effect);
+	[Signal]public delegate void OnEffectInvokeEventHandler(Unit unit, Effect effect);
 	/// <summary>
 	/// 效果无效状态检查结束前执行的方法，用于在效果无效状态检查前执行一些操作以修改检查结果
 	/// </summary>
@@ -72,6 +72,9 @@ public partial class Unit : Node2D
 		GD.Print($"移动实体{Name}到{terrain.Name}");
 		//移动逻辑，只简单做一个移动位置
 		ResetPosition();
+		//单位进入地形信号发出
+		Game game = GameManager.Instance.game;
+		game.EmitSignal(nameof(game.OnUnitEnterTerrain), this, target);
 		if(userPoint)
 			movePoint -= 1;
 	}
@@ -95,7 +98,7 @@ public partial class Unit : Node2D
 		if(behavior.unit == this)
 			return;
 		behavior.unit = this;
-		//为条件里可能存在的地形行为设置地形对象
+		//为条件里可能存在的单位行为设置单位对象
 		Condition condition = effect.condition as SingalCondition;
 		condition.OnBehaviorInit = (b) =>{
 			if(b is UnitBehavior)
@@ -206,7 +209,7 @@ public partial class Unit : Node2D
 	}
 
 	/// <summary>
-	/// 给地形添加效果
+	/// 给单位添加效果
 	/// </summary>
 	/// <param name="effect"></param>
 	public void AddEffect(Effect effect)

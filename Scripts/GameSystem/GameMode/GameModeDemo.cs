@@ -14,6 +14,9 @@ public class GameModeDemo : GameMode
     {
         //测试模式添加一个机器人账户
         gameInfo.users.Add(UserManager.Instance.CreateBotUser());
+        //加载测试卡组
+        game.cardSystem.LoadResourceDeck("deck_data_resource_test");
+        game.cardSystem.LoadTerrainDeck("deck_data_terrain_test");
     }
 
 
@@ -128,8 +131,21 @@ public class GameModeDemo : GameMode
             }
             return r;
         };
-    
-        
+
+        //单位进入地形事件逻辑，抽卡并获取
+        game.OnUnitEnterTerrain += (u, t) =>
+        {
+            GD.Print($"游戏模式demo：单位进入地形事件处理, {u.Name} 进入 {t.Name}");
+            if (t.CheckTag(TerrainTag.Resource))
+            {
+                //资源类地形进行抽卡
+                CardData data = game.cardSystem.PickResourceCard();
+                Card card = CardManager.Instance.CreateCard(data);
+                GD.Print($"游戏模式demo：资源类抽卡，{card.cardInfo}");
+                //展示卡牌
+                game.layout.cardDisplay.Show(card);
+            }
+        };
     }
     
     public override void TurnStart(Turn turn)

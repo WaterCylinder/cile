@@ -8,6 +8,7 @@ public partial class Game : Node
     [Export] public Node2D scene;
     [Export] public string gameMode;
     [Export] public string seed;
+    [Export] public bool testMode = false;
     [ExportCategory("固定节点")]
     [Export] public PUI pui;
     [Export] public Control ActiveUI;
@@ -15,6 +16,7 @@ public partial class Game : Node
     [Export] public Node playerNode;
     [Export] public InGameMusic inGameMusic;
     [Export] public UIMarks marksUI;
+    [Export] public Layout layout;
     [ExportCategory("A状态机")]
     [Export] public int A;
     [Export] public int ATemp;
@@ -31,6 +33,7 @@ public partial class Game : Node
     [Export] public Node2D mapNode;
     public Array<Player> players = new Array<Player>();
     public GameInfo gameInfo = null;
+    public Player localPlayer = null;
     
     //索引
     public Map Map => mapNode as Map;
@@ -39,8 +42,12 @@ public partial class Game : Node
     // 局内系统
     public RoundCricle roundCricle = new RoundCricle();
     public UnitSystem unitSystem = new UnitSystem();
+    public CardSystem cardSystem = new CardSystem();
     public RandomSystem randomSystem = null;
     public GameMode gameModeSystem;
+    
+
+    // 其他属性 
 
     # region 信号
     /// <summary>
@@ -56,9 +63,13 @@ public partial class Game : Node
     /// </summary>
     [Signal]public delegate void OnTerrainEffectEventHandler(Terrain terrain, Effect effect);
     /// <summary>
-    /// 信号：执行地形事件
+    /// 信号：执行单位事件
     /// </summary>
     [Signal]public delegate void OnUnitEffectEventHandler(Unit unit, Effect effect);
+    /// <summary>
+    /// 信号：单位进入地形事件
+    /// </summary>
+    [Signal]public delegate void OnUnitEnterTerrainEventHandler(Unit unit, Terrain terrain);
     /// <summary>
 	/// 信号: 卡牌完成选择
 	/// </summary>
@@ -80,6 +91,17 @@ public partial class Game : Node
                 GD.Print(e.Message);
                 return false;
             }
+        }
+    }
+
+    /// <summary>
+    /// 当前玩家是否是本地玩家
+    /// </summary>
+    public bool IsPlayerNow
+    {
+        get
+        {
+            return roundCricle.turnLogic.turnPlayer == localPlayer;
         }
     }
 
@@ -146,6 +168,10 @@ public partial class Game : Node
             player.Name = user.name + user.id;
             playerNode.AddChild(player);
             players.Add(player);
+            if(user.id == GameManager.Instance.user.id)
+            {
+                localPlayer = player;
+            }
         }
     }
 
