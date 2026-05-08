@@ -33,6 +33,7 @@ public partial class CardData : Resource
 	[Export]public string cardName;
 	[Export]public string cardInfo;
 	[Export]public CardType type;
+	[Export]public Effect onPick;
 	[Export]public Effect onUse;
 	[Export]public Texture2D sprite;
 }

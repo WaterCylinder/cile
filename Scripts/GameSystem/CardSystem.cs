@@ -49,23 +49,31 @@ public class CardSystem
 	/// </summary>
 	/// <param name="deck"></param>
 	/// <returns></returns>
-	public CardData PickCard(Deck deck)
+	public Card PickCard(Deck deck, Player player = null)
 	{
 		if(deck == null)
 		{
 			GD.Print("卡组为null");
 			return null;
 		}
-		return deck.RandomPick(GameManager.Instance.game.randomSystem.GetDefaultGenerator());
+		CardData data = deck.RandomPick(GameManager.Instance.game.randomSystem.GetDefaultGenerator());
+		Card card = CardManager.Instance.CreateCard(data);
+		//Card抽取事件
+		if(player != null)
+		{
+			card.owner = player;
+		}
+		card.OnPick();
+		return card;
 	}
 
-	public CardData PickResourceCard()
+	public Card PickResourceCard(Player player = null)
 	{
-		return PickCard(resourceDeck);
+		return PickCard(resourceDeck, player);
 	}
 
-	public CardData PickTerrainCard()
+	public Card PickTerrainCard(Player player = null)
 	{
-		return PickCard(terrainDeck);
+		return PickCard(terrainDeck, player);
 	}
 }

@@ -191,6 +191,8 @@ public partial class CardManager : Node
         }
     }
 
+	[Export]public Godot.Collections.Array<CardData> cardDataLayout = new();
+
 	public List<Card> cardPool = new();
 
 	public void Init()
@@ -244,6 +246,7 @@ public partial class CardManager : Node
 			data = LoadCardData(null);
 		}
 		card.Init(data);
+		cardDataLayout.Add(data);
 		cardPool.Add(card);
 		return card;
 	}

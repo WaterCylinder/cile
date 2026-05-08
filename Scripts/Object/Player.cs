@@ -74,4 +74,10 @@ public partial class Player : Node
             unitSmall = AssetManager.GetDefaultData("unit") as UnitData;
         }
     }
+
+    public void ResourcesPointChange(int changeNum)
+    {
+        GD.Print($"玩家{id} 增加资源点 {changeNum}");
+        resourcesPoint += changeNum;
+    }
 }

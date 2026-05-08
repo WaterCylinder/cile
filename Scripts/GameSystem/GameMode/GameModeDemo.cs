@@ -140,13 +140,12 @@ public class GameModeDemo : GameMode
             if (t.CheckTag(TerrainTag.Resource))
             {
                 //资源类地形进行抽卡
-                List<Card> cards = new();
-                CardData data = game.cardSystem.PickResourceCard();
-                Card card = CardManager.Instance.CreateCard(data);
-                cards.Add(card);
-                data = game.cardSystem.PickTerrainCard();
-                card = CardManager.Instance.CreateCard(data);
-                cards.Add(card);
+                //进入地形时抽一张资源卡，一张地形卡
+                List<Card> cards =
+                [
+                    game.cardSystem.PickResourceCard(game.CurrentPlayer),
+                    game.cardSystem.PickTerrainCard(game.CurrentPlayer),
+                ];
                 GD.Print($"游戏模式demo：资源类抽卡，{cards}");
                 //展示卡牌
                 game.layout.cardDisplay.Show(cards);

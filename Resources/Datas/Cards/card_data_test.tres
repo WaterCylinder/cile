@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="CardData" format=3 uid="uid://dwiipbegqyvyb"]
 
+[ext_resource type="Resource" uid="uid://cngls6kdesrmk" path="res://Resources/Effects/CardEffect/card_effect_add_one_resource_point.tres" id="1_l1ee6"]
 [ext_resource type="Script" uid="uid://bucly4m40nnvi" path="res://Scripts/Resource/CardData.cs" id="1_p065d"]
 [ext_resource type="Texture2D" uid="uid://bnyhlk1aftek3" path="res://Resources/Sprites/Default/card_default.png" id="2_ombp1"]
 
@@ -7,5 +8,6 @@
 script = ExtResource("1_p065d")
 cardName = "测试卡片"
 cardInfo = "测试卡片"
+onPick = ExtResource("1_l1ee6")
 sprite = ExtResource("2_ombp1")
 metadata/_custom_type_script = "uid://bucly4m40nnvi"
