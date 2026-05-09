@@ -33,6 +33,25 @@ public partial class UnitBehavior : Behavior
 		game.pui.selectedUI.Cancel();
 	}
 
+	public void UnitBattle()
+	{
+		Game game = GameManager.Instance.game;
+		game.marksUI.ShowUnitBattleRange(unit);
+		game.unitSystem.StartTerrainSelectMode(
+			callback: t =>
+			{
+				game.marksUI.ShowUnitBattleRange(null);
+				GD.Print("单位战斗区块选择：" + t.Name);
+				if (game.unitSystem.GetUnitBattleRangeTerrains(unit).Contains(t))
+				{
+					GD.Print("单位战斗区块选择：" + t.Name);
+					//TODO
+				}
+			}
+		);
+		game.pui.selectedUI.Cancel();
+	}
+
 	# endregion
 
 	# region 单位条件

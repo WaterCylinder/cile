@@ -7,6 +7,6 @@ script = ExtResource("1_tcfs8")
 deckName = "地形测试卡组"
 deckInfo = "测试卡组"
 cards = Dictionary[String, int]({
-"card_data_test": 20
+"test_terrain.card_data_terrain_test": 10
 })
 metadata/_custom_type_script = "uid://bt4k50pmjcimj"

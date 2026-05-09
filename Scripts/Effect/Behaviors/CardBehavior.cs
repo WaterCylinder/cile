@@ -11,4 +11,9 @@ public partial class CardBehavior : Behavior
 		int num = (int)Arg("num");
 		card.owner.ResourcesPointChange(num);
 	}
+
+	public void TerrainEvent()
+	{
+		GD.Print($"地形卡{card.cardName}加载");
+	}
 }

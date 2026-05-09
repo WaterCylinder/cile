@@ -24,6 +24,20 @@ public partial class UIMarks : Node
 		}
 	}
 
+	public void ShowRange(Unit unit, Array<Terrain> range, Color color)
+	{
+		foreach (Terrain tr in range)
+		{
+			if (tr == null) continue;
+			TextureRect box = unirSelectorMoveRangeBox.Instantiate() as TextureRect;
+			unitSelector.AddChild(box);
+			box.SelfModulate = color;
+			box.SetSize(new Vector2(lastTerrain.width, lastTerrain.height));
+			box.Position = tr.GlobalPosition;
+			box.Position -= terrainSelector.PivotOffset;
+		}
+	}
+
 	public void ShowUnitMoveRange(Unit unit)
 	{
 		ClearUnitSelector();
@@ -32,18 +46,20 @@ public partial class UIMarks : Node
 			//单位为空不处理
 			return;
 		}
-		lastUnit = unit;
 		Array<Terrain> moveRange = GameManager.Instance.game.unitSystem.GetUnitMoveRangeTerrains(unit);
-		foreach (Terrain tr in moveRange)
+		ShowRange(unit, moveRange, new Color(0.5f, 1, 1, 0.5f));
+	}
+
+	public void ShowUnitBattleRange(Unit unit)
+	{
+		ClearUnitSelector();
+		if (unit == null)
 		{
-			if (tr == null) continue;
-			TextureRect box = unirSelectorMoveRangeBox.Instantiate() as TextureRect;
-			unitSelector.AddChild(box);
-			box.SelfModulate = new Color(0.5f, 1, 1, 0.5f);
-			box.SetSize(new Vector2(lastTerrain.width, lastTerrain.height));
-			box.Position = tr.GlobalPosition;
-			box.Position -= terrainSelector.PivotOffset;
+			//单位为空不处理
+			return;
 		}
+		Array<Terrain> battleRange = GameManager.Instance.game.unitSystem.GetUnitBattleRangeTerrains(unit);
+		ShowRange(unit, battleRange, new Color(1, 0.5f, 0.4f, 0.5f));
 	}
 
 	/// <summary>

@@ -4,6 +4,8 @@ using System;
 public partial class ShowingCard : Control
 {
 	[Export]public TextureRect sprite;
+	[Export]public string cardName = "";
+	[Export]public string cardInfo = "";
 	[Export]public string state = "ready";
 
 	[Export]public bool latest = false;
@@ -23,7 +25,11 @@ public partial class ShowingCard : Control
 		SetSize(0);
 		timer = 0;
 		if(card != null)
+		{
 			sprite.Texture = card.sprite;
+			cardName = card.cardName;
+			cardInfo = card.cardInfo;
+		}
 	}
 
     public override void _Process(double delta)

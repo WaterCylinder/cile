@@ -43,8 +43,21 @@ behavior = SubResource("Resource_fd7kq")
 tags = null
 metadata/_custom_type_script = "uid://dui0qei00bamx"
 
+[sub_resource type="Resource" id="Resource_e5nsd"]
+script = ExtResource("2_w3lmn")
+behaviorName = "UnitBattle"
+metadata/_custom_type_script = "uid://dp51sfi4tdi1a"
+
+[sub_resource type="Resource" id="Resource_xo01c"]
+script = ExtResource("1_fd7kq")
+effectName = "测试单位战斗范围"
+condition = ExtResource("3_nr52p")
+behavior = SubResource("Resource_e5nsd")
+tags = null
+metadata/_custom_type_script = "uid://dui0qei00bamx"
+
 [resource]
 script = ExtResource("1_ippas")
 moveRange = Array[Vector2]([Vector2(1, 0), Vector2(-1, 0), Vector2(0, 1), Vector2(0, -1)])
-effects = Array[ExtResource("1_fd7kq")]([SubResource("Resource_hyvj6"), SubResource("Resource_w3lmn")])
+effects = Array[ExtResource("1_fd7kq")]([SubResource("Resource_hyvj6"), SubResource("Resource_w3lmn"), SubResource("Resource_xo01c")])
 metadata/_custom_type_script = "uid://dvalus1olte"

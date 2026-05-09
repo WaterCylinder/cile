@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://gjjuv05675qx"]
+
+[ext_resource type="Resource" uid="uid://bugofxhm75dqk" path="res://Resources/Effects/CardEffect/card_effect_add_two_resource_point.tres" id="1_qg1mh"]
+[ext_resource type="Script" uid="uid://bucly4m40nnvi" path="res://Scripts/Resource/CardData.cs" id="2_ifsqf"]
+[ext_resource type="Texture2D" uid="uid://bw2jmim0cdm51" path="res://Resources/Sprites/CardFace/test/test_resource2.png" id="3_qg1mh"]
+
+[resource]
+script = ExtResource("2_ifsqf")
+cardName = "资源+2"
+cardInfo = "资源点+2"
+onPick = ExtResource("1_qg1mh")
+sprite = ExtResource("3_qg1mh")
+metadata/_custom_type_script = "uid://bucly4m40nnvi"

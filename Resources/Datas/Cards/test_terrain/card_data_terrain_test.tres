@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://dxxyvtt716kne"]
+
+[ext_resource type="Script" uid="uid://bucly4m40nnvi" path="res://Scripts/Resource/CardData.cs" id="1_4uie6"]
+[ext_resource type="Script" uid="uid://dui0qei00bamx" path="res://Scripts/Effect/Effect.cs" id="1_d182a"]
+[ext_resource type="Script" uid="uid://be6wrrgta8koy" path="res://Scripts/Effect/Behaviors/CardBehavior.cs" id="1_nwqwm"]
+[ext_resource type="Resource" uid="uid://d1uxxlq4f7g65" path="res://Resources/Effects/Conditions/true_condition.tres" id="2_42hmd"]
+[ext_resource type="Texture2D" uid="uid://kx64gm2mqqhn" path="res://Resources/Sprites/CardFace/test/test_terrain.png" id="2_jtm4u"]
+
+[sub_resource type="Resource" id="Resource_42hmd"]
+script = ExtResource("1_nwqwm")
+behaviorName = "TerrainEvent"
+metadata/_custom_type_script = "uid://be6wrrgta8koy"
+
+[sub_resource type="Resource" id="Resource_nwqwm"]
+script = ExtResource("1_d182a")
+effectName = "地形事件"
+condition = ExtResource("2_42hmd")
+behavior = SubResource("Resource_42hmd")
+tags = null
+metadata/_custom_type_script = "uid://dui0qei00bamx"
+
+[resource]
+script = ExtResource("1_4uie6")
+cardName = "测试地形"
+cardInfo = "测试地形"
+type = 1
+onPick = SubResource("Resource_nwqwm")
+sprite = ExtResource("2_jtm4u")
+metadata/_custom_type_script = "uid://bucly4m40nnvi"

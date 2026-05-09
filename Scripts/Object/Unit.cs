@@ -18,6 +18,7 @@ public partial class Unit : Node2D
 	[Export] public Array<Effect> effects;
 	[Export] public Array<bool> effectEnable;
 	[Export] public Array<Vector2> moveRange;
+	[Export] public Array<Vector2> battleRange;
 	[Export] public int movePoint; //移动点数
 
 	[Signal]public delegate void OnEffectInvokeEventHandler(Unit unit, Effect effect);

@@ -16,13 +16,14 @@ public partial class CardDisplay : Control
 
 	public Stack<List<Card>> cardStack = new();
 
-	public void CreatShowingCard(Card card, Vector2 pos)
+	public ShowingCard CreatShowingCard(Card card, Vector2 pos)
 	{
 		ShowingCard showingCard = showingCardPrefab.Instantiate<ShowingCard>();
 		cardNode.AddChild(showingCard);
 		showingCard.Position = pos;
 		showingCard.display = this;
 		showingCard.Start(card);
+		return showingCard;
 	}
 
 	public void Show(List<Card> cards)
@@ -61,10 +62,16 @@ public partial class CardDisplay : Control
 		List<Card> cards = cardStack.Pop();
 		int count = cards.Count - 1;
 		float posx = ((float)count / 2 - count) * interval;
+		ShowingCard latestShow = null;
 		foreach(Card card in cards)
 		{
-			CreatShowingCard(card, new Vector2(posx, 0));
+			ShowingCard show = CreatShowingCard(card, new Vector2(posx, 0));
+			latestShow = show;
 			posx += interval;
+		}
+		if(latestShow != null)
+		{
+			latestShow.latest = true;
 		}
 		//TODO:根据显示的卡牌数量设置卡牌节点大小
 	}
@@ -75,7 +82,6 @@ public partial class CardDisplay : Control
 		{
 			ShowNext();
 		}
-		GD.Print("所有卡牌展示完毕！");
 	}
 
     public override void _Input(InputEvent @event)

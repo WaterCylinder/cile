@@ -51,7 +51,7 @@ public partial class UnitSystem
 	/// <param name="unit"></param>
 	/// <param name="range"></param>
 	/// <returns></returns>
-	public Array<Terrain> GetUnitRangeTerrains(Unit unit, Array<Vector2> range)
+	public Array<Terrain> GetUnitRangeTerrains(Unit unit, Array<Vector2> range, Func<Terrain, bool> ignoreCondition = null)
 	{
 		Terrain terrain = unit.terrain;
 		if(terrain == null)
@@ -67,12 +67,10 @@ public partial class UnitSystem
 				//超出地图区域
 				continue;
 			Terrain targetTerrain = terrain.map.GetTerrain(pos);
-			if(targetTerrain.CheckTag(TerrainTag.Blocked))
-				// 阻挡区域
+			if(ignoreCondition != null && ignoreCondition.Invoke(targetTerrain))
+			{
 				continue;
-			if(targetTerrain.CheckTag(TerrainTag.Ready))
-				// 准备区域
-				continue;
+			}
 			if(targetTerrain.unit != null)
 				//有单位的区块不能移动
 				continue;
@@ -81,10 +79,44 @@ public partial class UnitSystem
 		}
 		return terrains;
 	}
+
+	public bool TerrainRangeIgnoreConditionDefault(Terrain terrain)
+	{
+		if(terrain.CheckTag(TerrainTag.Blocked))
+			return true;
+		if(terrain.CheckTag(TerrainTag.Ready))
+			return true;
+		return false;
+	}
+	/// <summary>
+	/// 获取单位移动范围内的所有地形对象
+	/// </summary>
+	/// <param name="unit"></param>
+	/// <returns></returns>
 	public Array<Terrain> GetUnitMoveRangeTerrains(Unit unit)
 	{
 		Array<Vector2> range = unit.moveRange;
-		return GetUnitRangeTerrains(unit, range);
+		return GetUnitRangeTerrains(unit, range, t =>
+		{
+			bool result = TerrainRangeIgnoreConditionDefault(t);
+			if(t.unit != null)
+				return true;
+			return result;
+		});
+	}
+	/// <summary>
+	/// 获取单位攻击范围内的所有地形对象
+	/// </summary>
+	/// <param name="unit"></param>
+	/// <returns></returns>
+	public Array<Terrain> GetUnitBattleRangeTerrains(Unit unit)
+	{
+		Array<Vector2> range = unit.battleRange;
+		if(range == null)
+		{
+			range = unit.moveRange;
+		}
+		return GetUnitRangeTerrains(unit, range, TerrainRangeIgnoreConditionDefault);
 	}
 
 	public void SelectReadyTerrain(Terrain terrain, bool isBig = true)

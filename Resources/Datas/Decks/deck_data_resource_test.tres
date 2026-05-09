@@ -7,6 +7,8 @@ script = ExtResource("1_2yoo3")
 deckName = "资源测试卡组"
 deckInfo = "测试卡组"
 cards = Dictionary[String, int]({
-"card_data_test": 20
+"test_resource.card_data_resource_add_one_resources_point": 6,
+"test_resource.card_data_resource_add_three_resources_point": 1,
+"test_resource.card_data_resource_add_two_resources_point": 3
 })
 metadata/_custom_type_script = "uid://bt4k50pmjcimj"
