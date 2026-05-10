@@ -7,8 +7,10 @@ using Godot.Collections;
 public partial class UIMarks : Node
 {
 	[Export]public Control terrainSelector;
+	[ExportCategory("单位选择显示标记")]
 	[Export]public Control unitSelector;
 	[Export]public PackedScene unirSelectorMoveRangeBox;
+	[Export]public Array<Terrain> rangeNow;
 
 	public Terrain lastTerrain = null;
 	public Unit lastUnit = null;
@@ -24,8 +26,9 @@ public partial class UIMarks : Node
 		}
 	}
 
-	public void ShowRange(Unit unit, Array<Terrain> range, Color color)
+	public void ShowRange(Array<Terrain> range, Color color)
 	{
+		rangeNow = range;
 		foreach (Terrain tr in range)
 		{
 			if (tr == null) continue;
@@ -47,7 +50,7 @@ public partial class UIMarks : Node
 			return;
 		}
 		Array<Terrain> moveRange = GameManager.Instance.game.unitSystem.GetUnitMoveRangeTerrains(unit);
-		ShowRange(unit, moveRange, new Color(0.5f, 1, 1, 0.5f));
+		ShowRange(moveRange, new Color(0.5f, 1, 1, 0.9f));
 	}
 
 	public void ShowUnitBattleRange(Unit unit)
@@ -59,7 +62,7 @@ public partial class UIMarks : Node
 			return;
 		}
 		Array<Terrain> battleRange = GameManager.Instance.game.unitSystem.GetUnitBattleRangeTerrains(unit);
-		ShowRange(unit, battleRange, new Color(1, 0.5f, 0.4f, 0.5f));
+		ShowRange(battleRange, new Color(1, 0.5f, 0.4f, 0.9f));
 	}
 
 	/// <summary>

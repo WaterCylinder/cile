@@ -28,12 +28,12 @@ public partial class UnitSystem
 	/// <summary>
 	/// 放置单位到指定区域
 	/// </summary>
-	public void PutUnit(UnitData unitData, Terrain terrain)
+	public Unit PutUnit(UnitData unitData, Terrain terrain, Player player = null)
 	{	
 		if (terrain.unit != null)
 		{
 			GD.Print($"区域{terrain.Name}已经有单位了");
-			return;
+			return null;
 		}
 		Unit unit = packedScene.Instantiate<Unit>();
 		unit.data = unitData;
@@ -41,8 +41,8 @@ public partial class UnitSystem
 		GameManager.Instance.game.unitNode.AddChild(unit);
 		unitList.Add(unit);
 		unit.MoveTo(terrain);
-		Player player = GameManager.Instance.game.CurrentPlayer;
 		unit.player = player;
+		return unit;
 	}
 	
 	/// <summary>
@@ -71,9 +71,6 @@ public partial class UnitSystem
 			{
 				continue;
 			}
-			if(targetTerrain.unit != null)
-				//有单位的区块不能移动
-				continue;
 			
 			terrains.Add(targetTerrain);
 		}
@@ -112,9 +109,10 @@ public partial class UnitSystem
 	public Array<Terrain> GetUnitBattleRangeTerrains(Unit unit)
 	{
 		Array<Vector2> range = unit.battleRange;
-		if(range == null)
+		if(range == null || range.Count == 0)
 		{
 			range = unit.moveRange;
+			range.Add(Vector2.Zero);
 		}
 		return GetUnitRangeTerrains(unit, range, TerrainRangeIgnoreConditionDefault);
 	}
@@ -123,7 +121,7 @@ public partial class UnitSystem
 	{
 		//选择准备区域
 		UnitData data = isBig ? PlayerNow.unitBig : PlayerNow.unitSmall;
-		PutUnit(data, terrain);
+		PutUnit(data, terrain, PlayerNow);
 	}
 
 	/// <summary>

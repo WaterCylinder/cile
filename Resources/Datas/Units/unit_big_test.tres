@@ -1,11 +1,17 @@
 [gd_resource type="Resource" script_class="UnitData" format=3 uid="uid://dnfdsnfudfwx3"]
 
+[ext_resource type="Script" uid="uid://bjf52tcl256bt" path="res://Scripts/Effect/Behaviors/SubBehaviors/UnitBattleBehavior.cs" id="1_81uki"]
 [ext_resource type="Script" uid="uid://dui0qei00bamx" path="res://Scripts/Effect/Effect.cs" id="1_lbefa"]
 [ext_resource type="Script" uid="uid://dvalus1olte" path="res://Scripts/Resource/UnitData.cs" id="2_81uki"]
-[ext_resource type="Texture2D" uid="uid://bhb6q1whkad2i" path="res://Resources/Sprites/Unit/unit_demo_sprite_sheet.png" id="3_81uki"]
+
+[sub_resource type="Resource" id="Resource_noldi"]
+script = ExtResource("1_81uki")
+displayName = "显示战斗信息"
+behaviorName = "BattleLog"
+metadata/_custom_type_script = "uid://bjf52tcl256bt"
 
 [resource]
 script = ExtResource("2_81uki")
 unitName = "大单位（测试）"
-spriteSheet = ExtResource("3_81uki")
+behaviors = Array[ExtResource("1_81uki")]([SubResource("Resource_noldi")])
 metadata/_custom_type_script = "uid://dvalus1olte"

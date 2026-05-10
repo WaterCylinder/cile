@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="UnitData" format=3 uid="uid://b5tbps3hv8f"]
+
+[ext_resource type="Script" uid="uid://dui0qei00bamx" path="res://Scripts/Effect/Effect.cs" id="1_78i5b"]
+[ext_resource type="Script" uid="uid://dvalus1olte" path="res://Scripts/Resource/UnitData.cs" id="2_8tolt"]
+[ext_resource type="Texture2D" uid="uid://se8qfugxfpnw" path="res://Resources/Sprites/Unit/unit_sprite_W.png" id="2_74a0e"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_78i5b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_74a0e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("2_8tolt")
+unitName = "稻草人"
+frames = SubResource("SpriteFrames_78i5b")
+maxHealth = 999999.0
+metadata/_custom_type_script = "uid://dvalus1olte"

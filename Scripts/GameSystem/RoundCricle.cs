@@ -109,6 +109,10 @@ public class RoundCricle
         GD.Print($"开始第{turn}回合");
         turnLogic.EnterTurn();
         NextPlayer();
+        if(turn == 1)
+        {
+            gameMode?.FirstTurnStart();
+        }
         gameMode?.TurnStart(turnLogic);
         OnTurnStart?.Invoke();
     }
@@ -125,6 +129,10 @@ public class RoundCricle
         }   
         round += 1;
         GD.Print($"开始第{round}轮");
+        if(turn == 2)
+        {
+            gameMode?.SecondRoundStart();
+        }
         gameMode?.RoundStart();
         OnRoundStart?.Invoke();
     }

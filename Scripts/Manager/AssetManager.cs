@@ -182,6 +182,8 @@ public partial class AssetManager : Node
                 return Instance.GetData("Default.unit_data_default");
             case "character":
                 return Instance.GetData("Default.character_data_default");
+            case "unitAnimation":
+                return Instance.GetData("Default.unit_animation_default");
             default:
                 return null;
         }

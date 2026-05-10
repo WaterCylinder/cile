@@ -49,6 +49,11 @@ public partial class Map : Node2D
         return null;
     }
 
+    public Terrain GetTerrain(int x, int y)
+    {
+        return GetTerrain(new Vector2(y, x));
+    }
+
     // 生成地图框架
     public void Generate()
     {   

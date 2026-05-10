@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dfogjq454gjqq"]
+
+[ext_resource type="SpriteFrames" uid="uid://da4iq31b6a74c" path="res://animation.tres" id="1_q5x5m"]
+[ext_resource type="Script" uid="uid://bka50x8hk57og" path="res://Scripts/Component/CameraController.cs" id="3_kbrjr"]
+
+[node name="动画测试场景" type="Node2D" unique_id=456084256]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=97896013]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1327436821]
+texture_filter = 1
+sprite_frames = ExtResource("1_q5x5m")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.33266973
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=289878248]
+script = ExtResource("3_kbrjr")

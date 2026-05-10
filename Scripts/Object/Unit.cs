@@ -8,24 +8,30 @@ using Godot.Collections;
 
 public partial class Unit : Node2D
 {
-	[Export] public Sprite2D sprite;
+	[Export] public AnimatedSprite2D animator;
 	[Export] public UnitData data;
 	[ExportCategory("所属玩家")]
 	[Export] public Player player;
 	[ExportCategory("所在地形")]
 	[Export] public Terrain terrain;
 	[ExportCategory("自身属性")]
+	[Export] public string unitName;
+	[Export] public float maxHealth;
+	[Export] public float health;
 	[Export] public Array<Effect> effects;
 	[Export] public Array<bool> effectEnable;
+	[Export] public Array<UnitBattleBehavior> battleBehaviors;
 	[Export] public Array<Vector2> moveRange;
 	[Export] public Array<Vector2> battleRange;
 	[Export] public int movePoint; //移动点数
+	[Export] public float scale = 1;
 
 	[Signal]public delegate void OnEffectInvokeEventHandler(Unit unit, Effect effect);
 	/// <summary>
 	/// 效果无效状态检查结束前执行的方法，用于在效果无效状态检查前执行一些操作以修改检查结果
 	/// </summary>
 	public BoolEventSheet BeforeEffctEnableCheck = new();
+	
 
 	public override void _Ready()
 	{
@@ -45,14 +51,31 @@ public partial class Unit : Node2D
 			data = AssetManager.GetDefaultData("unit") as UnitData;
 		}
 		//根据单位数据初始化单位对象
+		if(data.frames != null)
+		{
+			animator.SpriteFrames = data.frames;
+		}
+		else
+		{
+			animator.SpriteFrames = AssetManager.GetDefaultData("unitAnimation") as SpriteFrames;
+		}
+		
+		maxHealth = data.maxHealth;
+		health = data.maxHealth;
+
+		AnimationPlay("idle");
+		unitName = data.unitName;
 		effects = data.effects.Duplicate(false);
 		effectEnable = new();
 		for(int i = 0; i <= effects.Count - 1; i++)
 		{
 			effectEnable.Add(true);
 		}
+		battleBehaviors = data.behaviors.Duplicate(false);
 		moveRange = data.moveRange.Duplicate(false);
 		movePoint = 1; //初始化移动点数
+		battleRange = data.battleRange.Duplicate(false);
+		SetScale();
 	}
 
 	/// <summary>
@@ -87,6 +110,46 @@ public partial class Unit : Node2D
 	{
 		Position = terrain.GlobalPosition;
 	}
+
+	/// <summary>
+	/// 与另一单位展开战斗
+	/// </summary>
+	/// <param name="other"></param>
+	public void Battle(Unit other)
+	{
+		GD.Print($"单位{unitName} 与 单位{other.unitName} 展开战斗");
+		GameManager.Instance.game.battleSystem.Start(this, other);
+	}
+
+	# region 动画与特效
+
+	public void AnimationPlay(string name = null)
+	{
+		if(name == null)
+		{
+			animator.Play();
+		}
+		if (! animator.SpriteFrames.HasAnimation(name))
+		{
+			name = "default";
+		}
+		GD.Print($"{unitName} 播放动画 {name}");
+		animator.Play(name);
+	}
+
+	public void AnimationPause()
+	{
+		animator.Pause();
+	}
+
+	public void SetScale(float scale = -1)
+	{
+		if(scale > 0)
+			this.scale = scale;
+		animator.Scale = new Vector2(this.scale, this.scale);
+	}
+
+	# endregion
 
 	# region 效果相关方法
 	public void EffectInit(Effect effect)
@@ -252,4 +315,5 @@ public partial class Unit : Node2D
     }
 
 	# endregion
+	
 }

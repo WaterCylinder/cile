@@ -65,15 +65,53 @@ public class GameMode
     }
 
     
-
+    /// <summary>
+    /// 游戏玩法初始化
+    /// </summary>
     public virtual void Init(){}
+    /// <summary>
+    /// 加载游戏信息时
+    /// </summary>
+    /// <param name="gameInfo"></param>
     public virtual void OnLoadGameInfo(GameInfo gameInfo){} //加载游戏信息时调用
+    /// <summary>
+    /// 开始游戏时
+    /// </summary>
     public virtual void Start(){}
+    /// <summary>
+    /// 游戏进程
+    /// </summary>
+    /// <param name="delta"></param>
     public virtual void Update(float delta){}
+    /// <summary>
+    /// 游戏结束
+    /// </summary>
     public virtual void End(){}
+    /// <summary>
+    /// 第一回合开始时
+    /// </summary>
+    public virtual void FirstTurnStart(){}
+    /// <summary>
+    /// 第二轮开始时，默认第一轮是准备阶段
+    /// </summary>
+    public virtual void SecondRoundStart(){}
+    /// <summary>
+    /// 回合开始时
+    /// </summary>
+    /// <param name="turn"></param>
     public virtual void TurnStart(Turn turn){}
+    /// <summary>
+    /// 回合结束时
+    /// </summary>
+    /// <param name="turn"></param>
     public virtual void TurnEnd(Turn turn){}
+    /// <summary>
+    /// 轮次开始时
+    /// </summary>
     public virtual void RoundStart(){}
+    /// <summary>
+    /// 轮次结束时
+    /// </summary>
     public virtual void RoundEnd(){}
 }
 

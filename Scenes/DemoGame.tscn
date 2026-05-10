@@ -18,7 +18,10 @@
 [ext_resource type="Script" uid="uid://dui0qei00bamx" path="res://Scripts/Effect/Effect.cs" id="8_qmx1b"]
 [ext_resource type="Resource" uid="uid://d1uxxlq4f7g65" path="res://Resources/Effects/Conditions/true_condition.tres" id="8_x7vk5"]
 [ext_resource type="AudioStream" uid="uid://ddfpaljduaw54" path="res://Resources/Audios/Voice/op_voice.wav" id="10_pmlgl"]
+[ext_resource type="Script" uid="uid://746k8f70o7ue" path="res://Scripts/UI/GameUI/BattleUI.cs" id="12_uuh5e"]
 [ext_resource type="Script" uid="uid://b8nm7eq7jh6m1" path="res://Scripts/UI/GameUI/CardSelector.cs" id="13_16vf7"]
+[ext_resource type="PackedScene" uid="uid://bh78nj210pbbb" path="res://Assets/UI/battle_button.tscn" id="13_nq20h"]
+[ext_resource type="Script" uid="uid://bjf52tcl256bt" path="res://Scripts/Effect/Behaviors/SubBehaviors/UnitBattleBehavior.cs" id="14_7hp83"]
 [ext_resource type="PackedScene" uid="uid://da0mm2lb7b1pa" path="res://Resources/Objects/card.tscn" id="14_ixhow"]
 [ext_resource type="Texture2D" uid="uid://csvtlg5v1ci5e" path="res://Assets/Images/UI/InnerGame/返回.png" id="14_xlvtv"]
 [ext_resource type="Script" uid="uid://c4ukgj0cy5hxn" path="res://Scripts/UI/Button/TextureButtonSizeChangeByState.cs" id="15_ixhow"]
@@ -55,6 +58,12 @@ metadata/_custom_type_script = "uid://dui0qei00bamx"
 
 [sub_resource type="LabelSettings" id="LabelSettings_71sxd"]
 
+[sub_resource type="Resource" id="Resource_w13ts"]
+script = ExtResource("14_7hp83")
+displayName = "离开战斗"
+behaviorName = "ExitBattleSystem"
+metadata/_custom_type_script = "uid://bjf52tcl256bt"
+
 [sub_resource type="LabelSettings" id="LabelSettings_pfs8u"]
 font_size = 32
 
@@ -90,7 +99,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_pqcu6")
 
-[node name="PUI" type="Control" parent="CanvasLayer/UI" unique_id=358070890 node_paths=PackedStringArray("selectedUI")]
+[node name="PUI" type="Control" parent="CanvasLayer/UI" unique_id=358070890 node_paths=PackedStringArray("selectedUI", "battleUI")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -100,6 +109,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("5_2kisj")
 selectedUI = NodePath("SelectedUI")
+battleUI = NodePath("BattleUI")
 
 [node name="SelectedUI" type="Panel" parent="CanvasLayer/UI/PUI" unique_id=223034195 node_paths=PackedStringArray("terrainNameLabel")]
 visible = false
@@ -126,6 +136,23 @@ horizontal_alignment = 1
 layout_mode = 0
 offset_top = 24.0
 offset_bottom = 64.0
+
+[node name="BattleUI" type="Control" parent="CanvasLayer/UI/PUI" unique_id=4424810 node_paths=PackedStringArray("buttonNode")]
+anchors_preset = 0
+offset_left = 640.0
+offset_top = 360.0
+offset_right = 641.0
+offset_bottom = 361.0
+script = ExtResource("12_uuh5e")
+buttonNode = NodePath("Buttons")
+buttonPrefab = ExtResource("13_nq20h")
+behaviors = Array[Object]([])
+exitBehavior = SubResource("Resource_w13ts")
+
+[node name="Buttons" type="Control" parent="CanvasLayer/UI/PUI/BattleUI" unique_id=181094286]
+anchors_preset = 0
+offset_right = 1.0
+offset_bottom = 1.0
 
 [node name="Debug" type="Control" parent="CanvasLayer/UI" unique_id=1107609925 node_paths=PackedStringArray("nextRoundButton", "changeMusicButton", "turnText")]
 layout_mode = 1
@@ -296,7 +323,7 @@ mouse_filter = 1
 script = ExtResource("17_kjubh")
 cardNode = NodePath("CardNode")
 showingCardPrefab = ExtResource("19_skk1d")
-showingCardList = []
+showingCardList = Array[Object]([])
 
 [node name="CardNode" type="Control" parent="CanvasLayer/Layout/CardDisplay" unique_id=433190324]
 anchors_preset = 0
@@ -326,7 +353,7 @@ position = Vector2(632, 0)
 
 [node name="Units" type="Node2D" parent="Scene" unique_id=701047759]
 
-[node name="Marks" type="Control" parent="." unique_id=277835427 node_paths=PackedStringArray("terrainSelector", "unitSelector")]
+[node name="Marks" type="Control" parent="." unique_id=277835427 node_paths=PackedStringArray("terrainSelector", "unitSelector", "rangeNow")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -336,6 +363,7 @@ script = ExtResource("4_fydjb")
 terrainSelector = NodePath("TerrainSelector")
 unitSelector = NodePath("UnitSelector")
 unirSelectorMoveRangeBox = ExtResource("20_h0mqe")
+rangeNow = Array[Object]([])
 
 [node name="TerrainSelector" type="Control" parent="Marks" unique_id=1121004367]
 visible = false

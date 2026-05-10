@@ -1,17 +1,13 @@
 [gd_scene format=3 uid="uid://b76a4g2satqbg"]
 
 [ext_resource type="Script" uid="uid://deupks6flgo3b" path="res://Scripts/Object/Unit.cs" id="1_eqyla"]
-[ext_resource type="Script" uid="uid://dvp2ka0733fjo" path="res://Scripts/Component/SpriteSheetAnimation.cs" id="2_eqyla"]
-[ext_resource type="Texture2D" uid="uid://bhb6q1whkad2i" path="res://Resources/Sprites/Unit/unit_demo_sprite_sheet.png" id="3_nj1w0"]
+[ext_resource type="SpriteFrames" uid="uid://xh7jbvtht3ns" path="res://Resources/Datas/Default/unit_animation_default.tres" id="2_eqyla"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_nj1w0"]
-
-[node name="Unit" type="Node2D" unique_id=1797268648]
+[node name="Unit" type="Node2D" unique_id=1797268648 node_paths=PackedStringArray("animator")]
+texture_filter = 1
 script = ExtResource("1_eqyla")
+animator = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1856825160]
-sprite_frames = SubResource("SpriteFrames_nj1w0")
-script = ExtResource("2_eqyla")
-spriteSheet = ExtResource("3_nj1w0")
-frameHight = 64
-frameWidth = 64
+sprite_frames = ExtResource("2_eqyla")
+autoplay = "default"

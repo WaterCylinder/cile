@@ -44,6 +44,7 @@ public partial class Game : Node
     public RoundCricle roundCricle = new RoundCricle();
     public UnitSystem unitSystem = new UnitSystem();
     public CardSystem cardSystem = new CardSystem();
+    public BattleSystem battleSystem = new BattleSystem();
     public RandomSystem randomSystem = null;
     public GameMode gameModeSystem;
     
@@ -66,7 +67,11 @@ public partial class Game : Node
     /// <summary>
     /// 信号：执行单位事件
     /// </summary>
-    [Signal]public delegate void OnUnitEffectEventHandler(Unit unit, Effect effect);
+    [Signal]public delegate void OnUnitEffectEventHandler(Unit unit, Unit other, Effect effect);
+    /// <summary>
+    /// 信号：执行单位战斗事件
+    /// </summary>
+    [Signal]public delegate void OnUnitBattleEffectEventHandler(Unit unit, Effect effect);
     /// <summary>
     /// 信号：单位进入地形事件
     /// </summary>
@@ -187,6 +192,7 @@ public partial class Game : Node
     {
         GD.Print("回合前初始化");
         unitSystem.Init();
+        battleSystem.Init();
     }
 
     # endregion

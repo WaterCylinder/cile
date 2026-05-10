@@ -45,7 +45,10 @@ public partial class UnitBehavior : Behavior
 				if (game.unitSystem.GetUnitBattleRangeTerrains(unit).Contains(t))
 				{
 					GD.Print("单位战斗区块选择：" + t.Name);
-					//TODO
+					if(t.unit != null)
+					{
+						unit.Battle(unit);
+					}
 				}
 			}
 		);

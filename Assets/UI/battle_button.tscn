@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bh78nj210pbbb"]
+
+[ext_resource type="Texture2D" uid="uid://ljybqw872t6q" path="res://Assets/Images/UI/MainMenu/主菜单图鉴按钮.png" id="1_wwnm2"]
+[ext_resource type="Script" uid="uid://c4ukgj0cy5hxn" path="res://Scripts/UI/Button/TextureButtonSizeChangeByState.cs" id="2_4j4s5"]
+[ext_resource type="FontFile" uid="uid://cgokx2yjk7oug" path="res://Assets/Fonts/SmileySans-Oblique.ttf" id="2_8rqmg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4j4s5"]
+font = ExtResource("2_8rqmg")
+font_size = 32
+font_color = Color(0.41, 0.1025, 0.1640001, 1)
+
+[node name="BattleButton" type="TextureButton" unique_id=1596930860]
+self_modulate = Color(1, 1, 1, 0.49411765)
+offset_right = 184.0
+offset_bottom = 64.0
+texture_normal = ExtResource("1_wwnm2")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("2_4j4s5")
+
+[node name="Text" type="Label" parent="." unique_id=1242368377]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "战斗"
+label_settings = SubResource("LabelSettings_4j4s5")
+horizontal_alignment = 1
+vertical_alignment = 1

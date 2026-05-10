@@ -20,7 +20,6 @@ public class GameModeDemo : GameMode
         game.cardSystem.LoadTerrainDeck("deck_data_terrain_test");
     }
 
-
     public override void Start()
     {
         GD.Print("游戏模式demo：游戏开始");
@@ -136,6 +135,9 @@ public class GameModeDemo : GameMode
         //单位进入地形事件逻辑，抽卡并获取
         game.OnUnitEnterTerrain += (u, t) =>
         {
+            if(u.player == null)
+                //非玩家或者电脑控制的单位不抽卡
+                return;
             GD.Print($"游戏模式demo：单位进入地形事件处理, {u.Name} 进入 {t.Name}");
             if (t.CheckTag(TerrainTag.Resource))
             {
@@ -152,6 +154,16 @@ public class GameModeDemo : GameMode
             }
         };
     }
+
+    public override void FirstTurnStart()
+    {
+        //在5-2上放置一个无单位的稻草人
+        Terrain terrain = game.Map.GetTerrain(5, 2);
+        UnitData data = AssetManager.Instance.GetData("Units.unit_data_doll") as UnitData;
+        Unit doll = game.unitSystem.PutUnit(data, terrain);
+        doll.SetScale(0.8f);
+    }
+
     
     public override void TurnStart(Turn turn)
     {

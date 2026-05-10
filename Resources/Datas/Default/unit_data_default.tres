@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dui0qei00bamx" path="res://Scripts/Effect/Effect.cs" id="1_fd7kq"]
 [ext_resource type="Script" uid="uid://dvalus1olte" path="res://Scripts/Resource/UnitData.cs" id="1_ippas"]
+[ext_resource type="Script" uid="uid://bjf52tcl256bt" path="res://Scripts/Effect/Behaviors/SubBehaviors/UnitBattleBehavior.cs" id="1_nr52p"]
 [ext_resource type="Script" uid="uid://dp51sfi4tdi1a" path="res://Scripts/Effect/Behaviors/UnitBehavior.cs" id="2_w3lmn"]
 [ext_resource type="Resource" uid="uid://d1uxxlq4f7g65" path="res://Resources/Effects/Conditions/true_condition.tres" id="3_nr52p"]
 [ext_resource type="Script" uid="uid://dap5hs4p56xf3" path="res://Scripts/Effect/Conditions/SingalCondition.cs" id="4_w3lmn"]

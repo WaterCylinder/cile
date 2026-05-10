@@ -19,21 +19,21 @@ public partial class Behavior : Resource // Behavior类继承自Resource，是�
     /// </summary>
     /// <typeparam name="T">返回值的类型</typeparam>
     /// <returns>方法执行后的结果，如果执行失败则返回默认值</returns>
-    public virtual T Run<T>()
+    public virtual T Run<T>(string methodName)
     {   
         // 用于存储要执行的方法信息
         MethodInfo method;
         // 首先检查方法是否已缓存
-        if (MethodList.ContainsKey(behaviorName))
+        if (MethodList.ContainsKey(methodName))
         {
             // 从缓存中获取方法
-            method = MethodList[behaviorName];
+            method = MethodList[methodName];
         }
         else
         {
             // 如果未缓存，则从当前类型中获取方法并添加到缓存
-            method = GetType().GetMethod(behaviorName);
-            MethodList.Add(behaviorName, method);
+            method = GetType().GetMethod(methodName);
+            MethodList.Add(methodName, method);
         }
         // 如果找到方法
         if (method != null)
@@ -56,12 +56,22 @@ public partial class Behavior : Resource // Behavior类继承自Resource，是�
         return default;
     }
 
+    public virtual T Run<T>()
+    {
+        return Run<T>(behaviorName);
+    }
+
     /// <summary>
     /// 执行行为逻辑
     /// </summary>
     public void Run()
     {
         Run<object>();
+    }
+
+    public void Run(string methodName)
+    {
+        Run<object>(methodName);
     }
 
     public Variant Arg(string key)
