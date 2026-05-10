@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://doonmtnhh3inl"]
 
 [ext_resource type="VideoStream" uid="uid://guexuhrrq78g" path="res://Resources/Audios/cile_logo.ogv" id="1_dgtb2"]
-[ext_resource type="Script" uid="uid://btpk1i78c7arj" path="res://Scripts/GameSystem/StartScene.cs" id="1_t5ln1"]
+[ext_resource type="Script" uid="uid://cxljfcxqnt28i" path="res://Scripts/GameSystem/StartScene.cs" id="1_t5ln1"]
 
 [node name="StartScene" type="Node2D" unique_id=684828763 node_paths=PackedStringArray("videoPlayer", "frontBlack")]
 script = ExtResource("1_t5ln1")

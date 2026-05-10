@@ -21,4 +21,15 @@ public partial class UnitBattleBehavior : UnitBehavior
     {
         GD.Print($"{unit.unitName} 正在与 {other.unitName} 展开战斗");
     }
+
+    # region "单位战斗行为"
+
+    public void Fight()
+    {
+        //TODO,这里只实现一下显示小文本的功能
+        float demage = (int)Arg("demage");
+        other.Hurt(unit, demage);
+    }
+
+    # endregion
 }

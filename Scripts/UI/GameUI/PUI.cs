@@ -20,8 +20,7 @@ public partial class PUI : Control
 				if (!mouseEvent.Pressed)
 				{
 					//右键清除当前选择
-					game.selectedTerrains.Clear();
-					game.EmitSignal("OnTerrainSelectedCancle");
+					game.CancelTerrainSelect();
 				}
 			}
 		}

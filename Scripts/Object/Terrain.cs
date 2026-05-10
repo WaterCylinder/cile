@@ -155,12 +155,13 @@ public partial class Terrain : Node2D
 	public void Selected()
     {
 		GD.Print($"{X}-{Y}被选择");
-        GameManager.Instance.game.mainCamera.SetTargetPosition(area.GlobalPosition);
-		GameManager.Instance.game.mainCamera.SetTargetZoom(2);
+		Game game = GameManager.Instance.game;
+        game.mainCamera.SetTargetPosition(area.GlobalPosition);
+		game.mainCamera.SetTargetZoom(2);
 		//区块选择，暂时只支持单选，所以设置前清除当前选中集合
-		GameManager.Instance.game.selectedTerrains.Clear();
-		GameManager.Instance.game.selectedTerrains.Add(this);
-		GameManager.Instance.game.EmitSignal("OnTerrainSelected", this);
+		game.selectedTerrains.Clear();
+		game.selectedTerrains.Add(this);
+		game.EmitSignal("OnTerrainSelected", this);
     }
 	# region 地形效果相关方法
 	public void EffectInit(Effect effect)

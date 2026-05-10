@@ -68,6 +68,13 @@ public class BattleSystem
 		battleUI.Start();
 
 		isBattle = true;
+
+		//清楚当前的地形选择并且阻止地形操作
+		game.CancelTerrainSelect();
+		game.terrainSelectOpera ++;
+
+		//将摄像头锁定在两个单位中间
+		game.mainCamera.Lock(unit.Position + (other.Position - unit.Position) / 2);
 	}
 
 	/// <summary>
@@ -143,5 +150,7 @@ public class BattleSystem
 	{
 		GD.Print("退出战斗系统");
 		battleUI.Visible = false;
+		game.terrainSelectOpera --;
+		game.mainCamera.UnLock();
 	}
 }

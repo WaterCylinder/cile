@@ -47,7 +47,7 @@ public partial class UnitBehavior : Behavior
 					GD.Print("单位战斗区块选择：" + t.Name);
 					if(t.unit != null)
 					{
-						unit.Battle(unit);
+						unit.Battle(t.unit);
 					}
 				}
 			}

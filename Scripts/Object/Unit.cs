@@ -32,6 +32,7 @@ public partial class Unit : Node2D
 	/// </summary>
 	public BoolEventSheet BeforeEffctEnableCheck = new();
 	
+	Game game => GameManager.Instance.game;
 
 	public override void _Ready()
 	{
@@ -119,6 +120,17 @@ public partial class Unit : Node2D
 	{
 		GD.Print($"单位{unitName} 与 单位{other.unitName} 展开战斗");
 		GameManager.Instance.game.battleSystem.Start(this, other);
+	}
+
+	/// <summary>
+	/// 收到伤害
+	/// </summary>
+	/// <param name="source"></param>
+	public void Hurt(Unit source, float demage)
+	{
+		GD.Print($"{unitName} 收到 {demage}点伤害，伤害来源 {source.unitName}");
+		game.marksUI.CreatSmallText(Position, $"{demage}点伤害");
+		//TODO
 	}
 
 	# region 动画与特效

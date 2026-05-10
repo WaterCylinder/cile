@@ -1,16 +1,24 @@
 [gd_resource type="Resource" script_class="UnitData" format=3 uid="uid://dwirv6c7xdf3x"]
 
-[ext_resource type="Script" uid="uid://dui0qei00bamx" path="res://Scripts/Effect/Effect.cs" id="1_fd7kq"]
-[ext_resource type="Script" uid="uid://dvalus1olte" path="res://Scripts/Resource/UnitData.cs" id="1_ippas"]
-[ext_resource type="Script" uid="uid://bjf52tcl256bt" path="res://Scripts/Effect/Behaviors/SubBehaviors/UnitBattleBehavior.cs" id="1_nr52p"]
-[ext_resource type="Script" uid="uid://dp51sfi4tdi1a" path="res://Scripts/Effect/Behaviors/UnitBehavior.cs" id="2_w3lmn"]
+[ext_resource type="Script" uid="uid://d4juxrmpbtxjn" path="res://Scripts/Effect/Effect.cs" id="1_fd7kq"]
+[ext_resource type="Script" uid="uid://moiwyv64ka6o" path="res://Scripts/Resource/UnitData.cs" id="1_ippas"]
+[ext_resource type="Script" uid="uid://gegt6hyuoa5c" path="res://Scripts/Effect/Behaviors/SubBehaviors/UnitBattleBehavior.cs" id="1_nr52p"]
+[ext_resource type="Script" uid="uid://rlbk6cjcefa1" path="res://Scripts/Effect/Behaviors/UnitBehavior.cs" id="2_w3lmn"]
 [ext_resource type="Resource" uid="uid://d1uxxlq4f7g65" path="res://Resources/Effects/Conditions/true_condition.tres" id="3_nr52p"]
-[ext_resource type="Script" uid="uid://dap5hs4p56xf3" path="res://Scripts/Effect/Conditions/SingalCondition.cs" id="4_w3lmn"]
+[ext_resource type="Script" uid="uid://dg45i671yardb" path="res://Scripts/Effect/Conditions/SingalCondition.cs" id="4_w3lmn"]
+
+[sub_resource type="Resource" id="Resource_01the"]
+script = ExtResource("1_nr52p")
+displayName = "攻击"
+behaviorName = "Fight"
+args = Dictionary[String, Variant]({
+"demage": 2
+})
+metadata/_custom_type_script = "uid://gegt6hyuoa5c"
 
 [sub_resource type="Resource" id="Resource_geb8x"]
 script = ExtResource("2_w3lmn")
 behaviorName = "UnitLog"
-metadata/_custom_type_script = "uid://dp51sfi4tdi1a"
 
 [sub_resource type="Resource" id="Resource_hyvj6"]
 script = ExtResource("1_fd7kq")
@@ -18,12 +26,10 @@ effectName = "测试"
 condition = ExtResource("3_nr52p")
 behavior = SubResource("Resource_geb8x")
 tags = null
-metadata/_custom_type_script = "uid://dui0qei00bamx"
 
 [sub_resource type="Resource" id="Resource_fd7kq"]
 script = ExtResource("2_w3lmn")
 behaviorName = "UnitMove"
-metadata/_custom_type_script = "uid://dp51sfi4tdi1a"
 
 [sub_resource type="Resource" id="Resource_nr52p"]
 script = ExtResource("2_w3lmn")
@@ -34,7 +40,6 @@ metadata/_custom_type_script = "uid://dp51sfi4tdi1a"
 script = ExtResource("4_w3lmn")
 behavior = SubResource("Resource_nr52p")
 info = "单位移动点数检查"
-metadata/_custom_type_script = "uid://dap5hs4p56xf3"
 
 [sub_resource type="Resource" id="Resource_w3lmn"]
 script = ExtResource("1_fd7kq")
@@ -42,12 +47,10 @@ effectName = "测试单位移动"
 condition = SubResource("Resource_dqbte")
 behavior = SubResource("Resource_fd7kq")
 tags = null
-metadata/_custom_type_script = "uid://dui0qei00bamx"
 
 [sub_resource type="Resource" id="Resource_e5nsd"]
 script = ExtResource("2_w3lmn")
 behaviorName = "UnitBattle"
-metadata/_custom_type_script = "uid://dp51sfi4tdi1a"
 
 [sub_resource type="Resource" id="Resource_xo01c"]
 script = ExtResource("1_fd7kq")
@@ -55,10 +58,10 @@ effectName = "测试单位战斗范围"
 condition = ExtResource("3_nr52p")
 behavior = SubResource("Resource_e5nsd")
 tags = null
-metadata/_custom_type_script = "uid://dui0qei00bamx"
 
 [resource]
 script = ExtResource("1_ippas")
+maxHealth = 10.0
 moveRange = Array[Vector2]([Vector2(1, 0), Vector2(-1, 0), Vector2(0, 1), Vector2(0, -1)])
 effects = Array[ExtResource("1_fd7kq")]([SubResource("Resource_hyvj6"), SubResource("Resource_w3lmn"), SubResource("Resource_xo01c")])
-metadata/_custom_type_script = "uid://dvalus1olte"
+behaviors = Array[ExtResource("1_nr52p")]([SubResource("Resource_01the")])

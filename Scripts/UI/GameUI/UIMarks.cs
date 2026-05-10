@@ -1,3 +1,4 @@
+using System.Reflection.Metadata.Ecma335;
 using Godot;
 using Godot.Collections;
 
@@ -11,6 +12,9 @@ public partial class UIMarks : Node
 	[Export]public Control unitSelector;
 	[Export]public PackedScene unirSelectorMoveRangeBox;
 	[Export]public Array<Terrain> rangeNow;
+	[ExportCategory("动态小文本显示")]
+	[Export]public Control smallTextNode;
+	[Export]public PackedScene smallTextPrefab;
 
 	public Terrain lastTerrain = null;
 	public Unit lastUnit = null;
@@ -123,6 +127,16 @@ public partial class UIMarks : Node
 		{
 			lastTerrain = tr;
 		};
+	}
+
+	public void CreatSmallText(Vector2 pos, string text, float scale = 1)
+	{
+		SmallText st = smallTextPrefab.Instantiate<SmallText>();
+		smallTextNode.AddChild(st);
+		st.SetPosition(pos);
+		st.SetScale(scale);
+		st.SetText(text);
+		st.Start();
 	}
 
 	public override void _Process(double delta)

@@ -29,6 +29,9 @@ public partial class Game : Node
     [Export] public CameraController mainCamera;
     [Export] public Node2D unitNode;
     [Export] public Array<Terrain> selectedTerrains = new Array<Terrain>();
+    [ExportCategory("本地可操作性判断逻辑, 为0则可操作")]
+    [Export] public int terrainSelectOpera = 0;
+    public bool CanTerrainSelect{ get{ return terrainSelectOpera == 0;} }
     [ExportCategory("可变节点{运行时加载}")]
     [Export] public Control innerMenu;
     [Export] public Node2D mapNode;
@@ -243,6 +246,15 @@ public partial class Game : Node
     {
         cardSelector.Visible = true;
         cardSelector.Open();
+    }
+
+    /// <summary>
+    /// 取消地形选择菜单
+    /// </summary>
+    public void CancelTerrainSelect()
+    {
+        selectedTerrains.Clear();
+		EmitSignal("OnTerrainSelectedCancle");
     }
 
     # endregion

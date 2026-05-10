@@ -8,6 +8,8 @@ using System;
 public partial class TerrainBehavior : Behavior
 {
     public Terrain terrain;
+
+    Game game => GameManager.Instance.game;
     
     # region 地形行为
 
@@ -19,18 +21,18 @@ public partial class TerrainBehavior : Behavior
     public void PutTestUnit()
     {
         UnitData data = AssetManager.GetDefaultData("unit") as UnitData;
-        GameManager.Instance.game.unitSystem.PutUnit(data, terrain);
+        game.unitSystem.PutUnit(data, terrain);
     }
 
     public void SelectReadyBig()
     {
         GD.Print("准备地形选择大单位");
-        GameManager.Instance.game.unitSystem.SelectReadyTerrain(terrain, true);
+        game.unitSystem.SelectReadyTerrain(terrain, true);
     }
     public void SelectReadySmall()
     {
         GD.Print("准备地形选择小单位");
-        GameManager.Instance.game.unitSystem.SelectReadyTerrain(terrain, false);
+        game.unitSystem.SelectReadyTerrain(terrain, false);
     }
 
     #endregion

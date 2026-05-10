@@ -17,9 +17,10 @@ public partial class SelectedUI : Control
 	[ExportCategory("运行时变量")]
 	[Export]public bool isUnitSelected = false;
 
+	Game game => GameManager.Instance.game;
+
 	public override void _Ready()
 	{	
-		Game game = GameManager.Instance.game;
 		game.OnTerrainSelected += OnSelected;
 		game.OnTerrainSelectedCancle += Cancel;
 
@@ -67,7 +68,13 @@ public partial class SelectedUI : Control
 	
 	public void OnSelected(Terrain terrain)
 	{
-		if (!GameManager.Instance.game.IsPlayerNow)
+		if (!game.CanTerrainSelect)
+		{
+			GD.Print("当前不能选择地形");
+			Cancel();
+			return;
+		}
+		if (!game.IsPlayerNow)
 		{
 			//非当前玩家进行选择操作不弹出UI
 			GD.Print("非当前玩家操作");
