@@ -119,7 +119,16 @@ public partial class Unit : Node2D
 	public void Battle(Unit other)
 	{
 		GD.Print($"单位{unitName} 与 单位{other.unitName} 展开战斗");
-		GameManager.Instance.game.battleSystem.Start(this, other);
+		BattleBehaviorTag tag = BattleBehaviorTag.Normal;
+		if(other == this)
+		{
+			tag = BattleBehaviorTag.Self;
+		}
+		else if(other.player == player)
+		{
+			tag = BattleBehaviorTag.Help;
+		}
+		GameManager.Instance.game.battleSystem.Start(this, other, tag);
 	}
 
 	/// <summary>

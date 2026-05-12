@@ -13,7 +13,7 @@ public partial class UIMarks : Node
 	[Export]public PackedScene unirSelectorMoveRangeBox;
 	[Export]public Array<Terrain> rangeNow;
 	[ExportCategory("动态小文本显示")]
-	[Export]public Control smallTextNode;
+	[Export]public Node2D smallTextNode;
 	[Export]public PackedScene smallTextPrefab;
 
 	public Terrain lastTerrain = null;

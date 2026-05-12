@@ -1,35 +1,35 @@
 [gd_scene format=3 uid="uid://cui3m2nppv73h"]
 
-[ext_resource type="Script" uid="uid://dq1nxok00oqup" path="res://Scripts/Core/Game.cs" id="1_dkiyr"]
+[ext_resource type="Script" uid="uid://cqucg6w7eyn4b" path="res://Scripts/Core/Game.cs" id="1_dkiyr"]
 [ext_resource type="Theme" uid="uid://cvddfmai7mse5" path="res://Assets/Thames/inner_ui_theme.tres" id="1_pqcu6"]
 [ext_resource type="PackedScene" uid="uid://d2bla3dfrrpai" path="res://Assets/UI/inner_menu.tscn" id="2_ed3lb"]
 [ext_resource type="PackedScene" uid="uid://b7klfx5hegpul" path="res://Assets/Map/demo_map.tscn" id="3_eafrm"]
-[ext_resource type="Script" uid="uid://dsgocf12qk3aq" path="res://Scripts/UI/GameUI/UIMarks.cs" id="4_fydjb"]
-[ext_resource type="Script" uid="uid://yl2tjq2aotgj" path="res://Scripts/UI/Canvas.cs" id="4_skk1d"]
-[ext_resource type="Script" uid="uid://c7vp286yy5of5" path="res://Scripts/UI/GameUI/PUI.cs" id="5_2kisj"]
+[ext_resource type="Script" uid="uid://b70loibpega7l" path="res://Scripts/UI/GameUI/UIMarks.cs" id="4_fydjb"]
+[ext_resource type="Script" uid="uid://dmpxguvqlni0b" path="res://Scripts/UI/Canvas.cs" id="4_skk1d"]
+[ext_resource type="Script" uid="uid://dap6gcu3gru6s" path="res://Scripts/UI/GameUI/PUI.cs" id="5_2kisj"]
 [ext_resource type="Texture2D" uid="uid://yvc2tsotv50d" path="res://Assets/Images/Marks/白框.png" id="5_fwgcq"]
-[ext_resource type="Script" uid="uid://vla8s1sqi4uc" path="res://Scripts/UI/GameUI/DebugUI.cs" id="5_unw7f"]
-[ext_resource type="Script" uid="uid://ddvs86qu6dp4c" path="res://Scripts/UI/GameUI/SelectedUI.cs" id="6_71sxd"]
-[ext_resource type="Script" uid="uid://cehjetefvldmg" path="res://Scripts/UI/ActiveUI/TurnPanel.cs" id="6_pfs8u"]
-[ext_resource type="Script" uid="uid://bi0kt0lil278f" path="res://Scripts/Component/InGameMusic.cs" id="7_ddpk8"]
+[ext_resource type="Script" uid="uid://c5cxvarb8jma1" path="res://Scripts/UI/GameUI/DebugUI.cs" id="5_unw7f"]
+[ext_resource type="Script" uid="uid://c0ofsc05rbie3" path="res://Scripts/UI/GameUI/SelectedUI.cs" id="6_71sxd"]
+[ext_resource type="Script" uid="uid://sl4vm85tc6no" path="res://Scripts/UI/ActiveUI/TurnPanel.cs" id="6_pfs8u"]
+[ext_resource type="Script" uid="uid://csxxccalvryyc" path="res://Scripts/Component/InGameMusic.cs" id="7_ddpk8"]
 [ext_resource type="PackedScene" uid="uid://7bajli0a7lhk" path="res://Assets/UI/button.tscn" id="7_qn7gy"]
-[ext_resource type="Script" uid="uid://dqxd2adascm7l" path="res://Scripts/Component/CameraController.cs" id="7_tepq2"]
-[ext_resource type="Script" uid="uid://dkrcxey5ooddc" path="res://Scripts/Effect/Behaviors/EventBehavior.cs" id="8_ea3nm"]
-[ext_resource type="Script" uid="uid://d4juxrmpbtxjn" path="res://Scripts/Effect/Effect.cs" id="8_qmx1b"]
+[ext_resource type="Script" uid="uid://bka50x8hk57og" path="res://Scripts/Component/CameraController.cs" id="7_tepq2"]
+[ext_resource type="Script" uid="uid://bjdlxnbpxe551" path="res://Scripts/Effect/Behaviors/EventBehavior.cs" id="8_ea3nm"]
+[ext_resource type="Script" uid="uid://dui0qei00bamx" path="res://Scripts/Effect/Effect.cs" id="8_qmx1b"]
 [ext_resource type="Resource" uid="uid://d1uxxlq4f7g65" path="res://Resources/Effects/Conditions/true_condition.tres" id="8_x7vk5"]
 [ext_resource type="AudioStream" uid="uid://ddfpaljduaw54" path="res://Resources/Audios/Voice/op_voice.wav" id="10_pmlgl"]
-[ext_resource type="Script" uid="uid://b4gbmr84pkm85" path="res://Scripts/UI/GameUI/BattleUI.cs" id="12_uuh5e"]
-[ext_resource type="Script" uid="uid://dyve3f0mgg1q4" path="res://Scripts/UI/GameUI/CardSelector.cs" id="13_16vf7"]
+[ext_resource type="Script" uid="uid://746k8f70o7ue" path="res://Scripts/UI/GameUI/BattleUI.cs" id="12_uuh5e"]
+[ext_resource type="Script" uid="uid://b8nm7eq7jh6m1" path="res://Scripts/UI/GameUI/CardSelector.cs" id="13_16vf7"]
 [ext_resource type="PackedScene" uid="uid://bh78nj210pbbb" path="res://Assets/UI/battle_button.tscn" id="13_nq20h"]
-[ext_resource type="Script" uid="uid://gegt6hyuoa5c" path="res://Scripts/Effect/Behaviors/SubBehaviors/UnitBattleBehavior.cs" id="14_7hp83"]
+[ext_resource type="Script" uid="uid://bjf52tcl256bt" path="res://Scripts/Effect/Behaviors/SubBehaviors/UnitBattleBehavior.cs" id="14_7hp83"]
 [ext_resource type="PackedScene" uid="uid://da0mm2lb7b1pa" path="res://Resources/Objects/card.tscn" id="14_ixhow"]
 [ext_resource type="Texture2D" uid="uid://csvtlg5v1ci5e" path="res://Assets/Images/UI/InnerGame/返回.png" id="14_xlvtv"]
-[ext_resource type="Script" uid="uid://cacthpex51af1" path="res://Scripts/UI/Button/TextureButtonSizeChangeByState.cs" id="15_ixhow"]
-[ext_resource type="Script" uid="uid://j08lcypdh2aq" path="res://Scripts/UI/Layout/CardDisplay.cs" id="17_kjubh"]
-[ext_resource type="Script" uid="uid://br3vhlkrcaudw" path="res://Scripts/UI/Layout/Layout.cs" id="17_skk1d"]
+[ext_resource type="Script" uid="uid://c4ukgj0cy5hxn" path="res://Scripts/UI/Button/TextureButtonSizeChangeByState.cs" id="15_ixhow"]
+[ext_resource type="Script" uid="uid://h12j6toq0u6d" path="res://Scripts/UI/Layout/CardDisplay.cs" id="17_kjubh"]
+[ext_resource type="Script" uid="uid://busb72pj30ndq" path="res://Scripts/UI/Layout/Layout.cs" id="17_skk1d"]
 [ext_resource type="PackedScene" uid="uid://dm8p56bohtbg0" path="res://Assets/Objects/showing_card.tscn" id="19_skk1d"]
 [ext_resource type="PackedScene" uid="uid://cvmeyhd01gk2b" path="res://Assets/UI/box.tscn" id="20_h0mqe"]
-[ext_resource type="PackedScene" uid="uid://r8dw7cy27xay" path="res://Assets/Objects/small_text.tscn" id="28_w13ts"]
+[ext_resource type="PackedScene" uid="uid://b05pgxr48khr1" path="res://Assets/Objects/small_text.tscn" id="28_w13ts"]
 
 [sub_resource type="Resource" id="Resource_16vf7"]
 script = ExtResource("8_ea3nm")
@@ -61,7 +61,7 @@ metadata/_custom_type_script = "uid://dui0qei00bamx"
 
 [sub_resource type="Resource" id="Resource_w13ts"]
 script = ExtResource("14_7hp83")
-displayName = "离开战斗"
+displayName = "离开"
 behaviorName = "ExitBattleSystem"
 metadata/_custom_type_script = "uid://bjf52tcl256bt"
 
@@ -142,8 +142,8 @@ offset_bottom = 64.0
 anchors_preset = 0
 offset_left = 640.0
 offset_top = 360.0
-offset_right = 641.0
-offset_bottom = 361.0
+offset_right = 656.0
+offset_bottom = 376.0
 script = ExtResource("12_uuh5e")
 buttonNode = NodePath("Buttons")
 buttonPrefab = ExtResource("13_nq20h")
@@ -394,10 +394,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="SmallText" type="Control" parent="Marks" unique_id=902260495]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="SmallText" type="Node2D" parent="Marks" unique_id=940736946]
 
 [node name="MainCamera" type="Camera2D" parent="." unique_id=1184612408]
 script = ExtResource("7_tepq2")

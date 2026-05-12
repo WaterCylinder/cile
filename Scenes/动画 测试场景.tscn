@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dfogjq454gjqq"]
 
 [ext_resource type="SpriteFrames" uid="uid://da4iq31b6a74c" path="res://animation.tres" id="1_q5x5m"]
+[ext_resource type="PackedScene" uid="uid://b05pgxr48khr1" path="res://Assets/Objects/small_text.tscn" id="3_a3rkh"]
 [ext_resource type="Script" uid="uid://bka50x8hk57og" path="res://Scripts/Component/CameraController.cs" id="3_kbrjr"]
 
 [node name="动画测试场景" type="Node2D" unique_id=456084256]
@@ -16,3 +17,9 @@ frame_progress = 0.33266973
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=289878248]
 script = ExtResource("3_kbrjr")
+
+[node name="SmallText" parent="." unique_id=2001828536 instance=ExtResource("3_a3rkh")]
+position = Vector2(56, -16)
+startOnLoad = true
+speed = 1.0
+minY = -30.0

@@ -1,14 +1,25 @@
 using Godot;
 using System;
 
+public enum BattleBehaviorTag
+{
+    None,
+    Normal,
+    Self,
+    Help,
+}
+
 /// <summary>
 /// 单位战斗行为，在战斗系统中调用，方法名后缀：FuncRollback表示为方法Func的回滚方法。
 /// </summary>
 [GlobalClass]
 public partial class UnitBattleBehavior : UnitBehavior
 {
+    [Export]public BattleBehaviorTag tag = BattleBehaviorTag.None;
     [Export]public string displayName = "战斗";
     public Unit other;
+
+    Game game => GameManager.Instance.game;
 
     BattleSystem battleSystem => GameManager.Instance.game.battleSystem;
 
@@ -29,6 +40,16 @@ public partial class UnitBattleBehavior : UnitBehavior
         //TODO,这里只实现一下显示小文本的功能
         float demage = (int)Arg("demage");
         other.Hurt(unit, demage);
+    }
+
+    # endregion
+
+    # region "自身操作"
+
+    public void CheckSelf()
+    {
+        //显示自己的战斗属性
+        game.marksUI.CreatSmallText(unit.Position, "健康", 1);
     }
 
     # endregion

@@ -1,14 +1,23 @@
 using Godot;
-using System;
 
-public partial class SmallText : Control
+public partial class SmallText : Node2D
 {
+	[Export]public bool startOnLoad = false;
+	[Export]public Node2D labelNode;
 	[Export]public Label label;
 	[Export]public string state;
 	[Export]public float maxScale;
 	[Export]public float speed = 3;
 	[Export]public float minY = -10;
 	[Export]public float maxWaitTime = 1;
+
+    public override void _Ready()
+    {
+		if (startOnLoad)
+		{
+			Start();
+		}
+    }
 
     public void Start()
     {
@@ -17,12 +26,12 @@ public partial class SmallText : Control
 
 	public void SetScale(float scale)
 	{
-		label.Scale = new Vector2(scale, scale);
+		labelNode.Scale = new Vector2(scale, scale);
 	}
 
 	public void SetY(float newY)
 	{
-		label.SetPosition(new Vector2(label.Position.X, newY));
+		labelNode.SetPosition(new Vector2(labelNode.Position.X, newY));
 	}
 
 	float timer = 0;
@@ -33,7 +42,7 @@ public partial class SmallText : Control
 		switch (state)
 		{
 			case "show":
-				float posY = label.Position.Y;
+				float posY = labelNode.Position.Y;
 				posY -= deltatime * speed;
 				if(posY < minY)
 				{
@@ -46,9 +55,19 @@ public partial class SmallText : Control
 				timer += deltatime;
 				if(timer > maxWaitTime)
 				{
+					state = "small";
+				}
+			break;
+			case "small":
+				float scale = label.Scale.X;
+				scale -= deltatime * 3;
+				if(scale <= 0)
+				{
+					scale = 0;
 					state = "end";
 					QueueFree();
 				}
+				label.Scale = new Vector2(scale, scale);
 			break;
 		}
     }

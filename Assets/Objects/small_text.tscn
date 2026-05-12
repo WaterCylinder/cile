@@ -1,23 +1,26 @@
-[gd_scene format=3 uid="uid://r8dw7cy27xay"]
+[gd_scene format=3 uid="uid://b05pgxr48khr1"]
 
-[ext_resource type="Script" uid="uid://dmw2b4yqmegao" path="res://Scripts/Component/SmallText.cs" id="1_jsxgk"]
+[ext_resource type="Script" uid="uid://c4a7jo0ldfln0" path="res://Scripts/Component/SmallText.cs" id="1_jsxgk"]
 [ext_resource type="FontFile" uid="uid://cgokx2yjk7oug" path="res://Assets/Fonts/SmileySans-Oblique.ttf" id="1_pqmur"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wko8b"]
 font = ExtResource("1_pqmur")
+font_size = 32
 
-[node name="SmallText" type="Control" unique_id=2001828536 node_paths=PackedStringArray("label")]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="SmallText" type="Node2D" unique_id=2020060258 node_paths=PackedStringArray("labelNode", "label")]
 script = ExtResource("1_jsxgk")
-label = NodePath("Label")
+labelNode = NodePath("LabelNode")
+label = NodePath("LabelNode/Label")
+state = "none"
+speed = 10.0
+maxWaitTime = 0.64
 
-[node name="Label" type="Label" parent="." unique_id=669286429]
+[node name="LabelNode" type="Node2D" parent="." unique_id=1548635558]
+
+[node name="Label" type="Label" parent="LabelNode" unique_id=669286429]
 self_modulate = Color(1, 0.38, 0.39033318, 1)
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_right = 154.0
+offset_bottom = 40.0
+scale = Vector2(0.5, 0.5)
 text = "小文本"
 label_settings = SubResource("LabelSettings_wko8b")

@@ -35,6 +35,7 @@ public class BattleSystem
 	public bool isBattle = false;
 	public Unit unit;
 	public Unit other;
+	public BattleBehaviorTag tag;
 	/// <summary>
 	/// 战斗系统操作栈，用于快速操作，回退。
 	/// </summary>
@@ -51,20 +52,28 @@ public class BattleSystem
 		battleUI.Visible = false;
 	}
 
-	public void Start(Unit unit, Unit other)
+	public void Start(Unit unit, Unit other, BattleBehaviorTag tag = BattleBehaviorTag.Normal)
 	{
 		GD.Print("启用战斗系统");
 		//设置当前战斗单位
 		this.unit = unit;
 		this.other = other;
+		this.tag = tag;
 		//清空操作栈
 		operationStack.Clear();
 		operationHistory.Clear();
 		//开始显示UI并重置UI位置
 		battleUI.Visible = true;
 
-		//设置单位战斗事件
-		battleUI.behaviors = unit.battleBehaviors.Duplicate(false);
+		//设置单位战斗事件,根据标签分类
+		battleUI.behaviors = new();
+		foreach(UnitBattleBehavior behavior in unit.battleBehaviors)
+		{
+			if(behavior.tag == tag || behavior.tag == BattleBehaviorTag.None)
+			{
+				battleUI.behaviors.Add(behavior);
+			}
+		}
 		battleUI.Start();
 
 		isBattle = true;
